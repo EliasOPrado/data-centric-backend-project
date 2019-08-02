@@ -3,7 +3,7 @@
 ## To-do
 
 - Install packages
-  - Still problems
-- Proper connect templates
+  - Still problems...
+- Proper connect templates (done)...
 - Create the database and tables
-- Connect the links within each template
+- Connect the links within each template (done)
