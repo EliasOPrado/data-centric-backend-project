@@ -20,17 +20,22 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
     
-
+#need to change the name of the categories
+#based on its name.
 @app.route('/category1')
-def shop_item():
+def category1():
     return render_template('category1.html')
-    
+
+#need to change the name of the categories
+#based on its name.  
 @app.route('/category2')
-def shop_item():
+def category2():
     return render_template('category2.html')
 
+#need to change the name of the categories
+#based on its name.
 @app.route('/category3')
-def shop_item():
+def category3():
     return render_template('category3.html')
     
 if __name__ == '__main__':
