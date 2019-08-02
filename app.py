@@ -21,9 +21,17 @@ def home():
     return render_template('home.html')
     
 
-@app.route('/shop_item')
+@app.route('/category1')
 def shop_item():
-    return render_template('products.html')
+    return render_template('category1.html')
+    
+@app.route('/category2')
+def shop_item():
+    return render_template('category2.html')
+
+@app.route('/category3')
+def shop_item():
+    return render_template('category3.html')
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
