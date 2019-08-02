@@ -42,7 +42,7 @@ def category3():
 def login():
     return render_template('login.html')
 
-#add methods as needed    
+#add methods as needed\    
 @app.route('/register')
 def register():
     return render_template('register.html')
