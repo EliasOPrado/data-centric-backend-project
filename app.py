@@ -2,17 +2,17 @@
 #Imports
 import os
 from flask import Flask, render_template, redirect, request, url_for
-#from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo
 #from bson.objectid import ObjectId 
 
 app = Flask(__name__)
 
-#App configuration
-#app.config['MONG_DBNAME'] = 'task_manager'
-#app.config['MONGO_URI'] = 'mongodb+srv://'
+#App configuration -- table name and the link
+app.config['MONG_DBNAME'] = 'DB_ecommerce'
+app.config['MONGO_URI'] = 'mongodb+srv://'
                             
 
-#mongo = PyMongo(app)
+mongo = PyMongo(app)
 
 #you need to set the home under this route.
 @app.route('/')
