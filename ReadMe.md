@@ -16,3 +16,5 @@
 
 - Implement USER page;
 - Implement Login and ```@login_required``` on its user page;
+- Find the way to place and retrive data in the templates;
+- use password encript pacages.
