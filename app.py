@@ -29,12 +29,12 @@ def eletronics():
 #category 2 
 @app.route('/home_garden')
 def home_garden():
-    return render_template('home_garden.html')
+    return render_template('home_garden.html', home_garden=mongo.db.home_garden.find())
 
 #category 3 
 @app.route('/motors')
 def motors():
-    return render_template('motors.html')
+    return render_template('motors.html', motors=mongo.db.motors.find())
     
 @app.route('/login')
 def login():

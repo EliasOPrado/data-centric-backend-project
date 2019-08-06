@@ -10,13 +10,13 @@
 
   <title>Shop Homepage - Start Bootstrap Template</title>
   <!--My stylesheet-->
-  <link rel="stylesheet" href="/assets/style/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}" type="text/css" />
 
   <!-- Bootstrap core CSS -->
-  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="static/css/shop-homepage.css" rel="stylesheet">
+  <link href="{{url_for('static', filename='shop-homepage.css')}}" rel="stylesheet">
   
 
 </head>
@@ -69,8 +69,8 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
