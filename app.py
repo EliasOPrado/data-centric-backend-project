@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 #App configuration -- table name and the link
 app.config['MONG_DBNAME'] = 'DB_ecommerce'
-app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce?retryWrites=true&w=majority/'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -21,22 +21,19 @@ mongo = PyMongo(app)
 def home():
     return render_template('home.html')
     
-#need to change the name of the categories
-#based on its name.
+#category 1 
 @app.route('/eletronics')
-def category1():
-    return render_template('eletronics.html')
+def eletronics():
+    return render_template('eletronics.html', eletronics=mongo.db.eletronics.find())
 
-#need to change the name of the categories
-#based on its name.  
+#category 2 
 @app.route('/home_garden')
-def category2():
+def home_garden():
     return render_template('home_garden.html')
 
-#need to change the name of the categories
-#based on its name.
+#category 3 
 @app.route('/motors')
-def category3():
+def motors():
     return render_template('motors.html')
     
 @app.route('/login')
