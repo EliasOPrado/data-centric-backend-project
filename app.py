@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 #App configuration -- table name and the link
 app.config['MONG_DBNAME'] = 'DB_ecommerce'
-app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce?retryWrites=true'
+app.config['MONGO_URI'] = 'mongodb+srv://2@myfirstcluster-uyvei.mongodb.net/DB_ecommerce?retryWrites=true'
                             
 
 mongo = PyMongo(app)
