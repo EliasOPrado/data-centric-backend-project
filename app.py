@@ -49,26 +49,30 @@ def login():
 def register():
     return render_template('register.html')
     
-#Insert for Eletronics
+@app.route('/user')
+def user():
+    return render_template('user.html')
+    
+#Insert for Eletronics -------------------------
 @app.route('/insert_eletronic', methods=['POST'])
 def insert_eletronic():
     eletronics=mongo.db.eletronics
     eletronics.insert_one(request.form.to_dict())
-    return redirect(url_for(''))
+    return redirect(url_for('eletronics'))
 
-#Insert for Home & Garden    
+#Insert for Home & Garden ----------------------    
 @app.route('/insert_hg', methods=['POST'])
 def insert_hg():
     home_garden=mongo.db.home_garden
     home_garden(request.form.to_dict())
-    return redirect(url_for(''))
+    return redirect(url_for('home_garden'))
     
-#Insert for Motors    
+#Insert for Motors -------------------------
 @app.route('/insert_motors', methods=['POST'])
 def insert_motors():
     motors=mongo.db.motors
     motors.insert_one(request.form.to_dict())
-    return redirect(url_for(''))
+    return redirect(url_for('motors'))
     
     
 if __name__ == '__main__':
