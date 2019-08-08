@@ -19,7 +19,11 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', 
+    #to display three products of each category using for loop
+    letronics=mongo.db.eletronics.find(),
+    home_garden=mongo.db.home_garden.find(),
+    motors=mongo.db.motors.find())
     
 #category 1 
 @app.route('/eletronics')
@@ -45,7 +49,27 @@ def login():
 def register():
     return render_template('register.html')
     
+#Insert for Eletronics
+@app.route('/insert_eletronic', methods=['POST'])
+def insert_eletronic():
+    eletronics=mongo.db.eletronics
+    eletronics.insert_one(request.form.to_dict())
+    return redirect(url_for(''))
 
+#Insert for Home & Garden    
+@app.route('/insert_hg', methods=['POST'])
+def insert_hg():
+    home_garden=mongo.db.home_garden
+    home_garden(request.form.to_dict())
+    return redirect(url_for(''))
+    
+#Insert for Motors    
+@app.route('/insert_motors', methods=['POST'])
+def insert_motors():
+    motors=mongo.db.motors
+    motors.insert_one(request.form.to_dict())
+    return redirect(url_for(''))
+    
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

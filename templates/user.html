@@ -1,0 +1,56 @@
+{% extends 'layout.html' %} {% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 ">
+        <form class="text-center border border-light p-5" action="#!" method='post'>
+
+            <p class="h4 mb-4">Add a new product</p>
+
+            <div class="form-row mb-4">
+                <!-- Category -->
+                <select class="form-control ">
+  <option disabled selected>Select Category</option>
+  <option>{{ url_for('eletronics') }}</option>
+  <option>{{ url_for('home_garden') }}</option>
+  <option>{{ url_for('motors') }}</option>
+</select>
+            </div>
+
+            <!-- E-mail -->
+            <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+            <!-- Password -->
+            <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+        At least 8 characters and 1 digit
+    </small>
+
+            <!-- Phone number -->
+            <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+            <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+        Optional - for two step authentication
+    </small>
+
+            <!-- Newsletter -->
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+                <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
+            </div>
+
+            <!-- Sign up button -->
+            <button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
+
+
+            <hr>
+
+            <!-- Terms of service -->
+            <p>By clicking
+                <em>Sign up</em> you agree to our
+                <a href="" target="_blank">terms of service</a>
+
+        </form>
+    </div>
+</div>
+<!-- Default form register -->
+
+{% endblock %}

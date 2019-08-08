@@ -5,7 +5,7 @@
 - Install packages
   - Still problems...
 - Proper connect templates (done)...
-- Create the database and tables
+- Create the database and tables (done) 
 - Connect the links within each template (done)
 - Improve the design of the register and login pages
   - [See this example](http://azmind.com/wp-content/uploads/2015/06/Hype-Enterprise-Login.png)
