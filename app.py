@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 #App configuration -- table name and the link
 app.config['MONG_DBNAME'] = 'DB_ecommerce'
-app.config['MONGO_URI'] = 'mongodb+srv://2@myfirstcluster-uyvei.mongodb.net/DB_ecommerce?retryWrites=true'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -78,8 +78,8 @@ def user():
 def insert_eletronic():
     eletronics=mongo.db.eletronics
     eletronics.insert_one(request.form.to_dict())
-    product_name=request.name.get('product_name')
-    price=request.name.get('price')
+    product_name=request.form.get('product_name')
+    price=request.form.get('price')
     product_description=request.get('product_description')
     eletronics.insert({'product_name':product_name, 'price':price, 'product_description':product_description})
     return redirect(url_for('eletronics'))
@@ -89,8 +89,8 @@ def insert_eletronic():
 def insert_hg():
     home_garden=mongo.db.home_garden
     home_garden(request.form.to_dict())
-    product_name=request.name.get('product_name')
-    price=request.name.get('price')
+    product_name=request.form.get('product_name')
+    price=request.form.get('price')
     product_description=request.get('product_description')
     home_garden.insert({'product_name':product_name, 'price':price, 'product_description':product_description})
     return redirect(url_for('home_garden'))
