@@ -9,8 +9,8 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 #App configuration -- table name and the link
-app.config['MONG_DBNAME'] = ''
-app.config['MONGO_URI'] = 'mongodb+srv://'
+app.config['MONG_DBNAME'] = 'DB_ecommerce'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -28,8 +28,9 @@ def home():
 #category 1 
 @app.route('/eletronics')
 def eletronics():
-    
-    return render_template('eletronics.html', eletronics=mongo.db.eletronics.find())
+    return render_template('eletronics.html', 
+    #will only retrive data from the category_name: Eletronics
+    products=mongo.db.products.find({'category_name':"Eletronics"}))
 
 #category 2 
 @app.route('/home_garden')
@@ -76,16 +77,6 @@ def user():
 #Insert for Eletronics -------------------------
 @app.route('/insert_product', methods=['POST'])
 def insert_product():
-    #products=mongo.db.products
-    #products.insert_one(request.form.to_dict())
-    #category_name=request.form.get('category_name')
-    #product_name=request.form.get('product_name')
-    #price=request.form.get('price')
-    #product_description=request.form.get('product_description')
-    #products.insert({'product_name':product_name, 'price':price, 'product_description':product_description})
-    #return redirect(url_for('home'))
-    
-    
     products=mongo.db.products
     products.insert_one(request.form.to_dict())
     return redirect(url_for('home'))
