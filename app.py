@@ -9,8 +9,8 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 #App configuration -- table name and the link
-app.config['MONG_DBNAME'] = 'DB_ecommerce'
-app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce?retryWrites=true'
+app.config['MONG_DBNAME'] = ''
+app.config['MONGO_URI'] = 'mongodb+srv://'
                             
 
 mongo = PyMongo(app)
@@ -52,7 +52,7 @@ def register():
     
 @app.route('/user')
 def user():
-    return render_template('user.html')
+    return render_template('user.html', category=mongo.db.category.find())
     
 
 #@app.route('/insert_product', methods='POST')
@@ -72,39 +72,26 @@ def user():
 #        return render_template('insert_product.html')
         
     
-
+# ALL OF THESE THREE FUNCTIONS
 #Insert for Eletronics -------------------------
-@app.route('/insert_eletronic', methods=['POST'])
-def insert_eletronic():
-    eletronics=mongo.db.eletronics
-    eletronics.insert_one(request.form.to_dict())
-    product_name=request.form.get('product_name')
-    price=request.form.get('price')
-    product_description=request.get('product_description')
-    eletronics.insert({'product_name':product_name, 'price':price, 'product_description':product_description})
-    return redirect(url_for('eletronics'))
-
-#Insert for Home & Garden ----------------------    
-@app.route('/insert_hg', methods=['POST'])
-def insert_hg():
-    home_garden=mongo.db.home_garden
-    home_garden(request.form.to_dict())
-    product_name=request.form.get('product_name')
-    price=request.form.get('price')
-    product_description=request.get('product_description')
-    home_garden.insert({'product_name':product_name, 'price':price, 'product_description':product_description})
-    return redirect(url_for('home_garden'))
+@app.route('/insert_product', methods=['POST'])
+def insert_product():
+    #products=mongo.db.products
+    #products.insert_one(request.form.to_dict())
+    #category_name=request.form.get('category_name')
+    #product_name=request.form.get('product_name')
+    #price=request.form.get('price')
+    #product_description=request.form.get('product_description')
+    #products.insert({'product_name':product_name, 'price':price, 'product_description':product_description})
+    #return redirect(url_for('home'))
     
-#Insert for Motors -------------------------
-@app.route('/insert_motors', methods=['POST'])
-def insert_motors():
-    motors=mongo.db.motors
-    motors.insert_one(request.form.to_dict())
-    product_name=request.name.get('product_name')
-    price=request.name.get('price')
-    product_description=request.get('product_description')
-    motors.insert({'product_name':product_name, 'price':price, 'product_description':product_description})
-    return redirect(url_for('motors'))
+    
+    products=mongo.db.products
+    products.insert_one(request.form.to_dict())
+    return redirect(url_for('home'))
+
+
+    
     
     
 if __name__ == '__main__':

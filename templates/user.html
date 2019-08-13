@@ -2,21 +2,21 @@
 
 <div class="row justify-content-center">
     <div class="col-md-6 ">
-        <form class="text-center border border-light p-5" action="{{url_for('insert_eletronic')}}" method='POST'>
+        <form class="text-center border border-light p-5" action="{{url_for('insert_product')}}" method='POST'>
 
             <p class="h4 mb-4">Add a new product</p>
 
             <div class="form-row mb-4">
                 <!-- Category -->
-                <select class="form-control ">
-                 <option disabled selected>Select Category</option>
-                 <option  value='{{eletronics}}'>Eletronics</option>
-                 <option name='home_garden' value='{{home_garden}}'>Home & Garden</option>
-                 <option name='motors' value='{{ motors}}'>Motors</option>
+                <select class="form-control " name="category_name">
+                    <option disabled selected>Select Category</option>
+                 {%  for cat in category %}
+                 <option  value='{{cat.category_name}}'>{{cat.category_name}}</option>
+                 {% endfor %}
                 </select>
             </div>
             <!-- Product Name -->
-            <input type="text" id="product_name" name="product_name"class="form-control mb-4" placeholder="Product Name">
+            <input type="text" id="product_name" name="product_name" class="form-control mb-4" placeholder="Product Name">
             <!-- Price -->
             <input type="text" id="price" name="price" class="form-control mb-4" placeholder="What is the product price?" aria-describedby="defaultRegisterFormPasswordHelpBlock">
             <!-- Image upload -->
