@@ -9,13 +9,13 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 #App configuration -- table name and the link
-app.config['MONG_DBNAME'] = 'DB_ecommerce'
-app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
+app.config['MONG_DBNAME'] = ''
+app.config['MONGO_URI'] = ''
                             
 
 mongo = PyMongo(app)
 
-#you need to set the home under this route.
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -43,7 +43,7 @@ def home_garden():
 @app.route('/motors')
 def motors():
     return render_template('motors.html', 
-    #will only retrive data from the category_name: Home & Garden (dont forget the space)
+    #will only retrive data from the category_name: Motors
     products=mongo.db.products.find({'category_name':"Motors"}))
     
 @app.route('/login')
