@@ -35,12 +35,16 @@ def eletronics():
 #category 2 
 @app.route('/home_garden')
 def home_garden():
-    return render_template('home_garden.html', home_garden=mongo.db.home_garden.find())
+    return render_template('home_garden.html',
+    #will only retrive data from the category_name: Home & Garden (dont forget the space)
+    products=mongo.db.products.find({'category_name':"Home & Garden"}))
 
 #category 3 
 @app.route('/motors')
 def motors():
-    return render_template('motors.html', motors=mongo.db.motors.find())
+    return render_template('motors.html', 
+    #will only retrive data from the category_name: Home & Garden (dont forget the space)
+    products=mongo.db.products.find({'category_name':"Motors"}))
     
 @app.route('/login')
 def login():
