@@ -14,7 +14,7 @@
 
 ### For the database:
 
-- Implement USER page;
+- Implement USER page;(done)
 - Implement Login and ```@login_required``` on its user page;
-- Find the way to place and retrive data in the templates;
-- use password encript pacages.
+- Find the way to place and retrive data in the templates;(done)
+- use password encript login.
