@@ -9,8 +9,8 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 #App configuration -- table name and the link
-app.config['MONG_DBNAME'] = 'DB_ecommerce'
-app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
+app.config['MONG_DBNAME'] = ''
+app.config['MONGO_URI'] = ''
                             
 
 mongo = PyMongo(app)
@@ -27,22 +27,25 @@ def home():
 @app.route('/eletronics')
 def eletronics():
     return render_template('eletronics.html', 
-    #will only retrive data from the category_name: Eletronics
-    products=mongo.db.products.find({'category_name':"Eletronics"}))
+    #Will only retrive data from the category_name: Eletronics
+    #Name changed to facilitate the display on the main page
+    electronics=mongo.db.products.find({'category_name':"Eletronics"}))
 
 #category 2  Home & Garden
 @app.route('/home_garden')
 def home_garden():
     return render_template('home_garden.html',
-    #will only retrive data from the category_name: Home & Garden (dont forget the space)
-    products=mongo.db.products.find({'category_name':"Home & Garden"}))
+    #Will only retrive data from the category_name: Home & Garden (dont forget the space)
+    #Name changed to facilitate the display on the main page
+    homeGarden=mongo.db.products.find({'category_name':"Home & Garden"}))
 
 #category 3 Motors
 @app.route('/motors')
 def motors():
     return render_template('motors.html', 
-    #will only retrive data from the category_name: Motors
-    products=mongo.db.products.find({'category_name':"Motors"}))
+    #Will only retrive data from the category_name: Motors
+    #Name changed to facilitate the display on the main page
+    mottors=mongo.db.products.find({'category_name':"Motors"}))
     
 @app.route('/login')
 def login():
