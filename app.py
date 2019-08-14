@@ -1,11 +1,10 @@
-
 #Imports
 import os
-from flask import Flask, render_template, redirect, request, url_for
-#----mongoDB---- 
+from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
-#
+import bcrypt
+
 app = Flask(__name__)
 
 #App configuration -- table name and the link
@@ -19,9 +18,40 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home')
 def home():
+    if 'username' in session:
+        return 'You are logged in as ' + session['username']
     return render_template('home.html', 
     #to display three products of each category using for loop
     )
+    
+@app.route('/login', methods=['POST'])
+def login():
+    user = mongo.db.user
+    login_user = user.find_one({'name' : request.form['username']})
+
+    if login_user:
+        if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+            session['username'] = request.form['username']
+            return redirect(url_for('home'))
+   
+    return 'Invalid username or password combination'
+
+#Code reference Antony Hebert 
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        user = mongo.db.user
+        existing_user = user.find_one({'name':request.form['username']})
+        
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            user.insert({'name': request.form['username'], 'password': hashpass})
+            session['username'] = request.form['username']
+            return render_template('home.html')
+        
+        return 'That Username already exist!'
+    
+    return render_template('register.html')
     
 #category 1 Eletronics
 @app.route('/eletronics')
@@ -47,14 +77,7 @@ def motors():
     #Name changed to facilitate the display on the main page
     mottors=mongo.db.products.find({'category_name':"Motors"}))
     
-@app.route('/login')
-def login():
-    return render_template('login.html')
-
-#add methods as needed\    
-@app.route('/register')
-def register():
-    return render_template('register.html')
+    
     
 @app.route('/user')
 def user():
