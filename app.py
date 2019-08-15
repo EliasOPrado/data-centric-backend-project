@@ -16,25 +16,25 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
-@app.route('/home')
-def home():
+def index():
     if 'username' in session:
         return 'You are logged in as ' + session['username']
-    return render_template('home.html', 
-    #to display three products of each category using for loop
-    )
+    return render_template('index.html')
     
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    user = mongo.db.user
-    login_user = user.find_one({'name' : request.form['username']})
-
-    if login_user:
-        if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
-            session['username'] = request.form['username']
-            return redirect(url_for('home'))
-   
-    return 'Invalid username or password combination'
+    if request.method == 'POST': 
+        return render_template('login.html')
+    else:
+        user = mongo.db.user
+        login_user = user.find_one({'name': request.form.get('username')})
+    
+        if login_user:
+            if bcrypt.hashpw(request.form.get('password').encode('utf8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+                session['username'] = request.form.get('username')
+                return redirect(url_for('index'))
+       
+        return 'Invalid username or password combination'
 
 #Code reference Antony Hebert 
 @app.route('/register', methods=['POST', 'GET'])
@@ -47,7 +47,7 @@ def register():
             hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
             user.insert({'name': request.form['username'], 'password': hashpass})
             session['username'] = request.form['username']
-            return render_template('home.html')
+            return render_template('index.html')
         
         return 'That Username already exist!'
     
