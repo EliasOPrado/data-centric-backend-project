@@ -30,7 +30,7 @@ def login():
         login_user = user.find_one({'name': request.form.get('username')})
     
         if login_user:
-            if bcrypt.hashpw(request.form.get('password').encode('utf8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+            if bcrypt.hashpw(request.form.get('password').encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
                 session['username'] = request.form.get('username')
                 return redirect(url_for('index'))
        
@@ -45,8 +45,8 @@ def register():
         
         if existing_user is None:
             hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
-            user.insert({'name': request.form['username'], 'password': hashpass})
-            session['username'] = request.form['username']
+            user.insert({'name': request.form.get('username'), 'password': hashpass})
+            session['username'] = request.form.get('username')
             return render_template('index.html')
         
         return 'That Username already exist!'
@@ -88,7 +88,7 @@ def user():
 def insert_product():
     products=mongo.db.products
     products.insert_one(request.form.to_dict())
-    return redirect(url_for('home'))
+    return redirect(url_for('index'))
 
 
     

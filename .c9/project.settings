@@ -18,7 +18,7 @@
         }
     },
     "python": {
-        "@formatOnSave": true,
+        "@formatOnSave": false,
         "@path": "dist-packages:/usr/local/lib/python3.5/dist-packages",
         "@version": "python3"
     },

@@ -18,13 +18,9 @@
             <!-- Product Name -->
             <input type="text" id="product_name" name="product_name" class="form-control mb-4" placeholder="Product Name">
             <!-- Price -->
-            <input type="text" id="price" name="price" class="form-control mb-4" placeholder="What is the product price?" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-            <!-- Image upload -->
-            <div class="custom-file mb-4">
-                <input type="file" class="custom-file-input" name="product_img_path" id="product_img_path">
-                <!--fix the label text using css to display left-->
-                <label class="custom-file-label" for="product_img_path">Upload the product image</label>
-            </div>
+            <input type="number" min="1" step="any" id="#" name="price" class="form-control mb-4" placeholder="Price">
+            <input type="text" id="url" name="url" class="form-control mb-4" placeholder="Add Image URL">
+        
             <div class="form-group green-border-focus">
                 <textarea class="form-control" id="product_description" name='product_description' rows="3">Add product description</textarea>
             </div>
