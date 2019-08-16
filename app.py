@@ -77,7 +77,9 @@ def motors():
     #Name changed to facilitate the display on the main page
     mottors=mongo.db.products.find({'category_name':"Motors"}))
     
-    
+@app.route('/product')
+def product():
+    return render_template('product.html')
     
 @app.route('/user')
 def user():

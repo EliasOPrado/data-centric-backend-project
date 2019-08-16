@@ -22,3 +22,4 @@
 - USE THE TASK PROJECT TO RECYCLE THE DELETE FUNCTION...;()
   - You may use ```@login_required```to entry in categories pages and be able to >>edit and delete<< products.()
   - May not need to add requirements for now, just add it and require login after.() Week 2
+  - TO DELETE YOU WILL NEED TO CONNECT FIRST USER AND RETRIEVE EACH PRODUCT BASED ON THE LOGGED USER.()
