@@ -97,6 +97,13 @@ def insert_product():
 def delete_product(product_id):
     mongo.db.products.remove({'_id':ObjectId(product_id)})
     return redirect(url_for('eletronics'))
+
+#CHANGE THE FUNCTION/VAR NAMES ACCORDLINLLY TO THE DB
+#@app.route('/edit_category/<category_id>')
+#def edit_category(category_id):
+#    return render_template('editcategory.html',
+#                           category=mongo.db.categories.find_one(
+#                           {'_id': ObjectId(category_id)}))
     
 
 
