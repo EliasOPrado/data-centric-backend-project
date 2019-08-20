@@ -1,0 +1,43 @@
+{% extends 'layout.html' %} {% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 ">
+        <form class="text-center border border-light p-5" action="{{ url_for('update_product', product_id=product._id) }}" method='POST'>
+
+            <p class="h4 mb-4">Edit product</p>
+
+            <div class="form-row mb-4">
+                <!-- Category -->
+                <select class="form-control " name="category_name">
+                <option disabled selected>Select Category</option>
+                {% for cat in categories %}
+                {% if cat.category_name == product.category_name %}
+                <option value="{{cat.category_name}}" selected>{{cat.category_name}}</option>
+                {% else %}
+                <option value="{{cat.category_name}}">{{cat.category_name}}</option>
+                {% endif %}
+                {% endfor %}
+                </select>
+            </div>
+            <!-- Product Name -->
+            <input type="text" id="product_name" name="product_name" class="form-control mb-4" placeholder="Product Name" value="{{product.product_name}}">
+            <!-- Price -->
+            <input type="number" min="1" step="any" id="#" name="price" class="form-control mb-4" value="{{product.price}}" placeholder="Price">
+            <input type="text" id="url" name="url" class="form-control mb-4" value="{{product.url}}" placeholder="Add Image URL">
+        
+            <div class="form-group green-border-focus">
+                <textarea class="form-control" id="product_description" name='product_description' rows="3">{{ product.product_description }}</textarea>
+            </div>
+            <!-- Sign up button -->
+            <button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
+            <hr>
+            <!-- Terms of service -->
+            <p>By clicking
+                <em>Sign up</em> you agree to our
+                <a href="" target="_blank">terms of service</a>
+        </form>
+    </div>
+</div>
+<!-- Default form register -->
+
+{% endblock %}

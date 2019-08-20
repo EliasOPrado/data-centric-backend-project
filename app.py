@@ -97,14 +97,27 @@ def insert_product():
 def delete_product(product_id):
     mongo.db.products.remove({'_id':ObjectId(product_id)})
     return redirect(url_for('eletronics'))
-
-#CHANGE THE FUNCTION/VAR NAMES ACCORDLINLLY TO THE DB
-#@app.route('/edit_category/<category_id>')
-#def edit_category(category_id):
-#    return render_template('editcategory.html',
-#                           category=mongo.db.categories.find_one(
-#                           {'_id': ObjectId(category_id)}))
     
+
+@app.route('/edit_product/<product_id>')
+def edit_product(product_id):
+    the_product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+    all_categories = mongo.db.category.find()
+    return render_template('editproduct.html', product=the_product,
+                           categories=all_categories)
+
+@app.route('/update_product/<product_id>', methods=['POST'])
+def update_product(product_id):
+    products = mongo.db.products
+    products.update({'_id': ObjectId(product_id)},
+        {
+        'category_name':request.form.get('category_name'),
+        'product_name':request.form.get('product_name'),
+        'price':request.form.get('price'),
+        'url':request.form.get('url'),
+        'product_description': request.form.get('product_description')
+        })
+    return redirect(url_for('index'))
 
 
 
