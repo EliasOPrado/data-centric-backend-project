@@ -26,7 +26,7 @@
               <a href="#"><img class="card-img-top" src="{{ eletronic.url }}" width="200" height="200" alt="" class="responsive-img"></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">{{ eletronic.product_name }}</a>
+                  <a href="{{ url_for('product', product_id=eletronic._id) }}">{{ eletronic.product_name }}</a>
                 </h4>
                 <h5>${{ eletronic.price }}</h5>
                 <p class="card-text">{{ eletronic.product_description}}</p>

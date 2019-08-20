@@ -8,8 +8,8 @@ import bcrypt
 app = Flask(__name__)
 
 #App configuration -- table name and the link
-app.config['MONG_DBNAME'] = ''
-app.config['MONGO_URI'] = ''
+app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -76,10 +76,20 @@ def motors():
     #Will only retrive data from the category_name: Motors
     #Name changed to facilitate the display on the main page
     mottors=mongo.db.products.find({'category_name':"Motors"}))
+ 
+ 
+ 
+ 
+ #YOU STOPPED HERE.......
+   
+@app.route('/product/product_id?=<id>')
+def product(id):
+    view_product=mongo.db.products.find_one({"_id": ObjectId(id)})
+    return render_template('product.html', view_product=view_product)
     
-@app.route('/product')
-def product():
-    return render_template('product.html')
+    
+    
+    
     
 @app.route('/user')
 def user():
@@ -96,7 +106,7 @@ def insert_product():
 @app.route('/delete_product/<product_id>')
 def delete_product(product_id):
     mongo.db.products.remove({'_id':ObjectId(product_id)})
-    return redirect(url_for('eletronics'))
+    return redirect(url_for('index'))
     
 
 @app.route('/edit_product/<product_id>')
