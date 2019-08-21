@@ -6,7 +6,7 @@
 <!--MOVE THIS SECTION TO THE NAVBAR AS A DROPDOWN BUTTON LATER ON-->
         <h1 class="my-4">Categories</h1>
         <div class="list-group">
-          <a href="{{ url_for('eletronics') }}" class="list-group-item active">Eletronics</a>
+          <a href="{{ url_for('electronics') }}" class="list-group-item active">Electronics</a>
           <a href="{{ url_for('home_garden') }}" class="list-group-item">Home & Garden</a>
           <a href="{{ url_for('motors') }}" class="list-group-item">Motors</a>
         </div>
@@ -19,20 +19,20 @@
         <div class="row top-margin">
         <!--ELETRONICS-->
         
-        {%  for eletronic in electronics %}
+        {%  for electronic in electronics %}
         
           <div class="col-lg-4 col-md-6 mb-4 card-position">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="{{ eletronic.url }}" width="200" height="200" alt="" class="responsive-img"></a>
+              <a href="#"><img class="card-img-top" src="{{ electronic.url }}" width="200" height="200" alt="" class="responsive-img"></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="{{ url_for('product', product_id=eletronic._id) }}">{{ eletronic.product_name }}</a>
+                  <a href="{{ url_for('product', id=electronic._id) }}">{{ electronic.product_name }}</a>
                 </h4>
-                <h5>${{ eletronic.price }}</h5>
-                <p class="card-text">{{ eletronic.product_description}}</p>
+                <h5>${{ electronic.price }}</h5>
+                <!--<p class="card-text">{{ electronic.product_description}}</p>-->
               </div>
-              <a class=" btn btn-sm btn-danger" href="{{  url_for('delete_product', product_id=eletronic._id) }}" role="button">#test Delete product</a>
-              <a class=" btn btn-sm btn-primary" href="{{  url_for('edit_product', product_id=eletronic._id) }}" role="button">#test Edit product</a>
+              <a class=" btn btn-sm btn-danger" href="{{  url_for('delete_product', product_id=electronic._id) }}" role="button">#test Delete product</a>
+              <a class=" btn btn-sm btn-primary" href="{{  url_for('edit_product', product_id=electronic._id) }}" role="button">#test Edit product</a>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
               </div>

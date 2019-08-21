@@ -5,7 +5,7 @@
       <div class="col-lg-3">
         <h1 class="my-4">Categories</h1>
         <div class="list-group">
-          <a href="{{ url_for('eletronics') }}" class="list-group-item">Eletronics</a>
+          <a href="{{ url_for('electronics') }}" class="list-group-item">Electronics</a>
           <a href="{{ url_for('home_garden') }}" class="list-group-item">Home & Garden</a>
           <a href="{{ url_for('motors') }}" class="list-group-item active">Motors</a>
         </div>
@@ -17,17 +17,17 @@
         <div class="row">
         <!--ELETRONICS-->
         
-         {%  for motor in mottors %}
+         {%  for motor in motors %}
         
           <div class="col-lg-4 col-md-6 mb-4 card-position">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="{{motor.url}}" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">{{ motor.product_name }}</a>
+                  <a href="{{ url_for('product', id=motor._id) }}">{{ motor.product_name }}</a>
                 </h4>
                 <h5>${{ motor.price }}</h5>
-                <p class="card-text">{{ motor.product_description}}</p>
+                <!--<p class="card-text">{{ motor.product_description}}</p>-->
               </div>
               <a class=" btn btn-sm btn-danger" href="{{  url_for('delete_product', product_id=motor._id) }}" role="button">#test Delete product</a>
               <a class=" btn btn-sm btn-primary" href="{{  url_for('edit_product', product_id=motor._id) }}" role="button">#test Edit product</a>

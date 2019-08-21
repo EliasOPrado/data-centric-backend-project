@@ -11,18 +11,19 @@
   - [See this example](http://azmind.com/wp-content/uploads/2015/06/Hype-Enterprise-Login.png)
   - [and this too](https://file.mockplus.com/image/2019/05/886d7ebd-61e1-4227-9348-c8bac23c364b.png)
 - Footer needs to be fixed on mobile.
-- Create:(done);
-- Read (done);
-- Update (done);
-- Delete(done);
+- CRUD
+  - Create:(done);
+  - Read (done);
+  - Update (done);
+  - Delete(done);
 
 ### For the database:
 
-- Implement USER page;(done)
+- Implement USER page with UPDATE, DELETE and PRODUCTS done by the user;()
 - Find the way to place and retrive data in the templates;(done)
 - Implement Login and ```@login_required``` on its user page; ()
+  - Use password encription login;()
 - Encript the MongoDB connection;()
-- Use password encription login;()
 - USE THE TASK PROJECT TO RECYCLE THE DELETE FUNCTION...;(done)
   - You may use ```@login_required```to entry in categories pages and be able to >>edit and delete<< products.()
   - May not need to add requirements for now, just add it and require login after.() Week 2

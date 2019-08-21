@@ -8,8 +8,8 @@ import bcrypt
 app = Flask(__name__)
 
 #App configuration -- table name and the link
-app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
-app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
+app.config['MONG_DBNAME'] = ''
+app.config['MONGO_URI'] = ''
                             
 
 mongo = PyMongo(app)
@@ -54,12 +54,12 @@ def register():
     return render_template('register.html')
     
 #category 1 Eletronics
-@app.route('/eletronics')
-def eletronics():
-    return render_template('eletronics.html', 
+@app.route('/electronics')
+def electronics():
+    return render_template('electronics.html', 
     #Will only retrive data from the category_name: Eletronics
     #Name changed to facilitate the display on the main page
-    electronics=mongo.db.products.find({'category_name':"Eletronics"}))
+    electronics=mongo.db.products.find({'category_name':"Electronics"}))
 
 #category 2  Home & Garden
 @app.route('/home_garden')
@@ -75,7 +75,7 @@ def motors():
     return render_template('motors.html', 
     #Will only retrive data from the category_name: Motors
     #Name changed to facilitate the display on the main page
-    mottors=mongo.db.products.find({'category_name':"Motors"}))
+    motors=mongo.db.products.find({'category_name':"Motors"}))
  
  
  
