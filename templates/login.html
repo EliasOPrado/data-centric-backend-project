@@ -8,18 +8,14 @@
     <div class="col-md-6 ">
         <form method='POST'class="text-center border border-light p-5" action="{{ url_for('login') }}">
             <p class="h4 mb-4">Sign in</p>
-            <input type="text" id="#" class="form-control mb-4" name="username" placeholder="Username">
-            <input type="password" id="#" name="pass"class="form-control mb-4" placeholder="Password">
+            <input type="text" id="#" class="form-control mb-4" name="name" placeholder="Username">
+            <input type="password" id="#" name="password"class="form-control mb-4" placeholder="Password">
             <div class="d-flex justify-content-around">
                 <div>
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
                         <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
                     </div>
-                </div>
-                <div>
-                    <!-- Forgot password -->
-                    <a href="">Forgot password?</a>
                 </div>
             </div>
 
@@ -51,5 +47,6 @@
     </div>
 </div>
 <!-- Default form login -->
+
 
 {% endblock %}

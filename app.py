@@ -8,8 +8,8 @@ import bcrypt
 app = Flask(__name__)
 
 #App configuration -- table name and the link
-app.config['MONG_DBNAME'] = ''
-app.config['MONGO_URI'] = ''
+app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -21,13 +21,13 @@ def index():
         return 'You are logged in as ' + session['username']
     return render_template('index.html')
     
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST': 
         return render_template('login.html')
     else:
         user = mongo.db.user
-        login_user = user.find_one({'name': request.form.get('username')})
+        login_user = user.find_one({'name': request.form.get('name')})
     
         if login_user:
             if bcrypt.hashpw(request.form.get('password').encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
@@ -53,69 +53,44 @@ def register():
     
     return render_template('register.html')
     
+#READ FUNCTIONS FOR EACH CATEGORIES   
 #category 1 Eletronics
 @app.route('/electronics')
 def electronics():
     return render_template('electronics.html', 
-    #Will only retrive data from the category_name: Eletronics
-    #Name changed to facilitate the display on the main page
     electronics=mongo.db.products.find({'category_name':"Electronics"}))
 
 #category 2  Home & Garden
 @app.route('/home_garden')
 def home_garden():
     return render_template('home_garden.html',
-    #Will only retrive data from the category_name: Home & Garden (dont forget the space)
-    #Name changed to facilitate the display on the main page
     homeGarden=mongo.db.products.find({'category_name':"Home & Garden"}))
 
 #category 3 Motors
 @app.route('/motors')
 def motors():
     return render_template('motors.html', 
-    #Will only retrive data from the category_name: Motors
-    #Name changed to facilitate the display on the main page
     motors=mongo.db.products.find({'category_name':"Motors"}))
  
- 
- 
- 
- #YOU STOPPED HERE.......
-   
+#FUNCTION TO VIEW PRODUCT BY ITS ID AND RETRIEVE it in product.html
 @app.route('/product/product_id?=<id>')
 def product(id):
     view_product=mongo.db.products.find_one({"_id": ObjectId(id)})
     return render_template('product.html', view_product=view_product)
     
-    
-    
-    
-    
+#FORM TO CREATE NEW PRODUCT  
 @app.route('/user')
 def user():
     return render_template('user.html', category=mongo.db.category.find())
 
-    
+#CREATE FUNCTION
 @app.route('/insert_product', methods=['POST'])
 def insert_product():
     products=mongo.db.products
     products.insert_one(request.form.to_dict())
     return redirect(url_for('index'))
     
-    
-@app.route('/delete_product/<product_id>')
-def delete_product(product_id):
-    mongo.db.products.remove({'_id':ObjectId(product_id)})
-    return redirect(url_for('index'))
-    
-
-@app.route('/edit_product/<product_id>')
-def edit_product(product_id):
-    the_product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
-    all_categories = mongo.db.category.find()
-    return render_template('editproduct.html', product=the_product,
-                           categories=all_categories)
-
+#UPDATE FUNCTION
 @app.route('/update_product/<product_id>', methods=['POST'])
 def update_product(product_id):
     products = mongo.db.products
@@ -128,6 +103,23 @@ def update_product(product_id):
         'product_description': request.form.get('product_description')
         })
     return redirect(url_for('index'))
+    
+@app.route('/edit_product/<product_id>')
+def edit_product(product_id):
+    the_product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+    all_categories = mongo.db.category.find()
+    return render_template('editproduct.html', product=the_product,
+                           categories=all_categories)
+
+    
+#DELETE FUNCTION  
+@app.route('/delete_product/<product_id>')
+def delete_product(product_id):
+    mongo.db.products.remove({'_id':ObjectId(product_id)})
+    return redirect(url_for('index'))
+    
+
+
 
 
 
