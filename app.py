@@ -8,8 +8,8 @@ import bcrypt
 app = Flask(__name__)
 
 #App configuration -- table name and the link
-app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
-app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
+app.config['MONG_DBNAME'] = ''
+app.config['MONGO_URI'] = ''
                             
 
 mongo = PyMongo(app)
