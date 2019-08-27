@@ -8,6 +8,7 @@ import bcrypt
 app = Flask(__name__)
 
 #App configuration -- table name and the link
+app.secret_key = 'any random string'
 app.config['MONG_DBNAME'] = ''
 app.config['MONGO_URI'] = ''
                             
@@ -21,18 +22,18 @@ def index():
         return 'You are logged in as ' + session['username']
     return render_template('index.html')
     
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    if request.method == 'POST': 
+    if request.method == 'GET': 
         return render_template('login.html')
     else:
         user = mongo.db.user
-        login_user = user.find_one({'name': request.form.get('name')})
+        login_user = user.find_one({'email': request.form.get('email'), 'password':request.form.get('password')})
     
         if login_user:
-            if bcrypt.hashpw(request.form.get('password').encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
-                session['username'] = request.form.get('username')
-                return redirect(url_for('index'))
+            #if bcrypt.hashpw(request.form.get('password'), login_user['password'].encode()) == login_user['password'].encode():
+            #session['email'] = request.form.get('email')
+            return redirect(url_for('user'))
        
         return 'Invalid username or password combination'
 
@@ -41,13 +42,16 @@ def login():
 def register():
     if request.method == 'POST':
         user = mongo.db.user
-        existing_user = user.find_one({'name':request.form['username']})
+        existing_user = user.find_one({'email':request.form['email']})
         
-        if existing_user is None:
-            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
-            user.insert({'name': request.form.get('username'), 'password': hashpass})
-            session['username'] = request.form.get('username')
-            return render_template('index.html')
+        if existing_user:
+           #hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            user.insert({
+            'name': request.form.get('username'),
+            'email': request.form.get('email'),
+            'password': request.form.get('password')})
+            session['name'] = request.form.get('username')
+            return render_template('user.html')
         
         return 'That Username already exist!'
     
