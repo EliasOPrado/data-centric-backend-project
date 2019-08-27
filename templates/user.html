@@ -3,21 +3,30 @@
 <div class="row justify-content-center card-deck">
 
     <div class="col-md-4 card card-body">
-<!--ref: https://bootstrapious.com/p/bootstrap-vertical-navbar-->
+        <!--ref: https://bootstrapious.com/p/bootstrap-vertical-navbar-->
         <!-- Vertical navbar -->
+        {% if session['email'] != None %}
         <div class="vertical-nav bg-white" id="sidebar">
             <div class="py-4 px-3 mb-4 bg-light">
                 <div class="media d-flex align-items-center"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556074849/avatar-1_tcnd60.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                     <div class="media-body">
-                        <h4 class="m-0">Some Name</h4>
+                        <h4 class="m-0">{{ session['name'] }}</h4>
                         <p class="font-weight-light text-muted mb-0">Seller</p>
                     </div>
                 </div>
             </div>
 
+            <!--You will not need a else because the user template must be authorizated by a login!-->
+
             <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
 
             <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-dark font-italic bg-light">
+                <i class="fa fa-envelope  mr-3 text-dark fa-fw"></i>
+                {{session['email']}}
+            </a>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link text-dark font-italic bg-light">
                 <i class="fa fa-th-large mr-3 text-dark fa-fw"></i>
@@ -45,7 +54,7 @@
             </ul>
 
             <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
-
+            {% endif %}
             <!--<ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
                     <a href="#" class="nav-link text-dark font-italic">
@@ -75,7 +84,7 @@
         </div>
     </div>
 
-<!--2nd card for -->
+    <!--2nd card for -->
     <div class="col-md-8 card">
         <form class="text-center border border-light p-5" action="{{url_for('insert_product')}}" method='POST'>
 

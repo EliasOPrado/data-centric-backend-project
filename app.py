@@ -32,7 +32,7 @@ def login():
     
         if login_user:
             #if bcrypt.hashpw(request.form.get('password'), login_user['password'].encode()) == login_user['password'].encode():
-            #session['email'] = request.form.get('email')
+            session['email'] = request.form.get('email')
             return redirect(url_for('user'))
        
         return 'Invalid username or password combination'
@@ -45,15 +45,16 @@ def register():
         existing_user = user.find_one({'email':request.form['email']})
         
         if existing_user:
-           #hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
             user.insert({
             'name': request.form.get('username'),
             'email': request.form.get('email'),
             'password': request.form.get('password')})
             session['name'] = request.form.get('username')
+            session['email'] = request.form.get('email')
             return render_template('user.html')
         
-        return 'That Username already exist!'
+        return '<div><h1>That Username already exist!</h1></div>'
     
     return render_template('register.html')
     
