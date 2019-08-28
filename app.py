@@ -20,7 +20,10 @@ mongo = PyMongo(app)
 def index():
     if 'username' in session:
         return 'You are logged in as ' + session['username']
-    return render_template('index.html')
+    return render_template('index.html',
+    electronics=mongo.db.products.find({'category_name':"Electronics"}),
+    homeGarden=mongo.db.products.find({'category_name':"Home & Garden"}),
+    motors=mongo.db.products.find({'category_name':"Motors"}))
     
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -125,6 +128,7 @@ def update_product(product_id):
         'product_name':request.form.get('product_name'),
         'price':request.form.get('price'),
         'url':request.form.get('url'),
+        'seller':request.form.get('seller'),
         'product_description': request.form.get('product_description')
         })
     return redirect(url_for('index'))

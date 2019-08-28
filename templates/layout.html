@@ -17,7 +17,7 @@
 
   <!-- Custom styles for this template -->
   <link href="{{url_for('static', filename='shop-homepage.css')}}" rel="stylesheet">
-  
+
 
 </head>
 
@@ -37,17 +37,23 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
+          <!--WILL DISPLAY HOME/LOGIN/REGISTER WHEN NOT LOGGED IN-->
+          {% if session['email'] == None %}
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('login')}}">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('register')}}">Register</a>
           </li>
-          {% if session['email'] != None %}
+           <!--WILL DISPLAY HOME/LOGIN/REGISTER WHEN LOGGED IN-->
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('user')}}">Account</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
-            {%  endif %}
           </li>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -56,8 +62,7 @@
   <!-- Page Content -->
   <div class="container">
 
-  {% block content %} 
-  {% endblock %}
+    {% block content %} {% endblock %}
 
   </div>
   <!-- /.container -->
