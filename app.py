@@ -28,35 +28,51 @@ def login():
         return render_template('login.html')
     else:
         user = mongo.db.user
-        login_user = user.find_one({'email': request.form.get('email'), 'password':request.form.get('password')})
-    
+        login_user = user.find_one({
+        #'name': request.form.get('username'),
+        'email': request.form.get('email'), 
+        'password':request.form.get('password'
+        )})
+        
         if login_user:
             #if bcrypt.hashpw(request.form.get('password'), login_user['password'].encode()) == login_user['password'].encode():
-            session['email'] = request.form.get('email')
+            session['email'] = login_user['email']
+            session['name'] = login_user['name']
             return redirect(url_for('user'))
        
         return 'Invalid username or password combination'
+        
 
-#Code reference Antony Hebert 
+
+@app.route('/logout')
+def logout():
+    session['email'] = None
+    session['name'] = None
+
+    # session.clear()
+    return redirect(url_for('login'))
+
+
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    email = session.get('email')
+    if email:
+      return redirect(url_for('index'))
+
+    user = None
     if request.method == 'POST':
-        user = mongo.db.user
-        existing_user = user.find_one({'email':request.form['email']})
-        
-        if existing_user:
-            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
-            user.insert({
-            'name': request.form.get('username'),
-            'email': request.form.get('email'),
-            'password': request.form.get('password')})
-            session['name'] = request.form.get('username')
-            session['email'] = request.form.get('email')
-            return render_template('user.html')
-        
-        return '<div><h1>That Username already exist!</h1></div>'
-    
-    return render_template('register.html')
+        name = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        user = {'name': name, 'email': email, 'password': password}
+
+        if mongo.db.user.find_one({"email": email}):
+            return render_template('register.html', title='Sign up | Veggit', error="user_exists")
+        else:
+            mongo.db.user.insert_one(user)
+            return render_template('login.html', title='Login | Veggit', user=user, password=password)
+
+    return render_template('register.html', title='Sign up | Veggit')
     
 #READ FUNCTIONS FOR EACH CATEGORIES   
 #category 1 Eletronics
@@ -86,6 +102,10 @@ def product(id):
 #FORM TO CREATE NEW PRODUCT  
 @app.route('/user')
 def user():
+    #will not allow not logged in users to ad new products
+    email = session.get('email')
+    if not email:
+        return redirect(url_for('login'))
     return render_template('user.html', category=mongo.db.category.find())
 
 #CREATE FUNCTION
