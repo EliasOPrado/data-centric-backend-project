@@ -19,16 +19,17 @@
 
 ### For the database:
 
-- Implement USER page with UPDATE, DELETE and PRODUCTS done by the user;()
+- Implement USER page with UPDATE, DELETE and PRODUCTS done by the user;<<<<<--------
 - Find the way to place and retrive data in the templates;(done)
-- Implement Login and ```@login_required``` on its user page; ()
-  - Use password encription login;()
+- Implement Login and ```@login_required``` on its user page; (done)
+  - Use password _encription_ login;(done)
 - Encript the MongoDB connection;()
 - USE THE TASK PROJECT TO RECYCLE THE DELETE FUNCTION...;(done)
-  - You may use ```@login_required```to entry in categories pages and be able to >>edit and delete<< products.()
-  - May not need to add requirements for now, just add it and require login after.() Week 2
+  - You may use ```@login_required```to entry in categories pages and be able to >>edit and delete<< products.(not needed)
+  - May not need to add requirements for now, just add it and require login after.(done) Week 2
   - TO DELETE YOU WILL NEED TO CONNECT FIRST USER AND RETRIEVE EACH PRODUCT BASED ON THE LOGGED USER.()
   - # check for logged in user
+- ADD COMMENTS ON PRODUCTS BY USERS.....<<-------<<--
 
 ``` email = session.get('email')
 
