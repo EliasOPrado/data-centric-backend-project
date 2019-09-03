@@ -38,7 +38,6 @@ def login():
         )})
         
         if login_user:
-            #if bcrypt.hashpw(request.form.get('password'), login_user['password'].encode()) == login_user['password'].encode():
             session['email'] = login_user['email']
             session['name'] = login_user['name']
             return redirect(url_for('user'))
@@ -70,12 +69,12 @@ def register():
         user = {'name': name, 'email': email, 'password': password}
 
         if mongo.db.user.find_one({"email": email}):
-            return render_template('register.html', title='Sign up | Veggit', error="user_exists")
+            return render_template('register.html',  error="user_exists")
         else:
             mongo.db.user.insert_one(user)
-            return render_template('login.html', title='Login | Veggit', user=user, password=password)
+            return render_template('login.html', user=user, password=password)
 
-    return render_template('register.html', title='Sign up | Veggit')
+    return render_template('register.html')
     
 #READ FUNCTIONS FOR EACH CATEGORIES   
 #category 1 Eletronics
@@ -107,9 +106,10 @@ def product(id):
 def user():
     #will not allow not logged in users to ad new products
     email = session.get('email')
+    print()
     if not email:
         return redirect(url_for('login'))
-    return render_template('user.html', category=mongo.db.category.find())
+    return render_template('user.html', category=mongo.db.category.find(), products=mongo.db.products.find({'seller':session.get('name')}))
 
 #CREATE FUNCTION
 @app.route('/insert_product', methods=['POST'])
