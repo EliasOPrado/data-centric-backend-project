@@ -16,14 +16,14 @@
                 </div>
             </div>
             <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
-            <ul class="nav flex-column bg-white mb-0">
+            <ul class="nav flex-column bg-white mb-0 scroll">
                 <li class="nav-item">
                     <a href="#" class="nav-link text-dark font-italic bg-light">
                 <i class="fa fa-envelope  mr-3 text-dark fa-fw"></i>
                 {{session['email']}}
             </a>
                 </li>
-                
+                {% endif %}
                
                 <table class="table table-sm table-striped">
                     
@@ -33,33 +33,27 @@
                             <th scope="col">Category</th>
                             <th scope="col">Name</th>
                             <th scope="col">Price</th>
+                            <th scope="col">See</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for product in products %}
+                        {% for item in items %}
                         <tr>
-                            <th scope="row">{{ product[products] }}</th>
-                            <td>{{product.category_name}}</td>
-                            <td>{{product.product_name}}</td>
-                            <td>{{product.price}}</td>
-                            <td><button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></td>
-                            <td><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></td>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{item.category_name}}</td>
+                            <td>{{item.product_name}}</td>
+                            <td>${{item.price}}</td>
+                            <td><a href="{{ url_for('product', id=item._id) }}"><button type="button" class="btn btn-primary" ><i class="fas fa-eye"></i></button</a></td>
+                            <td><a href="{{  url_for('edit_product', product_id=item._id) }}"><button type="button" class="btn btn-success" ><i class="fas fa-edit"></i></button></a></td>
+                            <td><a href="{{  url_for('delete_product', product_id=item._id) }}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                 
-              
             </ul>
             
-           
-            
-            
-
-            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
-            {% endif %}
             <!--<ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
                     <a href="#" class="nav-link text-dark font-italic">

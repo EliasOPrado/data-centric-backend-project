@@ -101,15 +101,18 @@ def product(id):
     view_product=mongo.db.products.find_one({"_id": ObjectId(id)})
     return render_template('product.html', view_product=view_product)
     
+    
+
+    
 #FORM TO CREATE NEW PRODUCT  
 @app.route('/user')
 def user():
-    #will not allow not logged in users to ad new products
+    items=mongo.db.products.find({'seller':session.get('name')})
+    category=mongo.db.category.find()
     email = session.get('email')
-    print()
     if not email:
         return redirect(url_for('login'))
-    return render_template('user.html', category=mongo.db.category.find(), products=mongo.db.products.find({'seller':session.get('name')}))
+    return render_template('user.html', category=category, items=items)
 
 #CREATE FUNCTION
 @app.route('/insert_product', methods=['POST'])
