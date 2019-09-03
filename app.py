@@ -25,6 +25,7 @@ def index():
     homeGarden=mongo.db.products.find({'category_name':"Home & Garden"}),
     motors=mongo.db.products.find({'category_name':"Motors"}))
     
+#LOGIN FUNCTION   
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'GET': 
@@ -32,7 +33,6 @@ def login():
     else:
         user = mongo.db.user
         login_user = user.find_one({
-        #'name': request.form.get('username'),
         'email': request.form.get('email'), 
         'password':request.form.get('password'
         )})
@@ -44,17 +44,14 @@ def login():
        
         return 'Invalid username or password combination'
         
-
-
+#LOGOUT FUNCTION
 @app.route('/logout')
 def logout():
     session['email'] = None
     session['name'] = None
-
-    # session.clear()
     return redirect(url_for('login'))
 
-
+#REGISTER FUNCTION
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     email = session.get('email')
@@ -95,17 +92,15 @@ def motors():
     return render_template('motors.html', 
     motors=mongo.db.products.find({'category_name':"Motors"}))
  
-#FUNCTION TO VIEW PRODUCT BY ITS ID AND RETRIEVE it in product.html
-@app.route('/product/product_id?=<id>')
+#FUNCTION TO VIEW PRODUCT BY ITS ID AND RETRIEVE it in product.html             <<<<<<<<<<<<<<<<============= PRODUCTS
+@app.route('/product/product_id?=<id>', methods=['GET', 'POST'])
 def product(id):
     view_product=mongo.db.products.find_one({"_id": ObjectId(id)})
+    #ADD REVIEW
     return render_template('product.html', view_product=view_product)
     
-    
-
-    
-#FORM TO CREATE NEW PRODUCT  
-@app.route('/user')
+#FORM TO CREATE NEW PRODUCT                                                     <<<<<<<<<<<<<<<<============= USER
+@app.route('/user')                                                             
 def user():
     items=mongo.db.products.find({'seller':session.get('name')})
     category=mongo.db.category.find()
@@ -121,6 +116,7 @@ def insert_product():
     products.insert_one(request.form.to_dict())
     return redirect(url_for('index'))
     
+    
 #UPDATE FUNCTION
 @app.route('/update_product/<product_id>', methods=['POST'])
 def update_product(product_id):
@@ -132,7 +128,7 @@ def update_product(product_id):
         'price':request.form.get('price'),
         'url':request.form.get('url'),
         'seller':request.form.get('seller'),
-        'product_description': request.form.get('product_description')
+        'product_description': request.form.get('product_description'),
         })
     return redirect(url_for('index'))
     
@@ -140,9 +136,7 @@ def update_product(product_id):
 def edit_product(product_id):
     the_product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
     all_categories = mongo.db.category.find()
-    return render_template('editproduct.html', product=the_product,
-                           categories=all_categories)
-
+    return render_template('editproduct.html', product=the_product, categories=all_categories)
     
 #DELETE FUNCTION  
 @app.route('/delete_product/<product_id>')
@@ -150,10 +144,7 @@ def delete_product(product_id):
     mongo.db.products.remove({'_id':ObjectId(product_id)})
     return redirect(url_for('index'))
     
-
-
-
-
+    
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

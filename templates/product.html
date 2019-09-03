@@ -21,28 +21,40 @@
             <h4>${{view_product.price}}</h4>
             <p class="card-text">{{view_product.product_description}}</p>
             <p><strong>Seller: </strong>{{view_product.seller}}</p>
-            <!--<span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>-->
             4.0 stars
           </div>
         </div>
         <!-- /.card -->
-
         <div class="card card-outline-secondary my-4">
+          
+          
           <div class="card-header">
             Product Reviews
           </div>
           <div class="card-body">
+            <!--YOU WILL NEED A LOOP TO DISPLAY THE COMMENTS HERE-->
+            <p></p>
+            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <hr>
+            <!--YOU WILL PLACE THE ENDFOR HERE-->
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
             <small class="text-muted">Posted by Anonymous on 3/1/17</small>
             <hr>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
             <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <!--YOU WILL NEED TO DISPLAY AN INPUT TO ADD DATA TO THE COLLECTION AND ITS NAME TO REF THE FUNCTION-->
+             
             <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <a href="#" class="btn btn-success">Leave a Review</a>
+            <form action="" methods="POST">
+              <div class="form-group green-border-focus">
+                <textarea class="form-control" id="review" name='review' placeholder="Add Review" rows="3" required></textarea>
+            </div>
+            <button class="btn btn-success" type="submit">Leave a Review</button>
+            </form>
           </div>
+          
+          
+          
         </div>
         <!-- /.card -->
 

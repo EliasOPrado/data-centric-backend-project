@@ -1,16 +1,12 @@
 {% extends 'layout.html' %} {% block content %}
-
-<!--INCREASE WIDTH A BIT-->
-<!--IMPROVE THE DESIGN SEE README.MD-->
-
 <!-- Default form login -->
 <div class="row justify-content-center">
     <div class="col-md-6 ">
-        <form method='POST'class="text-center border border-light p-5" action="{{ url_for('login') }}">
+        <form method='POST' class="text-center border border-light p-5" action="{{ url_for('login') }}">
             <p class="h4 mb-4">Sign in</p>
             <!--<input type="text" id="#" class="form-control mb-4" name="username" placeholder="Username">-->
             <input type="email" id="" class="form-control mb-4" name="email" placeholder="Email">
-            <input type="password" id="password" name="password"class="form-control mb-4" placeholder="Password">
+            <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Password">
             <div class="d-flex justify-content-around">
                 <div>
                     <div class="custom-control custom-checkbox">
@@ -19,35 +15,15 @@
                     </div>
                 </div>
             </div>
-
             <!-- Sign in button -->
             <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
-
             <!-- Register -->
             <p>Not a member?
                 <a href="{{ url_for('register') }}">Register</a>
             </p>
-
             <!-- Social login -->
-            <p>or sign in with:</p>
-
-            <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-facebook-f"></i>
-    </a>
-            <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-twitter"></i>
-    </a>
-            <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-linkedin-in"></i>
-    </a>
-            <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-github"></i>
-    </a>
-
         </form>
     </div>
 </div>
 <!-- Default form login -->
-
-
 {% endblock %}

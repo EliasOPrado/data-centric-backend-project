@@ -1,18 +1,9 @@
 {% extends 'layout.html' %} {% block content %}
 <!-- Default form register -->
-
-
-<!--REMOVE PADDING UP AND DOWN-->
-<!--INCREASE WIDTH A BIT-->
-<!--IMPROVE THE DESIGN SEE README-->
-
-
 <div class="row justify-content-center ">
     <div class="col-md-6 ">
         <form method="POST" class="text-center border border-light p-5" action="{{ url_for('register') }}">
-
             <p class="h4 mb-4">Sign up</p>
-
             <div class="form-row mb-4">
                 <div class="col">
                     <!-- First name -->
@@ -21,19 +12,16 @@
             </div>
             <div class="form-row mb-4">
                 <div class="col">
-                <input type="text" class="form-control" name="email" placeholder="Email" />
+                    <input type="text" class="form-control" name="email" placeholder="Email" />
                 </div>
             </div>
             <!-- Password -->
             <input type="password" name='password' class="form-control" placeholder="Password" aria-describedby="">
             <small class="form-text text-muted mb-4">At least 8 characters and 1 digit</small>
-
             <!-- Sign up button -->
             <button class="btn btn-info my-4 btn-block" type="submit">Sign Up</button>
-
         </form>
     </div>
 </div>
 <!-- Default form register -->
-
 {% endblock %}
