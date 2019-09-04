@@ -4,6 +4,7 @@ from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 import bcrypt
+import datetime
 
 app = Flask(__name__)
 
@@ -93,13 +94,45 @@ def motors():
     motors=mongo.db.products.find({'category_name':"Motors"}))
  
 #FUNCTION TO VIEW PRODUCT BY ITS ID AND RETRIEVE it in product.html            
-@app.route('/product/product_id?=<id>/', methods=['GET', 'POST'])
+@app.route('/product/product_id?=<id>', methods=['GET', 'POST'])
 def product(id):
     view_product=mongo.db.products.find_one({"_id": ObjectId(id)})
-    #ADD REVIEW
-    # reviews = mongo.db.products
-    # reviews.insert_one({'_id':ObjectId(id)}, {'review': request.form.get('review')})
     return render_template('product.html', view_product=view_product)
+    
+#REVIEW FUNCTION
+'''
+currently working in this function.
+- the main issue is that I need to post reviews on the currently product/post 
+and unfortunately I am having issues.
+- The product.html template is having matching problems with the product() function
+
+The approach I am having is that, trying to add a new review and update the 
+collection with the new update
+'''
+@app.route('/review/product_id?=<id>', methods=['POST', 'GET'])
+def review(id):
+    now = datetime.datetime.now()
+    name=session['name']
+    #email=session['email']
+    post=request.form.get('review')
+    reviews = mongo.db.products.find_one({"_id": ObjectId(id)})
+    if request.method == 'POST':
+        reviews.update({'_id':ObjectId(id)}, 
+        {
+            'category_name':mongo.db.products.find_one('category_name'),
+            'product_name':mongo.db.products.find_one('product_name'),
+            'price':mongo.db.products.find_one('price'),
+            'url':mongo.db.products.find_one('url'),
+            'seller':mongo.db.products.find_one('seller'),
+            'product_description':mongo.db.products.find_one('product_description'),
+            'review':
+                {
+                    'name': name,
+                    'post': post,
+                    'date': now.strftime("%d-%m-%Y")
+                }
+            })
+    return render_template('product.html', reviews=reviews, name=name, date=now, post=post)
     
 #FORM TO CREATE NEW PRODUCT                                                   
 @app.route('/user')                                                             
