@@ -92,14 +92,17 @@ def motors():
     return render_template('motors.html', 
     motors=mongo.db.products.find({'category_name':"Motors"}))
  
-#FUNCTION TO VIEW PRODUCT BY ITS ID AND RETRIEVE it in product.html             <<<<<<<<<<<<<<<<============= PRODUCTS
+#FUNCTION TO VIEW PRODUCT BY ITS ID AND RETRIEVE it in product.html            
 @app.route('/product/product_id?=<id>', methods=['GET', 'POST'])
 def product(id):
     view_product=mongo.db.products.find_one({"_id": ObjectId(id)})
     #ADD REVIEW
-    return render_template('product.html', view_product=view_product)
+    reviews = mongo.db.products
+    reviews.insert_one({'_id':ObjectId(id)}, {'review': request.form.get('review')})
+    print(reviews)
+    return render_template('product.html', view_product=view_product, reviews=reviews)
     
-#FORM TO CREATE NEW PRODUCT                                                     <<<<<<<<<<<<<<<<============= USER
+#FORM TO CREATE NEW PRODUCT                                                   
 @app.route('/user')                                                             
 def user():
     items=mongo.db.products.find({'seller':session.get('name')})
@@ -130,7 +133,7 @@ def update_product(product_id):
         'seller':request.form.get('seller'),
         'product_description': request.form.get('product_description'),
         })
-    return redirect(url_for('index'))
+    return redirect(url_for('index'), )
     
 @app.route('/edit_product/<product_id>')
 def edit_product(product_id):

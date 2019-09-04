@@ -24,9 +24,9 @@
             </a>
                 </li>
                 {% endif %}
-
+               
                 <table class="table table-sm table-striped">
-
+                    
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -53,6 +53,7 @@
                     </tbody>
                 </table>
             </ul>
+            
             <!--<ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
                     <a href="#" class="nav-link text-dark font-italic">
@@ -103,10 +104,13 @@
             <!-- Price -->
             <input type="number" min="1" step="any" id="#" name="price" class="form-control mb-4" placeholder="Price" required>
             <!--image url-->
-            <input type="text" id="url" name="url" class="form-control mb-4" placeholder="Add Image URL"> {% if session['email'] != None %}
+            <input type="text" id="url" name="url" class="form-control mb-4" placeholder="Add Image URL"> 
+            
+            {% if session['email'] != None %}
             <!--seller name-->
-            <input type="text" id="seller" name="seller" class="form-control mb-4" placeholder="Seller Name" value="{{session['name']}}"> {% endif %}
-
+            <input type="text" id="seller" name="seller" class="form-control mb-4" placeholder="Seller Name" value="{{session['name']}}"> 
+            {% endif %}
+            
             <div class="form-group green-border-focus">
                 <textarea class="form-control" id="product_description" name='product_description' placeholder="Add product description" rows="3" required></textarea>
             </div>
@@ -118,6 +122,34 @@
                 <em>Sign up</em> you agree to our
                 <a href="" target="_blank">terms of service</a>
         </form>
+    </div>
+    <div class="row">
+        {%  for product in products%}
+    
+         
+        
+          <div class="col-lg-4 col-md-6  m-4 card-position">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="{{ product.url }}" width="200" height="200" alt="" class="responsive-img"></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="{{ url_for('product', id=product._id) }}">{{ product.product_name }}</a>
+                </h4>
+                <h5>${{ product.price }}</h5>
+               
+              </div>
+              
+              <a class=" btn btn-sm btn-danger" href="{{  url_for('delete_product', product_id=product._id) }}" role="button">#test Delete product</a>
+              <a class=" btn btn-sm btn-primary" href="{{  url_for('edit_product', product_id=product._id) }}" role="button">#test Edit product</a>
+              <!--<div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>-->
+            </div>
+          </div>
+          
+        
+        {% endfor  %} 
+         
     </div>
 </div>
 
