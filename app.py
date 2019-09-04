@@ -93,14 +93,13 @@ def motors():
     motors=mongo.db.products.find({'category_name':"Motors"}))
  
 #FUNCTION TO VIEW PRODUCT BY ITS ID AND RETRIEVE it in product.html            
-@app.route('/product/product_id?=<id>', methods=['GET', 'POST'])
+@app.route('/product/product_id?=<id>/', methods=['GET', 'POST'])
 def product(id):
     view_product=mongo.db.products.find_one({"_id": ObjectId(id)})
     #ADD REVIEW
-    reviews = mongo.db.products
-    reviews.insert_one({'_id':ObjectId(id)}, {'review': request.form.get('review')})
-    print(reviews)
-    return render_template('product.html', view_product=view_product, reviews=reviews)
+    # reviews = mongo.db.products
+    # reviews.insert_one({'_id':ObjectId(id)}, {'review': request.form.get('review')})
+    return render_template('product.html', view_product=view_product)
     
 #FORM TO CREATE NEW PRODUCT                                                   
 @app.route('/user')                                                             

@@ -34,7 +34,7 @@
             <small class="text-muted">Posted by Anonymous on 3/1/17</small>
             <hr>
             <!--YOU WILL PLACE THE ENDFOR HERE-->
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+            <p>Norem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
             <small class="text-muted">Posted by Anonymous on 3/1/17</small>
             <hr>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
@@ -42,12 +42,14 @@
             <!--YOU WILL NEED TO DISPLAY AN INPUT TO ADD DATA TO THE COLLECTION AND ITS NAME TO REF THE FUNCTION-->
              
             <hr>
-            <form action="{{ url_for('product'), id=reviews._id}}" methods="POST">
+            {% if session['email'] != None%}
+            <form action="" methods="POST">
               <div class="form-group green-border-focus">
                 <textarea class="form-control" id="review" name='review' placeholder="Add Review" rows="3" required></textarea>
             </div>
             <button class="btn btn-success" type="submit">Leave a Review</button>
             </form>
+            {% endif %}
           </div>
           
           
