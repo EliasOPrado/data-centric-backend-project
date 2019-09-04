@@ -108,6 +108,18 @@ and unfortunately I am having issues.
 
 The approach I am having is that, trying to add a new review and update the 
 collection with the new update
+
+=== issues:
+- updating with all other table field declaring with mongo.db.find
+will update it as null but with the right review.
+
+- updating only with the review field will delete the table only displaying the 
+review in the place of the product post.
+
+=== SOLUTION:
+
+I should find a way to get the table not using the mongo.db.products... to not
+return null or 2nd insert the review with name/post/date straight into the table
 '''
 @app.route('/review/product_id?=<id>', methods=['POST', 'GET'])
 def review(id):
@@ -115,9 +127,9 @@ def review(id):
     name=session['name']
     #email=session['email']
     post=request.form.get('review')
-    reviews = mongo.db.products.find_one({"_id": ObjectId(id)})
+    reviews = mongo.db.products
     if request.method == 'POST':
-        reviews.update({'_id':ObjectId(id)}, 
+        reviews.insert_one({'_id':ObjectId(id)}, 
         {
             'category_name':mongo.db.products.find_one('category_name'),
             'product_name':mongo.db.products.find_one('product_name'),
