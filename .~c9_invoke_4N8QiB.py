@@ -10,8 +10,8 @@ app = Flask(__name__)
 
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
-app.config['MONG_DBNAME'] = ''
-app.config['MONGO_URI'] = ''
+app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -100,22 +100,41 @@ def product(id):
     return render_template('product.html', view_product=view_product)
     
 #REVIEW FUNCTION
+'''
+currently working in this function.
+- the main issue is that I need to post reviews on the currently product/post 
+and unfortunately I am having issues.
+- The product.html template is having matching problems with the product() function
+
+The approach I am having is that, trying to add a new review and update the 
+collection with the new update
+
+=== issues:
+- updating with all other table field declaring with mongo.db.find
+will update it as null but with the right review.
+
+- updating only with the review field will delete the table only displaying the 
+review in the place of the product post.
+
+=== SOLUTION:
+
+I should find a way to get the table not using the mongo.db.products... to not
+return null or 2nd insert the review with name/post/date straight into the table
+'''
 @app.route('/review/product_id?=<id>', methods=['POST', 'GET'])
 def review(id):
     now = datetime.datetime.now()
     name=session['name']
     post=request.form.get('review')
-    reviews = mongo.db.products.find_one({"_id": ObjectId(id)})
+    reviews = mongo.db.products.find({'_id':ObjectId(id)})
     if request.method == 'POST':
-        mongo.db.products.find_one_and_update({"_id": ObjectId(id)},{
-                    '$push':{'review':{
+        reviews.mongo.db.products.update([{
+                    'review':{'_id':ObjectId(),
                     'name': name,
                     'post': post,
-                    'date': now.strftime("%d-%m-%Y")
-                    }
-                }
-            }
-        )
+                    'date': now.strftime("%d-%m-%Y")}
+                }]
+            )
     return render_template('product.html', reviews=reviews, name=name, date=now, post=post)
     
 #FORM TO CREATE NEW PRODUCT                                                   

@@ -14,12 +14,12 @@
 
       <div class="col-lg-9">
         <div class="card mt-4">
-          <img class="card-img-top img-fluid" src="{{view_product.url}}" alt="">
+          <img class="card-img-top img-fluid" src="{{reviews.url}}" alt="">
           <div class="card-body">
-            <h3 class="card-title">{{view_product.product_name}}</h3>
-            <h4>${{view_product.price}}</h4>
-            <p class="card-text">{{view_product.product_description}}</p>
-            <p><strong>Seller: </strong>{{view_product.seller}}</p>
+            <h3 class="card-title">{{reviews.product_name}}</h3>
+            <h4>${{reviews.price}}</h4>
+            <p class="card-text">{{reviews.product_description}}</p>
+            <p><strong>Seller: </strong>{{reviews.seller}}</p>
             4.0 stars
           </div>
         </div>
@@ -38,14 +38,15 @@
             <!-- ENDFOR HERE-->
             <hr>
             <!--CONDITIONAL TO ALLOW ONLY LOGGED USERS COMMENT-->
-            {% if session['email'] != None%}
-            <form action="{{ url_for('review', id=view_product._id)}}" method="POST">
+            
+            {%if session['name'] != None %}
+            <form action="{{url_for('review', id=reviews._id)}}" method="POST">
               <div class="form-group green-border-focus">
                 <textarea class="form-control" id="review" name='review' placeholder="Add Review" rows="3" required></textarea>
             </div>
             <button class="btn btn-success" type="submit">Leave a Review</button>
             </form>
-            {% endif %}
+           {% endif %}
             <!--ENDIF-->
           </div>
         

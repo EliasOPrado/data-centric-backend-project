@@ -19,7 +19,7 @@
           <a href="#"><img class="card-img-top" src="{{ electronic.url }}" width="200" height="200" alt="" class="responsive-img"></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="{{ url_for('product', id=electronic._id) }}">{{ electronic.product_name }}</a>
+              <a href="{{ url_for('review', id=electronic._id) }}">{{ electronic.product_name }}</a>
             </h4>
             <h5>${{ electronic.price }}</h5>
           </div>
