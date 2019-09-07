@@ -18,7 +18,7 @@
           <a href="#"><img class="card-img-top" src="{{motor.url}}" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="{{ url_for('product', id=motor._id) }}">{{ motor.product_name }}</a>
+              <a href="{{ url_for('review', id=motor._id) }}">{{ motor.product_name }}</a>
             </h4>
             <h5>${{ motor.price }}</h5>
           </div>

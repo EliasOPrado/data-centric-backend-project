@@ -30,17 +30,18 @@
           </div>
           <div class="card-body">
             <!--LOOP TO DISPLAY THE COMMENTS HERE-->
-            {% for review in reviews%}
-            <p>{{ review.post }}</p>
-            <small class="text-muted">Posted by {{ review.name }} on {{ review.date }}</small>
+           
+            {% for rw in show_reviews %}
+            <p>{{ rw[print_post] }}</p>
+            <small class="text-muted">Posted by {{ rw[name] }} on {{ rw[date] }}</small>
             <hr>
             {% endfor %}
             <!-- ENDFOR HERE-->
             <hr>
             <!--CONDITIONAL TO ALLOW ONLY LOGGED USERS COMMENT-->
             
-            {%if session['name'] != None %}
-            <form action="{{url_for('review', id=reviews._id)}}" method="POST">
+            {%if session['email'] != None %}
+            <form action="{{url_for('review', id=reviews._id)}}" method="GET">
               <div class="form-group green-border-focus">
                 <textarea class="form-control" id="review" name='review' placeholder="Add Review" rows="3" required></textarea>
             </div>

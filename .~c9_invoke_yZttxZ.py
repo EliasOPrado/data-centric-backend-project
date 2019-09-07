@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
-app.config['MONG_DBNAME'] = ''
-app.config['MONGO_URI'] = ''
+app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -104,23 +104,30 @@ def motors():
 @app.route('/review/product_id?=<id>', methods=['POST', 'GET'])
 def review(id):
     now = datetime.datetime.now()
-    name=session['name']
-    print_post=request.form.get('review')
+    name = session['name']
+    post = request.form.get('review')
     reviews = mongo.db.products.find_one({"_id": ObjectId(id)})
-    if request.method == 'POST':
+    if request.method == 'GET':
         mongo.db.products.find_one_and_update({"_id": ObjectId(id)},{
                     '$push':{'review':{
                     'name': name,
-                    'post': print_post,
-                    'date': now.strftime("%d-%m-%Y")
+                    'post': post,
+                    'date': now.strftime("%d/%m/%Y")
                     }
                 }
             }
         )
-        return redirect(url_for('product'))
     see_review = mongo.db.products
-    show_reviews = list(see_review.find({"_id": ObjectId(id)}))
-    return render_template('product.html', reviews=reviews, name=name, date=now, print_post=print_post, show_reviews=show_reviews)
+    show_reviews = list(see_review.find({"_id": ObjectId(id)}, {'review'}))
+    print(show_reviews)
+    return render_template(
+        'product.html',
+        reviews=reviews, 
+        name=name, 
+        date=now, 
+        post=post, 
+        show_reviews=show_reviews
+    )
     
 #FORM TO CREATE NEW PRODUCT                                                   
 @app.route('/user')                                                             
