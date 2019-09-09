@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
-app.config['MONG_DBNAME'] = ''
-app.config['MONGO_URI'] = ''
+app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -117,10 +117,12 @@ def review(id):
                 }
             }
         )
-        return redirect(url_for('product'))
-    see_review = mongo.db.products
-    show_reviews = list(see_review.find({"_id": ObjectId(id)}))
-    return render_template('product.html', reviews=reviews, name=name, date=now, print_post=print_post, show_reviews=show_reviews)
+        return redirect(url_for('index'))
+    #issue here...everything above works fine..see loop on product.html    
+    return render_template(
+        'product.html',
+        reviews=reviews,
+       )
     
 #FORM TO CREATE NEW PRODUCT                                                   
 @app.route('/user')                                                             

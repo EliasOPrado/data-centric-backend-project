@@ -1,6 +1,5 @@
 {% extends 'layout.html' %} {% block content %}
 <div class="row">
-
   <div class="col-lg-3">
     <h1 class="my-4">Categories</h1>
     <div class="list-group">
@@ -10,11 +9,11 @@
     </div>
   </div>
   <!-- /.col-lg-3 -->
-  <div class="col-lg-9">
+  <div class="col-lg-9 my-2">
     <div class="row top-margin">
       <!--ELETRONICS-->
       {% for electronic in electronics %}
-      <div class="col-lg-4 col-md-6  m-4 card-position">
+      <div class="col-lg-4 col-md-6  my-2 card-position">
         <div class="card h-100">
           <a href="#"><img class="card-img-top" src="{{ electronic.url }}" width="200" height="200" alt="" class="responsive-img"></a>
           <div class="card-body">
@@ -23,8 +22,6 @@
             </h4>
             <h5>${{ electronic.price }}</h5>
           </div>
-          <a class=" btn btn-sm btn-danger" href="{{  url_for('delete_product', product_id=electronic._id) }}" role="button">#test Delete product</a>
-          <a class=" btn btn-sm btn-primary" href="{{  url_for('edit_product', product_id=electronic._id) }}" role="button">#test Edit product</a>
         </div>
       </div>
       {% endfor %}
