@@ -15,12 +15,19 @@
       {% for motor in motors %}
       <div class="col-lg-4 col-md-6 my-3 card-position">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="{{motor.url}}" alt=""></a>
+          <a href="#"><img class="card-img-top" src="{{ motor.url }}" width="200" height="200" alt="" class="responsive-img"></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="{{ url_for('review', id=motor._id) }}">{{ motor.product_name }}</a>
+              <a href="{{ url_for('review', id=motor._id) }}"><small>{{ motor.product_name }}</small></a>
             </h4>
-            <h5>${{ motor.price }}</h5>
+            <div class="row">
+              <div class="col">
+                <h5>${{ motor.price }}</h5>
+              </div>
+              <div class="col">
+                <i class="fas fa-eye text-muted"> <small>{{motor.views}}</small></i>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -14,13 +14,20 @@
       <!--ELETRONICS-->
       {% for hg in homeGarden %}
       <div class="col-lg-4 col-md-6 my-3 card-position">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="{{hg.url}}" width="100" height="200" alt="" class="responsive-img"></a>
+         <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="{{ hg.url }}" width="200" height="200" alt="" class="responsive-img"></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="{{ url_for('review', id=hg._id) }}">{{ hg.product_name }}</a>
+              <a href="{{ url_for('review', id=hg._id) }}"><small>{{ hg.product_name }}</small></a>
             </h4>
-            <h5>${{ hg.price }}</h5>
+            <div class="row">
+              <div class="col">
+                <h5>${{ hg.price }}</h5>
+              </div>
+              <div class="col">
+                <i class="fas fa-eye text-muted"> <small>{{hg.views}}</small></i>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -29,5 +36,29 @@
     <!-- /.row -->
   </div>
   <!-- /.col-lg-9 -->
+   <div class="section">
+        <div class="row">
+        <!-- PAGINATION -->
+            <div class="center">
+                <ul class="pagination">
+                    <li {% if page==1 %} class="disabled" {% endif %}>
+                        <a {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
+                            <i class="material-icons">chevron_left</i>
+                        </a>
+                    </li>
+                    {% for page in product_pagination %}
+                        <li class="active">
+                            <a href="{{ url_for('home_garden', page=page, limit=limit) }}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+                    <li {% if page==maximum %} class="disabled" {% endif %}>
+                        <a {% if page!=maximum %}href="{{ url_for('home_garden', page=page + 1, limit=limit) }}"{% endif %}>
+                            <i class="material-icons">chevron_right</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

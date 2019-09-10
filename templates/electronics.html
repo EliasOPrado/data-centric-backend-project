@@ -14,13 +14,20 @@
       <!--ELETRONICS-->
       {% for electronic in electronics %}
       <div class="col-lg-4 col-md-6  my-2 card-position">
-        <div class="card h-100">
+       <div class="card h-100">
           <a href="#"><img class="card-img-top" src="{{ electronic.url }}" width="200" height="200" alt="" class="responsive-img"></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="{{ url_for('review', id=electronic._id) }}">{{ electronic.product_name }}</a>
+              <a href="{{ url_for('review', id=electronic._id) }}"><small>{{ electronic.product_name }}</small></a>
             </h4>
-            <h5>${{ electronic.price }}</h5>
+            <div class="row">
+              <div class="col">
+                <h5>${{ electronic.price }}</h5>
+              </div>
+              <div class="col">
+                <i class="fas fa-eye text-muted"> {{electronic.views}}</i>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -28,7 +35,33 @@
     </div>
     <!-- /.row -->
   </div>
+  
+  motor
   <!-- /.col-lg-9 -->
+  <div class="section">
+        <div class="row">
+        <!-- PAGINATION -->
+            <div class="center">
+                <ul class="pagination">
+                    <li {% if page==1 %} class="disabled" {% endif %}>
+                        <a {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
+                            <i class="material-icons">chevron_left</i>
+                        </a>
+                    </li>
+                    {% for page in pages %}
+                        <li class="active">
+                            <a href="{{ url_for('electronics', page=page, limit=limit) }}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+                    <li {% if page==maximum %} class="disabled" {% endif %}>
+                        <a {% if page!=maximum %}href="{{ url_for('electronics', page=page + 1, limit=limit) }}"{% endif %}>
+                            <i class="material-icons">chevron_right</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /.row -->
 {% endblock %}

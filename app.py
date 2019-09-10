@@ -1,7 +1,8 @@
 #Imports
 import os
-from flask import Flask, render_template, redirect, request, url_for, session
-from flask_pymongo import PyMongo
+import math
+from flask import Flask, render_template, redirect, request, url_for, session, jsonify
+from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId 
 import bcrypt
 import datetime
@@ -77,33 +78,99 @@ def register():
     
 #READ FUNCTIONS FOR EACH CATEGORIES   
 #category 1 Eletronics
-@app.route('/electronics')
-def electronics():
-    return render_template('electronics.html', 
-    electronics=mongo.db.products.find({'category_name':"Electronics"}))
+@app.route('/electronics/')
+@app.route('/electronics/<page>/<limit>')
+def electronics(page=1, limit=6):
+    page=int(page)
+    limit=int(limit)
+    print(page)
+    #print(page, limit)
+    skip = page * limit - limit
+    maximum = math.ceil( (mongo.db.products.count_documents({})) / limit)
+    electronics = list(mongo.db.products.find({'category_name':"Electronics"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
+    #electronics=mongo.db.products.find({'category_name':"Electronics"})
+    return render_template(
+        'electronics.html', 
+        electronics=electronics,
+        page=page,
+        pages=range(1, maximum + 1),
+        maximum=maximum, limit=limit
+    )
 
 #category 2  Home & Garden
-@app.route('/home_garden')
-def home_garden():
-    return render_template('home_garden.html',
-    homeGarden=mongo.db.products.find({'category_name':"Home & Garden"}))
+@app.route('/home_gardens/', methods=['GET', 'POST'])
+@app.route('/home_gardens/<page>/<limit>', methods=['GET', 'POST'])
+def home_garden(page=1, limit=8):
+    limit = int(limit)
+    page = int(page)
+    #print(page, limit)
+    skip = page * limit - limit
+    maximum = math.ceil( (mongo.db.products.count_documents({})) / limit)
+    # homeGarden=mongo.db.products.find({'category_name':"Home & Garden"})
+    homeGarden = list(mongo.db.products.find({'category_name':"Home & Garden"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
+    return render_template(
+        'home_garden.html',
+        homeGarden=homeGarden,
+       
+        page=page,
+        pages=range(1, maximum + 1),
+        maximum=maximum, limit=limit)
 
 #category 3 Motors
-@app.route('/motors')
-def motors():
-    return render_template('motors.html', 
-    motors=mongo.db.products.find({'category_name':"Motors"}))
+@app.route('/motors/')
+@app.route('/motors/<page>/<limit>')
+def motors(page=1, limit=8):
+    limit = int(limit)
+    page = int(page)
+    #print(page, limit)
+    skip = page * limit - limit
+    maximum = math.ceil( (mongo.db.products.count_documents({})) / limit)
+    motors=mongo.db.products.find({'category_name':"Motors"})
+    motor = list(mongo.db.products.find({'category_name':"Motors"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
+    return render_template(
+        'motors.html',
+        motors=motors,
+        page=page,
+        pages=range(1, maximum + 1),
+        maximum=maximum, limit=limit
+    )
+    
     
 @app.route('/view/product_id?=<id>')
 def view(id):
     mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$push": {"views": 1}})
     return render_template('product.html')
+    
+    
+    
  
-#FUNCTION TO VIEW PRODUCT BY ITS ID AND RETRIEVE it in product.html            
-# @app.route('/product/product_id?=<id>', methods=['GET', 'POST'])
-# def product(id):
-#     view_product=mongo.db.products.find_one({"_id": ObjectId(id)})
-#     return render_template('product.html', view_product=view_product)
+# @app.route('/recipes/', methods=['GET', 'POST'])
+# @app.route('/recipes/<page>/<limit>', methods=['GET', 'POST'])
+# def recipes(page=1, limit=8):
+#     '''Limits the number of recipes shown on a page to a certain number. 
+#     Generates pagination dynamically based on the number of records in the database.'''
+#     limit = int(limit)
+
+  
+#         limit = int(request.form['limit'])
+    
+#     page = int(page)
+#     #print(page, limit)
+#     skip = page * limit - limit
+#     maximum = math.ceil( (mongo.db.recipes.count_documents({})) / limit)
+
+#     recipes = list(mongo.db.recipes.find().sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
+#     return render_template(
+#         'recipes.html',
+#         title='Recipes | Veggit',
+#         recipes=recipes,
+#         page=page,
+#         pages=range(1, maximum + 1),
+#         maximum=maximum, limit=limit
+#     )
+    
+    
+    
     
 #REVIEW FUNCTION
 @app.route('/review/product_id?=<id>', methods=['POST', 'GET'])
@@ -111,6 +178,7 @@ def review(id):
     now = datetime.datetime.now()
     name=session['name']
     print_post=request.form.get('review')
+    #Gets the product clicked on its link and display on the product.html page
     reviews = mongo.db.products.find_one({"_id": ObjectId(id)})
     if request.method == 'POST':
         mongo.db.products.find_one_and_update({"_id": ObjectId(id)},{
@@ -123,14 +191,10 @@ def review(id):
             }
         )
         return redirect(url_for('index'))
+    #Increments +1 view into the visited product by its id.
     mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$inc": {"views": 1}})
     return render_template('product.html', reviews=reviews)
- 
-# @app.route('/delete_review/product_id?=<id>')
-# def delete_review(id):
-#     see_review = mongo.db.products.find_one_and_delete({"_id": ObjectId(id)},{'review'})
-#     print(see_review)
-#     return render_template('product.html', see_review=see_review)
+
    
 #FORM TO CREATE NEW PRODUCT                                                   
 @app.route('/user')                                                             
@@ -141,6 +205,7 @@ def user():
     if not email:
         return redirect(url_for('login'))
     return render_template('user.html', category=category, items=items)
+
 
 #CREATE FUNCTION
 @app.route('/insert_product', methods=['POST'])
@@ -164,12 +229,14 @@ def update_product(product_id):
         'product_description': request.form.get('product_description'),
         })
     return redirect(url_for('index'), )
+
     
 @app.route('/edit_product/<product_id>')
 def edit_product(product_id):
     the_product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
     all_categories = mongo.db.category.find()
     return render_template('editproduct.html', product=the_product, categories=all_categories)
+
     
 #DELETE FUNCTION  
 @app.route('/delete_product/<product_id>')
