@@ -14,7 +14,7 @@
       <!--ELETRONICS-->
       {% for electronic in electronics %}
       <div class="col-lg-4 col-md-6  my-2 card-position">
-       <div class="card h-100">
+        <div class="card h-100">
           <a href="#"><img class="card-img-top" src="{{ electronic.url }}" width="200" height="200" alt="" class="responsive-img"></a>
           <div class="card-body">
             <h4 class="card-title">
@@ -33,35 +33,35 @@
       </div>
       {% endfor %}
     </div>
+    
+        
+          <!-- PAGINATION -->
+          <nav aria-label="Page navigation example">
+            <ul class="pagination pg-blue justify-content-center">
+              <li {% if page==1 %} class="page-item disabled" {% endif %}>
+                <a class="page-link" {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
+                            Previous
+                        </a>
+              </li>
+              {% for page in pages %}
+              <li class="page-item">
+                <a class="page-link" href="{{ url_for('electronics', page=page, limit=limit) }}">{{ page }}</a>
+              </li>
+              {% endfor %}
+              <li {% if page==maximum %} class="page-item disabled" {% endif %}>
+                <a class="page-link" {% if page!=maximum %}href="{{ url_for('electronics', page=page + 1, limit=limit) }}" {% endif %}>
+                            Next
+                        </a>
+              </li>
+            </ul>
+          </nav>
+        
     <!-- /.row -->
   </div>
-  
-  motor
+
+
   <!-- /.col-lg-9 -->
-  <div class="section">
-        <div class="row">
-        <!-- PAGINATION -->
-            <div class="center">
-                <ul class="pagination">
-                    <li {% if page==1 %} class="disabled" {% endif %}>
-                        <a {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
-                            <i class="material-icons">chevron_left</i>
-                        </a>
-                    </li>
-                    {% for page in pages %}
-                        <li class="active">
-                            <a href="{{ url_for('electronics', page=page, limit=limit) }}">{{ page }}</a>
-                        </li>
-                    {% endfor %}
-                    <li {% if page==maximum %} class="disabled" {% endif %}>
-                        <a {% if page!=maximum %}href="{{ url_for('electronics', page=page + 1, limit=limit) }}"{% endif %}>
-                            <i class="material-icons">chevron_right</i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+
 </div>
 <!-- /.row -->
 {% endblock %}

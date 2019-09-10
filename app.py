@@ -84,11 +84,9 @@ def electronics(page=1, limit=6):
     page=int(page)
     limit=int(limit)
     print(page)
-    #print(page, limit)
     skip = page * limit - limit
     maximum = math.ceil( (mongo.db.products.count_documents({})) / limit)
     electronics = list(mongo.db.products.find({'category_name':"Electronics"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
-    #electronics=mongo.db.products.find({'category_name':"Electronics"})
     return render_template(
         'electronics.html', 
         electronics=electronics,
@@ -100,18 +98,15 @@ def electronics(page=1, limit=6):
 #category 2  Home & Garden
 @app.route('/home_gardens/', methods=['GET', 'POST'])
 @app.route('/home_gardens/<page>/<limit>', methods=['GET', 'POST'])
-def home_garden(page=1, limit=8):
+def home_garden(page=1, limit=6):
     limit = int(limit)
     page = int(page)
-    #print(page, limit)
     skip = page * limit - limit
     maximum = math.ceil( (mongo.db.products.count_documents({})) / limit)
-    # homeGarden=mongo.db.products.find({'category_name':"Home & Garden"})
     homeGarden = list(mongo.db.products.find({'category_name':"Home & Garden"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
     return render_template(
         'home_garden.html',
         homeGarden=homeGarden,
-       
         page=page,
         pages=range(1, maximum + 1),
         maximum=maximum, limit=limit)
@@ -119,14 +114,13 @@ def home_garden(page=1, limit=8):
 #category 3 Motors
 @app.route('/motors/')
 @app.route('/motors/<page>/<limit>')
-def motors(page=1, limit=8):
+def motors(page=1, limit=6):
     limit = int(limit)
     page = int(page)
     #print(page, limit)
     skip = page * limit - limit
     maximum = math.ceil( (mongo.db.products.count_documents({})) / limit)
-    motors=mongo.db.products.find({'category_name':"Motors"})
-    motor = list(mongo.db.products.find({'category_name':"Motors"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
+    motors = list(mongo.db.products.find({'category_name':"Motors"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
     return render_template(
         'motors.html',
         motors=motors,
@@ -140,36 +134,6 @@ def motors(page=1, limit=8):
 def view(id):
     mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$push": {"views": 1}})
     return render_template('product.html')
-    
-    
-    
- 
-# @app.route('/recipes/', methods=['GET', 'POST'])
-# @app.route('/recipes/<page>/<limit>', methods=['GET', 'POST'])
-# def recipes(page=1, limit=8):
-#     '''Limits the number of recipes shown on a page to a certain number. 
-#     Generates pagination dynamically based on the number of records in the database.'''
-#     limit = int(limit)
-
-  
-#         limit = int(request.form['limit'])
-    
-#     page = int(page)
-#     #print(page, limit)
-#     skip = page * limit - limit
-#     maximum = math.ceil( (mongo.db.recipes.count_documents({})) / limit)
-
-#     recipes = list(mongo.db.recipes.find().sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
-#     return render_template(
-#         'recipes.html',
-#         title='Recipes | Veggit',
-#         recipes=recipes,
-#         page=page,
-#         pages=range(1, maximum + 1),
-#         maximum=maximum, limit=limit
-#     )
-    
-    
     
     
 #REVIEW FUNCTION
