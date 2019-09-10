@@ -1,7 +1,6 @@
 
 {% extends 'layout.html' %} {% block content %}
     <div class="row">
-
       <div class="col-lg-3">
         <h1 class="my-4">Shop Name</h1>
         <div class="list-group">
@@ -11,7 +10,6 @@
         </div>
       </div>
       <!-- /.col-lg-3 -->
-
       <div class="col-lg-9">
         <div class="card mt-4">
           <img class="card-img-top img-fluid" src="{{reviews.url}}" alt="">
@@ -19,8 +17,7 @@
             <h3 class="card-title">{{reviews.product_name}}</h3>
             <h4>${{reviews.price}}</h4>
             <p class="card-text">{{reviews.product_description}}</p>
-            <p><strong>Seller: </strong>{{reviews.seller}}</p>
-            4.0 stars
+            <p><strong>Seller: </strong>{{reviews.seller}}</p><i class="fas fa-eye"> {{ reviews.views}}</i>
           </div>
         </div>
         <!-- /.card -->
@@ -29,18 +26,21 @@
             Product Reviews
           </div>
           <div class="card-body">
+            
             <!--LOOP TO DISPLAY THE COMMENTS HERE-->
-           
             {% for rw in reviews.review %}
-           
             <p>{{ rw.post}}</p>
-            <small class="text-muted">Posted by {{ rw.name }} on {{ rw['date']}}</small>
+            <small class="text-muted">Posted by {{ rw.name }} on {{ rw.date}}</small>
+            {%if session['name'] == rw.name%}
+            <!--ADD THE DELETE FUNCTION IN THE BUTTON HREF-->
+            <a href=""><button type="button" class="btn1 btn btn-danger">Delete<i class=""></i></button></a>
+            {% endif %}
             <hr>
             {% endfor %}
             <!-- ENDFOR HERE-->
-            <hr>
-            <!--CONDITIONAL TO ALLOW ONLY LOGGED USERS COMMENT-->
             
+            
+            <!--CONDITIONAL TO ALLOW ONLY LOGGED USERS COMMENT-->
             {%if session['email'] != None %}
             <form action="{{url_for('review', id=reviews._id)}}" method="POST">
               <div class="form-group green-border-focus">
@@ -51,12 +51,8 @@
            {% endif %}
             <!--ENDIF-->
           </div>
-        
-          
-          
         </div>
         <!-- /.card -->
-
       </div>
       <!-- /.col-lg-9 -->
     </div>

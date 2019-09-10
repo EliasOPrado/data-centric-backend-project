@@ -14,3 +14,10 @@ body {
  padding-top: 10px;
  padding-bottom: 10px; 
 }
+
+/*buttons*/
+
+/*review delete button*/
+.btn1.btn{
+font-size: 7px;
+}

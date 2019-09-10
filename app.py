@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
-app.config['MONG_DBNAME'] = ''
-app.config['MONGO_URI'] = ''
+app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -93,6 +93,11 @@ def home_garden():
 def motors():
     return render_template('motors.html', 
     motors=mongo.db.products.find({'category_name':"Motors"}))
+    
+@app.route('/view/product_id?=<id>')
+def view(id):
+    mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$push": {"views": 1}})
+    return render_template('product.html')
  
 #FUNCTION TO VIEW PRODUCT BY ITS ID AND RETRIEVE it in product.html            
 # @app.route('/product/product_id?=<id>', methods=['GET', 'POST'])
@@ -112,18 +117,21 @@ def review(id):
                     '$push':{'review':{
                     'name': name,
                     'post': print_post,
-                    'date': now.strftime("%d-%m-%Y")
+                    'date': now.strftime("%d/%m/%Y")
                     }
                 }
             }
         )
         return redirect(url_for('index'))
-    #issue here...everything above works fine..see loop on product.html    
-    return render_template(
-        'product.html',
-        reviews=reviews,
-       )
-    
+    mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$inc": {"views": 1}})
+    return render_template('product.html', reviews=reviews)
+ 
+# @app.route('/delete_review/product_id?=<id>')
+# def delete_review(id):
+#     see_review = mongo.db.products.find_one_and_delete({"_id": ObjectId(id)},{'review'})
+#     print(see_review)
+#     return render_template('product.html', see_review=see_review)
+   
 #FORM TO CREATE NEW PRODUCT                                                   
 @app.route('/user')                                                             
 def user():
