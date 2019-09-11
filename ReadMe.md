@@ -27,22 +27,27 @@
 - USE THE TASK PROJECT TO RECYCLE THE DELETE FUNCTION...;(done)
   - You may use ```@login_required```to entry in categories pages and be able to >>edit and delete<< products.(not needed)
   - May not need to add requirements for now, just add it and require login after.(done) Week 2
-  - TO DELETE YOU WILL NEED TO CONNECT FIRST USER AND RETRIEVE EACH PRODUCT BASED ON THE LOGGED USER.()
+  - TO DELETE YOU WILL NEED TO CONNECT FIRST USER AND RETRIEVE EACH PRODUCT BASED ON THE LOGGED USER.(done)
   - # check for logged in user
-- ADD COMMENTS ON PRODUCTS BY USERS.....<<-------<<--
+- ADD COMMENTS ON PRODUCTS BY USERS [done]
 
-``` email = session.get('email')
+- Add trend:
+``` 
+{% if reviews.views >= 10 %}
+              <div class="col">
+                </small><i class="fas fa-chart-line text-muted"></i>
+              </div>
+              {%endif%}
+              
+```
 
-    if not email:
+- Add search function:
 
-        return redirect(url_for('register'))
-
-    try:
-
-        mongo.db.recipes.delete_one({"_id": ObjectId(id), 'email': email})
-
-    except:
-
-        return redirect(url_for('recipes'))
-
-    return redirect(url_for('account'))```
+```  @app.route('/search')  
+ def search():
+     """Route for full text search bar"""
+     db_query = request.args['db_query']
+     results = mongo.db.recipe.find({'$text': {'$search': db_query}})
+     return render_template('search.html',
+                               results=results,
+                               title="Search Results")```
