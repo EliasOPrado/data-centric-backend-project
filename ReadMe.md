@@ -31,7 +31,7 @@
   - # check for logged in user
 - ADD COMMENTS ON PRODUCTS BY USERS [done]
 
-- Add trend:
+- Add trend: problem with if-else when a product has 0 views
 ``` 
 {% if reviews.views >= 10 %}
               <div class="col">
@@ -50,4 +50,7 @@
      results = mongo.db.recipe.find({'$text': {'$search': db_query}})
      return render_template('search.html',
                                results=results,
-                               title="Search Results")```
+                               title="Search Results")
+```
+
+- Check the session['name'] in the code. It is bringing problem with the product.html template.

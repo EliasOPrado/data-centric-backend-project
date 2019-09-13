@@ -7,7 +7,7 @@ from bson.objectid import ObjectId
 import bcrypt
 import datetime
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 
 #App configuration -- table name and the link
@@ -17,6 +17,7 @@ app.config['MONGO_URI'] = ''
                             
 
 mongo = PyMongo(app)
+
 
 
 @app.route('/')
@@ -83,7 +84,6 @@ def register():
 def electronics(page=1, limit=6):
     page=int(page)
     limit=int(limit)
-    print(page)
     skip = page * limit - limit
     maximum = math.ceil( (mongo.db.products.count_documents({})) / limit)
     electronics = list(mongo.db.products.find({'category_name':"Electronics"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
@@ -117,7 +117,6 @@ def home_garden(page=1, limit=6):
 def motors(page=1, limit=6):
     limit = int(limit)
     page = int(page)
-    #print(page, limit)
     skip = page * limit - limit
     maximum = math.ceil( (mongo.db.products.count_documents({})) / limit)
     motors = list(mongo.db.products.find({'category_name':"Motors"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
