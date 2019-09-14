@@ -3,9 +3,7 @@
 <div class="row justify-content-center">
     <div class="col-md-6 ">
         <form class="text-center border border-light p-5" action="{{ url_for('update_product', product_id=product._id) }}" method='POST'>
-
             <p class="h4 mb-4">Edit product</p>
-
             <div class="form-row mb-4">
                 <!-- Category -->
                 <select class="form-control " name="category_name">
@@ -25,7 +23,6 @@
             <input type="number" min="1" step="any" id="#" name="price" class="form-control mb-4" value="{{product.price}}" placeholder="Price">
             <input type="text" id="url" name="url" class="form-control mb-4" value="{{product.url}}" placeholder="Add Image URL">
             <input type="text" id="seller" name="seller" class="form-control mb-4" value="{{product.seller}}" placeholder="Seller Name" required>
-        
             <div class="form-group green-border-focus">
                 <textarea class="form-control" id="product_description" name='product_description' rows="3">{{ product.product_description }}</textarea>
             </div>
@@ -40,5 +37,4 @@
     </div>
 </div>
 <!-- Default form register -->
-
 {% endblock %}
