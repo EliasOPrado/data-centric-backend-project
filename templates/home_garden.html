@@ -10,11 +10,17 @@
   </div>
   <!-- /.col-lg-3 -->
   <div class="col-lg-9">
+    <div id="carouselExampleIndicators" class="carousel slide my-4 shadow" data-ride="carousel">
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <a href="{{ url_for('home_garden')}}"><img class="d-block img-fluid" src="/static/images/3.png" alt="Third slide"></a>
+        </div>
+      </div>
+    </div>
     <div class="row top-margin">
-      <!--ELETRONICS-->
       {% for hg in homeGarden %}
       <div class="col-lg-4 col-md-6 my-3 card-position">
-         <div class="card h-100 shadow-sm">
+        <div class="card h-100 shadow-sm">
           <a href="#"><img class="card-img-top" src="{{ hg.url }}" width="200" height="200" alt="" class="responsive-img"></a>
           <div class="card-body">
             <h4 class="card-title">
@@ -34,27 +40,27 @@
       {% endfor %}
     </div>
     <nav aria-label="Page navigation example">
-            <ul class="pagination pg-blue justify-content-center">
-              <li {% if page==1 %} class="page-item disabled" {% endif %}>
-                <a class="page-link" {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
+      <ul class="pagination pg-blue justify-content-center">
+        <li {% if page==1 %} class="page-item disabled" {% endif %}>
+          <a class="page-link" {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
                             Previous
                         </a>
-              </li>
-              {% for page in pages %}
-              <li class="page-item">
-                <a class="page-link" href="{{ url_for('home_garden', page=page, limit=limit) }}">{{ page }}</a>
-              </li>
-              {% endfor %}
-              <li {% if page==maximum %} class="page-item disabled" {% endif %}>
-                <a class="page-link" {% if page!=maximum %}href="{{ url_for('home_garden', page=page + 1, limit=limit) }}" {% endif %}>
+        </li>
+        {% for page in pages %}
+        <li class="page-item">
+          <a class="page-link" href="{{ url_for('home_garden', page=page, limit=limit) }}">{{ page }}</a>
+        </li>
+        {% endfor %}
+        <li {% if page==maximum %} class="page-item disabled" {% endif %}>
+          <a class="page-link" {% if page!=maximum %}href="{{ url_for('home_garden', page=page + 1, limit=limit) }}" {% endif %}>
                             Next
                         </a>
-              </li>
-            </ul>
-          </nav>
+        </li>
+      </ul>
+    </nav>
     <!-- /.row -->
   </div>
   <!-- /.col-lg-9 -->
-   
+
 </div>
 {% endblock %}

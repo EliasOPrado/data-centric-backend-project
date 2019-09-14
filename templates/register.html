@@ -1,8 +1,8 @@
 {% extends 'layout.html' %} {% block content %}
 <!-- Default form register -->
 <div class="row justify-content-center ">
-    <div class="col-md-6 ">
-        <form method="POST" class="text-center border border-light p-5" action="{{ url_for('register') }}">
+    <div class="col-md-6 loggin-padding">
+        <form method="POST" class="text-center border shadow-sm p-5" action="{{ url_for('register') }}">
             <p class="h4 mb-4">Sign up</p>
             <div class="form-row mb-4">
                 <div class="col">
@@ -12,6 +12,7 @@
             </div>
             <div class="form-row mb-4">
                 <div class="col">
+                    <!-- email -->
                     <input type="text" class="form-control" name="email" placeholder="Email" />
                 </div>
             </div>

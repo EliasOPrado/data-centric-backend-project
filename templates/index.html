@@ -3,25 +3,22 @@
   <div class="col-lg-3">
     <!--MOVE THIS SECTION TO THE NAVBAR AS A DROPDOWN BUTTON LATER ON-->
     <!--THIS IS THE LEFT SIDE COLUM-->
-    <div class="card  my-4">
-      <div class="card-header"><strong>Categories</strong></div>
-      <a href="{{url_for('electronics')}}" class="list-group-item">Electronics</a>
-      <a href="{{url_for('home_garden')}}" class="list-group-item">Home & Garden</a>
-      <a href="{{url_for('motors')}}" class="list-group-item">Motors</a>
+    <div class="card my-2 border rounded text-center my-4"><strong>Most Seen Products</strong></div>
+
+
+    
+
+     
+    <div class="list-group">
+      {% for ap in aside_products %}
+      {%if ap.views == 15%}
+      <a href="{{ url_for('review', id=ap._id) }}" class="list-group-item">{{ap.product_name}}<span id="one"  class="">
+        <img class="card-img-left list-img" src="{{ ap.url }}" width="50" height="50" alt="" class="responsive-img"></img>
+      </span></a>
+      {% endif %}
+      {% endfor %}
     </div>
-    <div class="card border rounded text-center"><strong>Comming Soon Categories</strong></div>
-    <div class="card my-2 hovereffect" style="">
-      <img class="card-img rgba-red-strong" src="/static/images/imani-clovis-LxVxPA1LOVM-unsplash.jpg" class="img-fluid " alt="smaple image">
-      <div class="overlay">
-        <p class="text-white">Shoes</p>
-    </div>
-    </div>
-    <div class="card my-3 hovereffect" style="">
-      <img class="card-img" src="/static/images/the-honest-company-oqmIM9bkAWQ-unsplash.jpg" alt="">
-      <div class="overlay">
-        <p class="white-text">Make Up</p>
-    </div>
-    </div>
+    
 
 
   </div>
@@ -47,11 +44,9 @@
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-         
             <span class="sr-only">Previous</span>
           </a>
       <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          
             <span class="sr-only">Next</span>
           </a>
     </div>

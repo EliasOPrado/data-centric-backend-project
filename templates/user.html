@@ -1,13 +1,13 @@
 {% extends 'layout.html' %} {% block content %}
 
-<div class="row justify-content-center card-deck bg-info">
+<div class="row justify-content-center card-deck">
 
-    <div class="col-md-6 card card-body">
+    <div class="col-6 card card-body">
         <!--ref: https://bootstrapious.com/p/bootstrap-vertical-navbar-->
         <!-- Vertical navbar -->
         {% if session['email'] != None %}
         <div class="vertical-nav bg-white" id="sidebar">
-            <div class="py-4 px-3 mb-4 bg-light">
+            <div class=" bg-light">
                 <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='avatar.jpg') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                     <div class="media-body">
                         <h4 class="m-0">{{ session['name'] }}</h4>
@@ -84,7 +84,7 @@
     </div>
 
     <!--2nd card for -->
-    <div class="col-md-6 card">
+    <div class="col-6 card">
 
         <form class="text-center border border-light p-5" action="{{url_for('insert_product')}}" method='POST'>
 
@@ -122,34 +122,6 @@
                 <em>Sign up</em> you agree to our
                 <a href="" target="_blank">terms of service</a>
         </form>
-    </div>
-    <div class="row">
-        {%  for product in products%}
-    
-         
-        
-          <div class="col-lg-4 col-md-6  m-4 card-position">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="{{ product.url }}" width="200" height="200" alt="" class="responsive-img"></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="{{ url_for('product', id=product._id) }}">{{ product.product_name }}</a>
-                </h4>
-                <h5>${{ product.price }}</h5>
-               
-              </div>
-              
-              <a class=" btn btn-sm btn-danger" href="{{  url_for('delete_product', product_id=product._id) }}" role="button">#test Delete product</a>
-              <a class=" btn btn-sm btn-primary" href="{{  url_for('edit_product', product_id=product._id) }}" role="button">#test Edit product</a>
-              <!--<div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>-->
-            </div>
-          </div>
-          
-        
-        {% endfor  %} 
-         
     </div>
 </div>
 

@@ -9,12 +9,10 @@
   <title>Shop Homepage - Start Bootstrap Template</title>
   <!-- Bootstrap core CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-  
   <!-- Custom styles for this template -->
   <link href="{{url_for('static', filename='shop-homepage.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
@@ -27,6 +25,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          {% if 'index.html' in 'index.html' != None %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{{url_for('electronics')}}">Electronics</a>
+              <a class="dropdown-item" href="{{url_for('home_garden')}}">Home & Garden</a>
+              <a class="dropdown-item" href="{{url_for('motors')}}">Motors</a>
+            </div>
+          </li>
+          {%endif%}
           <li class="nav-item active">
             <a class="nav-link" href="{{ url_for('index') }}">Home
               <span class="sr-only">(current)</span>
@@ -54,15 +62,14 @@
     </div>
   </nav>
   <!-- Page Content -->
-  <div class="container">
+  <div class="container ">
     {% block content %} {% endblock %}
   </div>
   <!-- /.container -->
-  
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Elias Prado 2019</p><i class="fa-search"></i>   
+      <p class="m-0 text-center text-white">Copyright &copy; Elias Prado 2019</p><i class="fa-search"></i>
     </div>
     <!-- /.container -->
   </footer>

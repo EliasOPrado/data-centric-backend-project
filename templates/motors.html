@@ -10,6 +10,13 @@
   </div>
   <!-- /.col-lg-3 -->
   <div class="col-lg-9">
+    <div id="carouselExampleIndicators" class="carousel slide my-4 shadow" data-ride="carousel">
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <a href="{{ url_for('motors')}}"><img class="d-block img-fluid" src="/static/images/2.png" alt="Second slide"></a>
+        </div>
+      </div>
+    </div>
     <div class="row top-margin">
       <!--ELETRONICS-->
       {% for motor in motors %}
@@ -35,24 +42,24 @@
     </div>
     <!-- /.row -->
     <nav aria-label="Page navigation example">
-            <ul class="pagination pg-blue justify-content-center">
-              <li {% if page==1 %} class="page-item disabled" {% endif %}>
-                <a class="page-link" {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
+      <ul class="pagination pg-blue justify-content-center">
+        <li {% if page==1 %} class="page-item disabled" {% endif %}>
+          <a class="page-link" {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
                             Previous
                         </a>
-              </li>
-              {% for page in pages %}
-              <li class="page-item">
-                <a class="page-link" href="{{ url_for('motors', page=page, limit=limit) }}">{{ page }}</a>
-              </li>
-              {% endfor %}
-              <li {% if page==maximum %} class="page-item disabled" {% endif %}>
-                <a class="page-link" {% if page!=maximum %}href="{{ url_for('motors', page=page + 1, limit=limit) }}" {% endif %}>
+        </li>
+        {% for page in pages %}
+        <li class="page-item">
+          <a class="page-link" href="{{ url_for('motors', page=page, limit=limit) }}">{{ page }}</a>
+        </li>
+        {% endfor %}
+        <li {% if page==maximum %} class="page-item disabled" {% endif %}>
+          <a class="page-link" {% if page!=maximum %}href="{{ url_for('motors', page=page + 1, limit=limit) }}" {% endif %}>
                             Next
                         </a>
-              </li>
-            </ul>
-          </nav>
+        </li>
+      </ul>
+    </nav>
   </div>
   <!-- /.col-lg-9 -->
 </div>

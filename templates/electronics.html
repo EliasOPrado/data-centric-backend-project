@@ -1,5 +1,6 @@
 {% extends 'layout.html' %} {% block content %}
-<div class="row">
+<div class="row ">
+
   <div class="col-lg-3">
     <h1 class="my-4">Categories</h1>
     <div class="list-group">
@@ -9,7 +10,16 @@
     </div>
   </div>
   <!-- /.col-lg-3 -->
+
+
   <div class="col-lg-9 my-2">
+    <div id="carouselExampleIndicators" class="carousel slide my-4 shadow" data-ride="carousel">
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <a href="{{ url_for('electronics')}}"><img class="d-block img-fluid" src="/static/images/1.png" alt="First slide"></a>
+        </div>
+      </div>
+    </div>
     <div class="row top-margin">
       <!--ELETRONICS-->
       {% for electronic in electronics %}
@@ -33,34 +43,35 @@
       </div>
       {% endfor %}
     </div>
-    
-        
-          <!-- PAGINATION -->
-          <nav aria-label="Page navigation example">
-            <ul class="pagination pg-blue justify-content-center">
-              <li {% if page==1 %} class="page-item disabled" {% endif %}>
-                <a class="page-link" {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
+
+
+    <!-- PAGINATION -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination pg-blue justify-content-center">
+        <li {% if page==1 %} class="page-item disabled" {% endif %}>
+          <a class="page-link" {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
                             Previous
                         </a>
-              </li>
-              {% for page in pages %}
-              <li class="page-item">
-                <a class="page-link" href="{{ url_for('electronics', page=page, limit=limit) }}">{{ page }}</a>
-              </li>
-              {% endfor %}
-              <li {% if page==maximum %} class="page-item disabled" {% endif %}>
-                <a class="page-link" {% if page!=maximum %}href="{{ url_for('electronics', page=page + 1, limit=limit) }}" {% endif %}>
+        </li>
+        {% for page in pages %}
+        <li class="page-item">
+          <a class="page-link" href="{{ url_for('electronics', page=page, limit=limit) }}">{{ page }}</a>
+        </li>
+        {% endfor %}
+        <li {% if page==maximum %} class="page-item disabled" {% endif %}>
+          <a class="page-link" {% if page!=maximum %}href="{{ url_for('electronics', page=page + 1, limit=limit) }}" {% endif %}>
                             Next
                         </a>
-              </li>
-            </ul>
-          </nav>
-        
+        </li>
+      </ul>
+    </nav>
+
     <!-- /.row -->
   </div>
+</div>
 
 
-  <!-- /.col-lg-9 -->
+<!-- /.col-lg-9 -->
 
 </div>
 <!-- /.row -->

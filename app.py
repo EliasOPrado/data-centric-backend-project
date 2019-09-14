@@ -25,6 +25,7 @@ def index():
     if 'username' in session:
         return 'You are logged in as ' + session['username']
     return render_template('index.html',
+    aside_products=mongo.db.products.find(),
     electronics=mongo.db.products.find({'category_name':"Electronics"}),
     homeGarden=mongo.db.products.find({'category_name':"Home & Garden"}),
     motors=mongo.db.products.find({'category_name':"Motors"}))
@@ -92,7 +93,8 @@ def electronics(page=1, limit=6):
         electronics=electronics,
         page=page,
         pages=range(1, maximum + 1),
-        maximum=maximum, limit=limit
+        maximum=maximum, limit=limit,
+       
     )
 
 #category 2  Home & Garden
@@ -139,6 +141,7 @@ def view(id):
 @app.route('/review/product_id?=<id>', methods=['POST', 'GET'])
 def review(id):
     now = datetime.datetime.now()
+    #have to fix no-logged user error
     name=session['name']
     print_post=request.form.get('review')
     #Gets the product clicked on its link and display on the product.html page
@@ -153,6 +156,7 @@ def review(id):
                 }
             }
         )
+        #try to redirect to product.html
         return redirect(url_for('index'))
     #Increments +1 view into the visited product by its id.
     mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$inc": {"views": 1}})
