@@ -59,7 +59,7 @@
         </li>
         {% endfor %}
         <li {% if page==maximum %} class="page-item disabled" {% endif %}>
-          <a class="page-link" {% if page!=maximum %}href="{{ url_for('electronics', page=page + 1, limit=limit) }}" {% endif %}>
+          <a class="page-link" {% if page!=maximum %}href="{{ url_for('electronics', page=page, limit=limit) }}" {% endif %}>
                             Next
                         </a>
         </li>
