@@ -7,13 +7,14 @@ from bson.objectid import ObjectId
 import bcrypt
 import datetime
 
+
 app = Flask(__name__, static_url_path='/static')
 
 
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
-app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
-app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
+app.config['MONG_DBNAME'] = ''
+app.config['MONGO_URI'] = ''
                             
 
 mongo = PyMongo(app)
@@ -78,7 +79,6 @@ def register():
 
     return render_template('register.html')
     
-#READ FUNCTIONS FOR EACH CATEGORIES   
 #category 1 Eletronics
 @app.route('/electronics/')
 @app.route('/electronics/<page>/<limit>')
@@ -129,7 +129,6 @@ def motors(page=1, limit=6):
         pages=range(1, maximum + 1),
         maximum=maximum, limit=limit
     )
-    
     
 @app.route('/view/product_id?=<id>')
 def view(id):
