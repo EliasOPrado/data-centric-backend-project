@@ -5,13 +5,10 @@
     <!--THIS IS THE LEFT SIDE COLUM-->
     <div class="card my-2 border rounded text-center my-4"><strong>Most Seen Products</strong></div>
 
-
-    
-
      
     <div class="list-group">
-      {% for ap in aside_products %}
-      {%if ap.views == 15%}
+      {% for ap in aside_products[:6] %}
+      {% if ap.views >= 10%}
       <a href="{{ url_for('review', id=ap._id) }}" class="list-group-item">{{ap.product_name}}<span id="one"  class="">
         <img class="card-img-left list-img" src="{{ ap.url }}" width="50" height="50" alt="" class="responsive-img"></img>
       </span></a>
