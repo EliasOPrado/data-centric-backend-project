@@ -98,8 +98,8 @@ def electronics(page=1, limit=6):
     )
 
 #category 2  Home & Garden
-@app.route('/home_gardens/', methods=['GET', 'POST'])
-@app.route('/home_gardens/<page>/<limit>', methods=['GET', 'POST'])
+@app.route('/home_gardens/')
+@app.route('/home_gardens/<page>/<limit>')
 def home_garden(page=1, limit=6):
     limit = int(limit)
     page = int(page)
