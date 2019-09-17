@@ -13,7 +13,7 @@ app = Flask(__name__, static_url_path='/static')
 
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
-app.config['MONG_DBNAME'] = ''
+app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
 app.config['MONGO_URI'] = ''
                             
 
@@ -86,15 +86,15 @@ def electronics(page=1, limit=6):
     page=int(page)
     limit=int(limit)
     skip = page * limit - limit
-    maximum = math.ceil( (mongo.db.products.count_documents({})) / limit)
+    maximum = math.floor( (mongo.db.products.count_documents({})) / limit - 1)
     electronics = list(mongo.db.products.find({'category_name':"Electronics"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
     return render_template(
         'electronics.html', 
         electronics=electronics,
         page=page,
         pages=range(1, maximum + 1),
-        maximum=maximum, limit=limit,
-       
+        maximum=maximum, 
+        limit=limit
     )
 
 #category 2  Home & Garden
@@ -104,7 +104,7 @@ def home_garden(page=1, limit=6):
     limit = int(limit)
     page = int(page)
     skip = page * limit - limit
-    maximum = math.ceil( (mongo.db.products.count_documents({})) / limit)
+    maximum = math.floor( (mongo.db.products.count_documents({})) / limit - 1)
     homeGarden = list(mongo.db.products.find({'category_name':"Home & Garden"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
     return render_template(
         'home_garden.html',
@@ -120,7 +120,7 @@ def motors(page=1, limit=6):
     limit = int(limit)
     page = int(page)
     skip = page * limit - limit
-    maximum = math.ceil( (mongo.db.products.count_documents({})) / limit)
+    maximum = math.floor( (mongo.db.products.count_documents({})) / limit -1)
     motors = list(mongo.db.products.find({'category_name':"Motors"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
     return render_template(
         'motors.html',
@@ -156,12 +156,11 @@ def review(id):
             }
         )
         #try to redirect to product.html
-        return redirect(url_for('index'))
+        return redirect(url_for('review', id=id))
     #Increments +1 view into the visited product by its id.
     mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$inc": {"views": 1}})
     return render_template('product.html', reviews=reviews)
 
-   
 #FORM TO CREATE NEW PRODUCT                                                   
 @app.route('/user')                                                             
 def user():
@@ -178,7 +177,7 @@ def user():
 def insert_product():
     products=mongo.db.products
     products.insert_one(request.form.to_dict())
-    return redirect(url_for('index'))
+    return redirect(url_for('user'))
     
     
 #UPDATE FUNCTION
@@ -194,7 +193,7 @@ def update_product(product_id):
         'seller':request.form.get('seller'),
         'product_description': request.form.get('product_description'),
         })
-    return redirect(url_for('index'), )
+    return redirect(url_for('user'), )
 
     
 @app.route('/edit_product/<product_id>')
@@ -208,7 +207,7 @@ def edit_product(product_id):
 @app.route('/delete_product/<product_id>')
 def delete_product(product_id):
     mongo.db.products.remove({'_id':ObjectId(product_id)})
-    return redirect(url_for('index'))
+    return redirect(url_for('user'))
     
 
 if __name__ == '__main__':

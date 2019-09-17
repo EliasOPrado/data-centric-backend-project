@@ -10,9 +10,7 @@
     </div>
   </div>
   <!-- /.col-lg-3 -->
-
-
-  <div class="col-lg-9 my-2">
+  <div class="col-lg-9">
     <div id="carouselExampleIndicators" class="carousel slide my-4 shadow" data-ride="carousel">
       <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
@@ -47,17 +45,23 @@
 
     <!-- PAGINATION -->
     <nav aria-label="Page navigation example">
+      
       <ul class="pagination pg-blue justify-content-center">
+        <!--Previous button-->
         <li {% if page==1 %} class="page-item disabled" {% endif %}>
           <a class="page-link" {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
                             Previous
                         </a>
         </li>
+        
+        <!--Middle of the pagination-->
         {% for page in pages %}
         <li class="page-item">
           <a class="page-link" href="{{ url_for('electronics', page=page, limit=limit) }}">{{ page }}</a>
         </li>
         {% endfor %}
+        
+        <!--Next button-->
         <li {% if page==maximum %} class="page-item disabled" {% endif %}>
           <a class="page-link" {% if page!=maximum %}href="{{ url_for('electronics', page=page, limit=limit) }}" {% endif %}>
                             Next
@@ -73,6 +77,5 @@
 
 <!-- /.col-lg-9 -->
 
-</div>
 <!-- /.row -->
 {% endblock %}

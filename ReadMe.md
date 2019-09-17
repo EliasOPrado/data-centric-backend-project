@@ -19,8 +19,17 @@
 - Check the session['name'] in the code. It is bringing problem with the product.html template.
 
 - PROBLEMS:
-  - Having two extra pages in pagination.
+  - Having two extra pages in pagination -- remove them (removed one changing ceil to floor) added -1.(DONE)
   - Make aside product cards loop based on its view DESCENDING. (in all categories and Index[for all categories])
-  - Redirect to its own page (product.html) after sending a comment.
+  - Redirect to its own page (product.html) after sending a comment.(DONE)
   - Delete comment function in the product.html.
   - Deployment Issue..
+  - 
+
+section to add.
+
+```
+<header class="section-heading heading-line">
+	<h4 class="title-section bg">MACHINERY</h4>
+</header>
+```
