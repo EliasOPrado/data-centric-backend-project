@@ -35,7 +35,7 @@
             <small class="text-muted">Posted by {{ rw.name }} on {{ rw.date}}</small>
             {%if session['name'] == rw.name%}
             <!--ADD THE DELETE FUNCTION IN THE BUTTON HREF-->
-            <a href=""><button type="button" class="btn1 btn btn-danger">Delete<i class=""></i></button></a>
+            <a href="{{url_for('delete_comment', id=reviews._id, post_content=rw.post)}}"><button type="button" class="btn1 btn btn-danger">Delete<i class=""></i></button></a>
             {% endif %}
             <hr>
             {% endfor %}

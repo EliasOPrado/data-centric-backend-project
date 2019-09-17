@@ -49,7 +49,7 @@
       <ul class="pagination pg-blue justify-content-center">
         <!--Previous button-->
         <li {% if page==1 %} class="page-item disabled" {% endif %}>
-          <a class="page-link" {% if page>1 %}href="{{ url_for('electronics', page=page-1, limit=limit) }}"{% endif %}>
+          <a class="page-link" {% if page>1 %}href="{{ url_for('electronics', page=page, limit=limit) }}"{% endif %}>
                             Previous
                         </a>
         </li>

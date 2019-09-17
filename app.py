@@ -14,7 +14,7 @@ app = Flask(__name__, static_url_path='/static')
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
 app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
-app.config['MONGO_URI'] = ''
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -160,6 +160,17 @@ def review(id):
     #Increments +1 view into the visited product by its id.
     mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$inc": {"views": 1}})
     return render_template('product.html', reviews=reviews)
+    
+@app.route('/delete_comment/product_id?=<id>/post_content?=<post_content>')
+def delete_comment(id, post_content):
+    print('post_content',post_content)
+    mongo.db.products.update({"_id": ObjectId(id)},{
+        '$pull':{'review':{
+            'post':post_content
+            }
+        }
+    })
+    return redirect(url_for('review', id=id))
 
 #FORM TO CREATE NEW PRODUCT                                                   
 @app.route('/user')                                                             
@@ -208,6 +219,8 @@ def edit_product(product_id):
 def delete_product(product_id):
     mongo.db.products.remove({'_id':ObjectId(product_id)})
     return redirect(url_for('user'))
+    
+
     
 
 if __name__ == '__main__':

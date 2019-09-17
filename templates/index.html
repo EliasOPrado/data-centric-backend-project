@@ -3,7 +3,7 @@
 
   <div class="col-lg-3">
     
-    <div class="card  my-4">
+    <div class="card  my-2">
       <h5 class="card-header btn btn-light"><strong>Categories</strong></h5>	      
       <a href="{{ url_for('electronics') }}" class="list-group-item">Electronics</a>	      
       <a href="{{ url_for('home_garden') }}" class="list-group-item">Home & Garden</a>	      
@@ -25,7 +25,8 @@
     
     <div id="collapseOne2" class="collapse list-group" aria-labelledby="headingOne2" data-parent="#accordionExample275">
           <div class="list-group">
-            {% for ap in aside_products[:10] %} {% if ap.views|int >= 5 %}
+            {% for ap in aside_products[:10] %}
+            {% if ap.views|int >= 20 %}
             <a href="{{ url_for('review', id=ap._id) }}" class="list-group-item">{{ap.product_name}}<span id="one"  class="">
         <img class=" list-img" src="{{ ap.url }}" width="50" height="50" alt="" class="responsive-img"></img>
       </span></a> {% endif %} {% endfor %}
