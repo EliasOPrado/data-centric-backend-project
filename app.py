@@ -98,8 +98,8 @@ def electronics(page=1, limit=6):
     )
 
 #category 2  Home & Garden
-@app.route('/home_gardens/')
-@app.route('/home_gardens/<page>/<limit>')
+@app.route('/home_garden/')
+@app.route('/home_garden/<page>/<limit>')
 def home_garden(page=1, limit=6):
     limit = int(limit)
     page = int(page)
@@ -206,22 +206,33 @@ def update_product(product_id):
         'seller':request.form.get('seller'),
         'product_description': request.form.get('product_description'),
         })
-    return redirect(url_for('user'), )
+    return redirect(url_for('user'))
 
     
 @app.route('/edit_product/<product_id>')
 def edit_product(product_id):
-    the_product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
-    all_categories = mongo.db.category.find()
+    seller = session['name']
+    if not seller:
+        return redirect(url_for('register'))
+    try:
+        the_product = mongo.db.products.find_one({"_id": ObjectId(product_id), 'seller':seller})
+        all_categories = mongo.db.category.find()
+    except:
+        return redirect(url_for('index'))
     return render_template('editproduct.html', product=the_product, categories=all_categories)
 
     
 #DELETE FUNCTION  
 @app.route('/delete_product/<product_id>')
 def delete_product(product_id):
-    mongo.db.products.remove({'_id':ObjectId(product_id)})
+    seller = session['name']
+    if not seller:
+        return redirect(url_for('register'))
+    try:
+        mongo.db.products.delete_one({'_id':ObjectId(product_id), 'seller':seller})
+    except:
+        return redirect(url_for('index'))
     return redirect(url_for('user'))
-    
 
     
 
