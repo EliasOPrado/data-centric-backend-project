@@ -186,9 +186,6 @@ def user():
 @app.route('/insert_product', methods=['POST'])
 def insert_product():
     products=mongo.db.products
-    mongo.db.products.insert_one({
-            'seller':session['name']
-        })
     products.insert_one(request.form.to_dict())
     return redirect(url_for('user'))
     
