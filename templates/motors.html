@@ -48,9 +48,9 @@
                             Previous
                         </a>
         </li>
-        {% for page in pages %}
-        <li class="page-item">
-          <a class="page-link" href="{{ url_for('motors', page=page, limit=limit) }}">{{ page }}</a>
+        {% for p in pages %}
+        <li class="page-item{% if  p == page  %} active{% endif %}">
+          <a class="page-link" href="{{ url_for('motors', page=p, limit=limit) }}">{{ p }}</a>
         </li>
         {% endfor %}
         <li {% if page==maximum %} class="page-item disabled" {% endif %}>

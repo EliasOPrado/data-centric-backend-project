@@ -45,24 +45,24 @@
 
     <!-- PAGINATION -->
     <nav aria-label="Page navigation example">
-      
-      <ul class="pagination pg-blue justify-content-center">
+
+      <ul class="pagination pg-amber justify-content-center">
         <!--Previous button-->
         <li {% if page==1 %} class="page-item disabled" {% endif %}>
           <a class="page-link" {% if page>1 %}href="{{ url_for('electronics', page=page, limit=limit) }}"{% endif %}>
                             Previous
                         </a>
         </li>
-        
+
         <!--Middle of the pagination-->
-        {% for page in pages %}
-        {%if '<page>' %}
-        <li class="page-item {{active}}">
-          {%endif%}
-          <a class="page-link" href="{{ url_for('electronics', page=page, limit=limit) }}">{{ page }}</a>
+        {% for p in pages %}
+        <li class="page-item{% if  p == page  %} active{% endif %}">
+          <a class="page-link" href="{{ url_for('electronics', page=p, limit=limit) }}">{{ p }}</a>
         </li>
         {% endfor %}
-        
+
+
+
         <!--Next button-->
         <li {% if page==maximum %} class="page-item disabled" {% endif %}>
           <a class="page-link" {% if page!=maximum %}href="{{ url_for('electronics', page=page, limit=limit) }}" {% endif %}>
