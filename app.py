@@ -4,7 +4,6 @@ import math
 from flask import Flask, render_template, redirect, request, url_for, session, jsonify
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId 
-import bcrypt
 import datetime
 
 
@@ -141,14 +140,13 @@ def view(id):
 def review(id):
     now = datetime.datetime.now()
     #have to fix no-logged user error
-    name=session['name']
     print_post=request.form.get('review')
     #Gets the product clicked on its link and display on the product.html page
     reviews = mongo.db.products.find_one({"_id": ObjectId(id)})
     if request.method == 'POST':
         mongo.db.products.find_one_and_update({"_id": ObjectId(id)},{
                     '$push':{'review':{
-                    'name': name,
+                    'name': session['name'],
                     'post': print_post,
                     'date': now.strftime("%d/%m/%Y")
                     }
