@@ -214,6 +214,8 @@ def edit_product(product_id):
     seller = session['name']
     if not seller:
         return redirect(url_for('register'))
+    else:
+        return redirect(url_for('user'))
     try:
         the_product = mongo.db.products.find_one({"_id": ObjectId(product_id), 'seller':seller})
         all_categories = mongo.db.category.find()
@@ -239,4 +241,4 @@ def delete_product(product_id):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
+            debug=False)
