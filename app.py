@@ -86,12 +86,13 @@ def electronics(page=1, limit=6):
     limit=int(limit)
     skip = page * limit - limit
     maximum = math.floor( (mongo.db.products.count_documents({})) / limit - 1)
+    print(maximum)
     electronics = list(mongo.db.products.find({'category_name':"Electronics"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
     return render_template(
         'electronics.html', 
         electronics=electronics,
         page=page,
-        pages=range(1, maximum + 1),
+        pages=range(1, int(maximum) + 1),
         maximum=maximum, 
         limit=limit
     )
@@ -109,7 +110,7 @@ def home_garden(page=1, limit=6):
         'home_garden.html',
         homeGarden=homeGarden,
         page=page,
-        pages=range(1, maximum + 1),
+        pages=range(1, int(maximum) + 1),
         maximum=maximum, limit=limit)
 
 #category 3 Motors
@@ -125,7 +126,7 @@ def motors(page=1, limit=6):
         'motors.html',
         motors=motors,
         page=page,
-        pages=range(1, maximum + 1),
+        pages=range(1, int(maximum) + 1),
         maximum=maximum, limit=limit
     )
     
@@ -224,4 +225,4 @@ def delete_product(product_id):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=False)
+            debug=True)
