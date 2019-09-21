@@ -186,10 +186,10 @@ def user():
 @app.route('/insert_product', methods=['POST'])
 def insert_product():
     products=mongo.db.products
-    mongo.db.products.insert_one({
-            'seller':session['name']
-        })
-    products.insert_one(request.form.to_dict())
+    if request.method == 'POST':
+        form_dict = request.form.to_dict()
+        form_dict.update({'seller': session['name']})
+        products.insert_one(form_dict)
     return redirect(url_for('user'))
     
     
@@ -214,8 +214,6 @@ def edit_product(product_id):
     seller = session['name']
     if not seller:
         return redirect(url_for('register'))
-    else:
-        return redirect(url_for('user'))
     try:
         the_product = mongo.db.products.find_one({"_id": ObjectId(product_id), 'seller':seller})
         all_categories = mongo.db.category.find()

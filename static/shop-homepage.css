@@ -102,3 +102,8 @@ margin-top:10px;
   font-family: 'Baloo Tammudu', cursive;
 }
 
+table{
+   overflow-y:scroll;
+   height:300px;
+   display:block;
+}

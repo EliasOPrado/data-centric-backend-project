@@ -86,45 +86,52 @@
     <!--2nd card for -->
     <div class="col-sm-6 card">
 
-        <form class="text-center border border-light p-5" action="{{url_for('insert_product')}}" method='POST'>
+        <form id="product-form" class="text-center border border-light p-5" action="{{url_for('insert_product')}}"onSubmit="alert('Your Product was listed successful.');" method='POST'>
 
             <p class="h4 mb-4">Add a new product</p>
 
-            <div class="form-row mb-4">
+            <div class="form-row mb-4" required>
                 <!-- Category -->
-                <select class="form-control " name="category_name">
-                    <option disabled selected>Select Category</option>
+                <select id="select-category" class="form-control " name="category_name">
+                    <option value="disabled" disabled selected>Select Category</option>
                  {%  for cat in category %}
                  <option  value='{{cat.category_name}}'>{{cat.category_name}}</option>
                  {% endfor %}
                 </select>
+                
             </div>
             <!-- Product Name -->
             <input type="text" id="product_name" name="product_name" class="form-control mb-4" placeholder="Product Name" required>
             <!-- Price -->
-            <input type="number" min="1" step="any" id="#" name="price" class="form-control mb-4" placeholder="Price" required>
+            <input type="number" min="1" step="any" id="#" name="price" class="form-control mb-4" placeholder="Price €" required>
             <!--image url-->
             <input type="text" id="url" name="url" class="form-control mb-4" placeholder="Add Image URL" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyx80zvxF3iX01Iaoe4biS3OCv3TZU1JkEIDrujWQOl2TlTY53Rw" required> 
-            
-            {% if session['email'] != None %}
-            <!--seller name-->
-            <input type="text" id="seller" name="seller" class="form-control mb-4" placeholder="Seller Name" value="{{session['name']}}"> 
-            {% endif %}
             
             <div class="form-group green-border-focus label">
                 <textarea class="form-control" id="product_description" name='product_description' placeholder="Add product description" rows="3" required></textarea>
             </div>
             <!-- Sign up button -->
+            
             <button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
             <hr>
             <!-- Terms of service -->
-            <p>By clicking
-                <em>Sign up</em> you agree to our
-                <a href="" target="_blank">terms of service</a>
         </form>
     </div>
 </div>
-
+<script>
+   $(document).ready(function () {
+    $("#product-form").submit(function (e) {
+        if ($('#select-category').val() == 'disabled') {
+            alert('You Must Select The Category');
+        }
+        e.preventDefault(e);
+    });
+    $("#select-category").change(function () {
+        $("#product-form").submit();
+    });
+}); 
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Default form register -->
 
 {% endblock %}
