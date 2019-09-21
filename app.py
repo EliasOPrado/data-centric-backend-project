@@ -62,7 +62,7 @@ def register():
     email = session.get('email')
     if email:
       return redirect(url_for('index'))
-
+    #Check whether the code is correct based on the template
     user = None
     if request.method == 'POST':
         name = request.form['username']
@@ -71,10 +71,10 @@ def register():
         user = {'name': name, 'email': email, 'password': password}
 
         if mongo.db.user.find_one({"email": email}):
-            return render_template('register.html',  error="user_exists")
+            return render_template('register.html')
         else:
             mongo.db.user.insert_one(user)
-            return render_template('login.html', user=user, password=password)
+            return render_template('login.html')
 
     return render_template('register.html')
     
