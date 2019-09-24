@@ -104,3 +104,22 @@ table{
    height:300px;
    display:block;
 }
+
+.pb-5, .py-5 {
+    padding-bottom: 0rem!important;
+}
+
+.pt-5, .py-5 {
+    padding-top: 1rem!important;
+}
+
+.hr1 {
+    margin-top: 0rem; 
+    margin-bottom: 1rem; 
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.bottom1{
+    margin-bottom: 0rem;
+}

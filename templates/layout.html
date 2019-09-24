@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Shop Homepage - Start Bootstrap Template</title>
-    <!-- Custom styles for this template -->
+  <!-- Custom styles for this template -->
   <link href="https://fonts.googleapis.com/css?family=Baloo|Roboto+Slab&display=swap" rel="stylesheet">
   <title>AdPro</title>
   <link rel="icon" href="/static/images/favicon.png">
@@ -20,13 +20,13 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand " href="{{ url_for('index') }}"><strong>AdPro</strong></a>
+      <a class="navbar-brand baloo" href="{{ url_for('index') }}"><strong>AdPro</strong></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-warning" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
@@ -35,7 +35,7 @@
               <a class="dropdown-item" href="{{url_for('motors')}}">Motors</a>
             </div>
           </li>
-       
+
           <li class="nav-item active">
             <a class="nav-link" href="{{ url_for('index') }}">Home
               <span class="sr-only">(current)</span>
@@ -67,150 +67,49 @@
     {% block content %} {% endblock %}
   </div>
   <!-- /.container -->
-  <!--ref: https://mdbootstrap.com/docs/jquery/navigation/footer/-->
   <!-- Footer -->
-<footer class="page-footer font-small blue-grey lighten-5">
 
-  <div style="background-color: #21d192;">
+  <footer class="py-5 bg-dark">
     <div class="container">
-
-      <!-- Grid row-->
-      <div class="row py-4 d-flex align-items-center">
-
-        <!-- Grid column -->
-        <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-          <h6 class="mb-0">Get connected with us on social networks!</h6>
+      <div class="row">
+        <div class="col-sm-4">
+          <h5 class="text-white">Disclaimer</h5>
+          <hr class="bg-white hr1">
+          <small><p class="m-0 text-left text-white">This material is for educational purpose only as part of Code Institute Software Development diploma.</p></small>
         </div>
-        <!-- Grid column -->
+        <div class="col-sm-4 ">
+<p class="m-5 text-center my-4 text-white">&copy; AdPro 2019</p>
+        </div>
 
-        <!-- Grid column -->
-        <div class="col-md-6 col-lg-7 text-center text-md-right">
-
+        <div class="col-sm-4 my-2 col-lg-4 text-center ">
+          
           <!-- Facebook -->
-          <a class="fb-ic">
-            <i class="fab fa-facebook-f white-text mr-4"> </i>
+          <a class="fb-ic" href="https://www.facebook.com" target="_blank">
+            <i class="fab fa-facebook-f text-white mr-4"> </i>
           </a>
           <!-- Twitter -->
-          <a class="tw-ic">
-            <i class="fab fa-twitter white-text mr-4"> </i>
-          </a>
-          <!-- Google +-->
-          <a class="gplus-ic">
-            <i class="fab fa-google-plus-g white-text mr-4"> </i>
+          <a class="tw-ic" href="https://www.twitter.com" target="_blank">
+            <i class="fab fa-twitter text-white  mr-4"> </i>
           </a>
           <!--Linkedin -->
-          <a class="li-ic">
-            <i class="fab fa-linkedin-in white-text mr-4"> </i>
+          <a class="li-ic" href="https://www.linkedin.com" target="_blank">
+            <i class="fab fa-linkedin-in text-white  mr-4"> </i>
           </a>
           <!--Instagram-->
-          <a class="ins-ic">
-            <i class="fab fa-instagram white-text"> </i>
+          <a class="ins-ic" href="https://www.instagram.com" target="_blank">
+            <i class="fab fa-instagram text-white "> </i>
           </a>
-
+          {%if session['email'] == None%}
+          <div class="my-3">
+            <a href="{{url_for('register')}}" class="btn btn-secondary">REGISTER</a>
+          </div>
+          {% endif %}
         </div>
-        <!-- Grid column -->
-
       </div>
-      <!-- Grid row-->
-
     </div>
-  </div>
-
-  <!-- Footer Links -->
-  <div class="container text-center text-md-left mt-5">
-
-    <!-- Grid row -->
-    <div class="row mt-3 dark-grey-text">
-
-      <!-- Grid column -->
-      <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
-
-        <!-- Content -->
-        <h6 class="text-uppercase font-weight-bold">Company name</h6>
-        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-          consectetur
-          adipisicing elit.</p>
-
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-
-        <!-- Links -->
-        <h6 class="text-uppercase font-weight-bold">Products</h6>
-        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>
-          <a class="dark-grey-text" href="#!">MDBootstrap</a>
-        </p>
-        <p>
-          <a class="dark-grey-text" href="#!">MDWordPress</a>
-        </p>
-        <p>
-          <a class="dark-grey-text" href="#!">BrandFlow</a>
-        </p>
-        <p>
-          <a class="dark-grey-text" href="#!">Bootstrap Angular</a>
-        </p>
-
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-        <!-- Links -->
-        <h6 class="text-uppercase font-weight-bold">Useful links</h6>
-        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>
-          <a class="dark-grey-text" href="#!">Your Account</a>
-        </p>
-        <p>
-          <a class="dark-grey-text" href="#!">Become an Affiliate</a>
-        </p>
-        <p>
-          <a class="dark-grey-text" href="#!">Shipping Rates</a>
-        </p>
-        <p>
-          <a class="dark-grey-text" href="#!">Help</a>
-        </p>
-
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-        <!-- Links -->
-        <h6 class="text-uppercase font-weight-bold">Contact</h6>
-        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>
-          <i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-        <p>
-          <i class="fas fa-envelope mr-3"></i> info@example.com</p>
-        <p>
-          <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-        <p>
-          <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
-
-      </div>
-      <!-- Grid column -->
-
     </div>
-    <!-- Grid row -->
-
-  </div>
-  <!-- Footer Links -->
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center text-black-50 py-3">© 2018 Copyright:
-    <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
+    <!-- /.container -->
+  </footer>
   <!-- Bootstrap core JavaScript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>

@@ -62,7 +62,7 @@ def register():
     email = session.get('email')
     if email:
       return redirect(url_for('index'))
-    #Check whether the code is correct based on the template
+    
     user = None
     if request.method == 'POST':
         name = request.form['username']
