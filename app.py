@@ -30,10 +30,11 @@ def index():
     homeGarden=mongo.db.products.find({'category_name':"Home & Garden"}),
     motors=mongo.db.products.find({'category_name':"Motors"}))
     
-#LOGIN FUNCTION   
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'GET': 
+        return render_template('login.html')
+    else:
         user = mongo.db.user
         login_user = user.find_one({
         'email': request.form.get('email'), 
