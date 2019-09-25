@@ -34,8 +34,6 @@ def index():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'GET': 
-        return render_template('login.html')
-    else:
         user = mongo.db.user
         login_user = user.find_one({
         'email': request.form.get('email'), 
