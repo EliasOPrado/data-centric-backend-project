@@ -32,7 +32,10 @@ def index():
     
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    if request.method == 'GET': 
+    if session['name'] == None:
+        session['email'] = None
+        session['name'] = None
+    elif request.method == 'GET': 
         return render_template('login.html')
     else:
         user = mongo.db.user
@@ -58,8 +61,8 @@ def logout():
 #REGISTER FUNCTION
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    name = session.get('name')
-    if name:
+    email = session.get('email')
+    if email:
       return redirect(url_for('index'))
     
     user = None
