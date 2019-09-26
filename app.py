@@ -58,8 +58,8 @@ def logout():
 #REGISTER FUNCTION
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    email = session.get('email')
-    if email:
+    name = session.get('name')
+    if name:
       return redirect(url_for('index'))
     
     user = None
