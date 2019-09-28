@@ -1,41 +1,40 @@
-# Data Centric Backend Project
+## Table of contents
+<!--ts-->
 
-## To-do
+1. [About](#about)
+   1. [Goal](#Goal)
+   2. [Functionality](#Functionality)
+   3. [Settings](#Settings)
+   4. [Four playable buttons](#Four-playable-buttons)
+   5. [Initiation](#Initiation)
+2. [UX](#UX)
+   1. [Layout](#Layout)
+   2. [Mobile Display](#Mobile-Display)
+   3. [Tablet Display](#Tablet-Display)
+   4. [Additional Note](#Additional-Note)
+   5. [Color scheme](#Color-scheme)
+   6. [Audio Content](#Audio-Content)
+3. [Technologies](#Technologies)
+4. [Testing](#Testing)
+   1. [How the website was tested?](#How-the-website-was-tested)
+   2. [Unfixed bugs](#Unfixed-bugs)
+5. [Deployment](#Deployment)
+   1. [Steps I used to deploy](#Steps-I-used-to-deploy)
+6. [Credits](#Credits)
+ <!--te-->
 
+## About 
 
+Project Milestone Three - Code Institute
 
-- Add search function:
+AdPro is a website that emulates the functionality of a C2C (Consumer to Consumer) ecommerce platform. 
 
-```  @app.route('/search')  
- def search():
-     """Route for full text search bar"""
-     db_query = request.args['db_query']
-     results = mongo.db.recipe.find({'$text': {'$search': db_query}})
-     return render_template('search.html',
-                               results=results,
-                               title="Search Results")
-```
+##Goal 
 
-- Check the session['name'] in the code. It is bringing problem with the product.html template.
+The main goal of this project is to shows off the ```CRUD``` functionalities using ```MongoDB``` as a Non relational database. 
 
-- PROBLEMS:
-  - Having two extra pages in pagination -- remove them (removed one changing ceil to floor) added -1.(DONE)
-  - 
-  
-  - Make aside product cards loop based on its view DESCENDING. (in all categories and Index[for all categories])<<=====
-  - 
-  
-  - Redirect to its own page (product.html) after sending a comment.(DONE)
-  
+##Functionality
 
-  - Delete comment function in the product.html.<<=====
-  - Deployment Issue..
-  - 
+##Settings
 
-section to add.
-
-```
-<header class="section-heading heading-line">
-	<h4 class="title-section bg">MACHINERY</h4>
-</header>
-```
+##

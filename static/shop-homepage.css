@@ -123,3 +123,15 @@ table{
 .bottom1{
     margin-bottom: 0rem;
 }
+
+
+
+/*FIXING THE PAGINATION REMOVE THESE STYLES -----------------------*/
+.fotter-padding{
+    padding-bottom:100px;
+}
+
+footer{
+    height: 200px;
+}
+/*FIXING THE PAGINATION REMOVE THESE STYLES -----------------------*/
