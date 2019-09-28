@@ -12,8 +12,8 @@ app = Flask(__name__, static_url_path='/static')
 
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
-app.config['MONG_DBNAME'] = ''
-app.config['MONGO_URI'] = ''
+app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -238,4 +238,4 @@ def delete_product(product_id):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=False)
+            debug=True)
