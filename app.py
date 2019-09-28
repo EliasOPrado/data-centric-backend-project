@@ -12,8 +12,8 @@ app = Flask(__name__, static_url_path='/static')
 
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
-app.config['MONG_DBNAME'] = ''
-app.config['MONGO_URI'] = ''
+app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -30,6 +30,23 @@ def index():
     homeGarden=mongo.db.products.find({'category_name':"Home & Garden"}),
     motors=mongo.db.products.find({'category_name':"Motors"}))
     
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'GET': 
+        return render_template('login.html')
+    else:
+        user = mongo.db.user
+        login_user = user.find_one({
+        'email': request.form.get('email'), 
+        'password':request.form.get('password'
+        )})
+        
+        if login_user:
+            session['email'] = login_user['email']
+            session['name'] = login_user['name']
+            return redirect(url_for('user'))
+       
+        return 'Invalid username or password combination'
         
 #LOGOUT FUNCTION
 @app.route('/logout')
