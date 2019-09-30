@@ -129,10 +129,10 @@ def motors(page=1, limit=6):
         maximum=maximum, limit=limit
     )
     
-@app.route('/view/product_id?=<id>')
-def view(id):
-    mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$push": {"views": 1}})
-    return render_template('product.html')
+# @app.route('/view/product_id?=<id>')
+# def view(id):
+#     mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$push": {"views": 1}})
+#     return render_template('product.html')
     
     
 #REVIEW FUNCTION
