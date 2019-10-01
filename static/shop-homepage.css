@@ -127,11 +127,34 @@ table{
 
 
 /*FIXING THE PAGINATION REMOVE THESE STYLES -from css and html----------------------*/
-.fotter-padding{
+/*.fotter-padding{
     padding-bottom:100px;
 }
 
 footer{
     height: 200px;
-}
+}*/
 /*FIXING THE PAGINATION REMOVE THESE STYLES -from css and htm-----------------------*/
+
+/*Ipad pro media queries*/
+/* Portrait */
+@media only screen 
+  and (min-width: 1024px) 
+  and (max-height: 1366px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1.5) {
+      .fotter-padding{
+        padding-bottom: 460px;
+}
+}
+
+/* Landscape */
+@media only screen 
+  and (min-width: 1024px) 
+  and (max-height: 1366px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1.5) {
+      .fotter-padding{
+    padding-bottom:70px;
+}
+}

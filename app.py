@@ -1,4 +1,5 @@
 #Imports
+from __future__ import division
 import os
 import math
 from flask import Flask, render_template, redirect, request, url_for, session, jsonify
@@ -12,8 +13,8 @@ app = Flask(__name__, static_url_path='/static')
 
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
-app.config['MONG_DBNAME'] = ''
-app.config['MONGO_URI'] = ''
+app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
                             
 
 mongo = PyMongo(app)
@@ -83,18 +84,25 @@ def register():
 def electronics(page=1, limit=6):
     page=int(page)
     limit=int(limit)
-    skip = page * limit - limit
+    start_index = page * limit - limit
+    end_index = start_index + 6
+    all_products = mongo.db.products.find({'category_name':"Electronics"}).sort("$natural", pymongo.DESCENDING)
+    page_number =math.ceil(all_products.count()/6)
+    #skip = page * limit - limit
     maximum = math.floor( (mongo.db.products.count_documents({})) / limit - 1)
-    print(maximum)
-    electronics = list(mongo.db.products.find({'category_name':"Electronics"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
+    #print("start_index", start_index, page_number, 11/6)
+    electronics =  all_products[start_index:end_index]
+    print(electronics)
+     #electronics = list(mongo.db.products.find({'category_name':"Electronics"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
     return render_template(
         'electronics.html', 
-        electronics=electronics,
+        electronics= electronics,
         page=page,
-        pages=range(1, int(maximum) + 1),
+        pages=range(1, int(page_number)+1),
         maximum=maximum, 
         limit=limit
     )
+
 
 #category 2  Home & Garden
 @app.route('/home_garden/')
@@ -102,14 +110,17 @@ def electronics(page=1, limit=6):
 def home_garden(page=1, limit=6):
     limit = int(limit)
     page = int(page)
-    skip = page * limit - limit
+    start_index = page * limit - limit
+    end_index = start_index + 6
+    all_products = mongo.db.products.find({'category_name':"Home & Garden"}).sort("$natural", pymongo.DESCENDING)
+    page_number =math.ceil(all_products.count()/6)
     maximum = math.floor( (mongo.db.products.count_documents({})) / limit - 1)
-    homeGarden = list(mongo.db.products.find({'category_name':"Home & Garden"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
+    homeGarden = all_products[start_index:end_index]
     return render_template(
         'home_garden.html',
         homeGarden=homeGarden,
         page=page,
-        pages=range(1, int(maximum) + 1),
+        pages=range(1, int(page_number)+1),
         maximum=maximum, limit=limit)
 
 #category 3 Motors
@@ -118,14 +129,17 @@ def home_garden(page=1, limit=6):
 def motors(page=1, limit=6):
     limit = int(limit)
     page = int(page)
-    skip = page * limit - limit
+    start_index = page * limit - limit
+    end_index = start_index + 6
+    all_products = mongo.db.products.find({'category_name':"Motors"}).sort("$natural", pymongo.DESCENDING)
+    page_number =math.ceil(all_products.count()/6)
     maximum = math.floor( (mongo.db.products.count_documents({})) / limit -1)
-    motors = list(mongo.db.products.find({'category_name':"Motors"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
+    motors = all_products[start_index:end_index]
     return render_template(
         'motors.html',
         motors=motors,
         page=page,
-        pages=range(1, int(maximum) + 1),
+        pages=range(1, int(page_number) + 1),
         maximum=maximum, limit=limit
     )
     
