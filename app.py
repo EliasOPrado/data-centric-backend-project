@@ -13,14 +13,14 @@ app = Flask(__name__, static_url_path='/static')
 
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
-app.config['MONG_DBNAME'] = 'DB_ecommerce_project'
-app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true'
+app.config['MONG_DBNAME'] = ''
+app.config['MONGO_URI'] = ''
                             
 
 mongo = PyMongo(app)
 
 
-
+#Main page
 @app.route('/')
 def index():
     if 'username' in session:
@@ -31,6 +31,7 @@ def index():
     homeGarden=mongo.db.products.find({'category_name':"Home & Garden"}),
     motors=mongo.db.products.find({'category_name':"Motors"}))
     
+#LOGIN FUNCTION    
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'GET': 
@@ -88,12 +89,8 @@ def electronics(page=1, limit=6):
     end_index = start_index + 6
     all_products = mongo.db.products.find({'category_name':"Electronics"}).sort("$natural", pymongo.DESCENDING)
     page_number =math.ceil(all_products.count()/6)
-    #skip = page * limit - limit
     maximum = math.floor( (mongo.db.products.count_documents({})) / limit - 1)
-    #print("start_index", start_index, page_number, 11/6)
     electronics =  all_products[start_index:end_index]
-    print(electronics)
-     #electronics = list(mongo.db.products.find({'category_name':"Electronics"}).sort("$natural", pymongo.DESCENDING).skip(skip).limit( limit ))
     return render_template(
         'electronics.html', 
         electronics= electronics,
@@ -143,17 +140,11 @@ def motors(page=1, limit=6):
         maximum=maximum, limit=limit
     )
     
-# @app.route('/view/product_id?=<id>')
-# def view(id):
-#     mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$push": {"views": 1}})
-#     return render_template('product.html')
-    
     
 #REVIEW FUNCTION
 @app.route('/review/product_id?=<id>', methods=['POST', 'GET'])
 def review(id):
     now = datetime.datetime.now()
-    #have to fix no-logged user error
     print_post=request.form.get('review')
     #Gets the product clicked on its link and display on the product.html page
     reviews = mongo.db.products.find_one({"_id": ObjectId(id)})
@@ -167,7 +158,6 @@ def review(id):
                 }
             }
         )
-        #try to redirect to product.html
         return redirect(url_for('review', id=id))
     #Increments +1 view into the visited product by its id.
     mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$inc": {"views": 1}})
@@ -184,7 +174,7 @@ def delete_comment(id, post_content):
     })
     return redirect(url_for('review', id=id))
 
-#FORM TO CREATE NEW PRODUCT                                                   
+#USER PAGE                                                 
 @app.route('/user')                                                             
 def user():
     items=mongo.db.products.find({'seller':session.get('name')})
@@ -221,7 +211,7 @@ def update_product(product_id):
         })
     return redirect(url_for('user'))
 
-    
+#EDIT FUNCTION - RETRIVES ONLY THE USER'S PRODUCT TO THE TEMPLATE   
 @app.route('/edit_product/<product_id>')
 def edit_product(product_id):
     seller = session['name']
