@@ -36,12 +36,12 @@ Bringing to the user the ability to create new posts such as product lists, view
 The project is basically designed with Python and the Flask framework in which is used to integrate different templates and its main functionalities. 
 Therefore, the application is separeted by eight different sections ```Index, Electronics, Home & Garden, Motors,review, Register, Login and Edit```. In which are used ```jinja```
 a web template engine allowing to create functions, loops and conditionals based on the goal of the project. 
- 
-### Functionality
+
+## Functionality
 
 The functionality of this project is made aiming users to shares its data with other users with distinct privileges non-registered and registered users. For instance, users without register will not be able to add new products or leave a comment in another user's ad. The main functionality of this project are the functions login, register, logout, update_proudct and edit_product and delete_product. Each of them has many other function to display, delete, retrieve, update or insert a new product into the data base.
 
-User Experience:
+## User Experience:
 
 The template of this project was developed to bring simplicity to the user avoiding unexpected experiences, adding intuitive navigation. 
 
@@ -66,20 +66,20 @@ The user account page is basically two pages in one where users will be able to 
 
 #### Tablet display
 
-#### Data structure 
+#### Database structure 
 
 # Technologies 
 
-HTML
-CSS
-Bootstrap 
-Python
-Flask
-Jinja 2
-Google fonts 
-Font awesome
+- HTML
+- CSS
+- Bootstrap 
+- Python
+- Flask
+- Jinja 2
+- Google fonts 
+- Font awesome
 
-# Coding challenges during development 
+## Coding challenges during development 
 
 There are some challenges that was faced during the development of this project such as add user comments on a third user product. The difficult was that it was required to develop a function in which would embed comments as arrays into the database. 
 
@@ -87,7 +87,7 @@ In addition another function that was very hard to develop was the pagination sy
 
 Authorization and function issues on the url….
 
-# Features
+## Features
 
 Register and have its own page.
 Login.
@@ -98,7 +98,7 @@ Navegate product pages.
 View product on its own page.
 Be able to add comments on product as well as delete it.
 
-# Features left to implement
+## Features left to implement
 
 Since Users are not able to edit comments after post it on the product view page, only delete. there’s room to add edit comment.
 The media query for iPad Pro should be improved on the categories page.
