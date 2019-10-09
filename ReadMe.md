@@ -31,22 +31,75 @@ AdPro is a website that emulates the functionality of a C2C (Consumer to Consume
 
 ## Goal 
 
-The main goal of this project is to shows off the ```CRUD``` functionalities using ```MongoDB``` as a Non relational database. 
-Bringing to the user the ability to create new posts such as product lists, view and read their postages, update from its profile as well as delete their own postages.
+The main goal of this project is to show the ```CRUD``` functionalities using ```MongoDB``` as a Non relational database. 
+Bringing to the user the ability to create new posts such as product lists, view, read, update from its profile and delete their own postages.
 The project is basically designed with Python and the Flask framework in which is used to integrate different templates and its main functionalities. 
 Therefore, the application is separeted by eight different sections ```Index, Electronics, Home & Garden, Motors,review, Register, Login and Edit```. In which are used ```jinja```
 a web template engine allowing to create functions, loops and conditionals based on the goal of the project. 
  
 ### Functionality
 
-The functionality of this project is made aiming users to shares its data with other users with distinct privileges non-registered and registered users. 
-For instance, users without register will not be able to add new products or leave a comment in another user's ad. 
-The main functionality of this project are the functions ```login```, ```register```, ```logout```, ```update_proudct and edit_product``` and ```delete_product```.
-Each of them has many other function to display, delete, retrieve, update or insert a new product into the data base. 
+The functionality of this project is made aiming users to shares its data with other users with distinct privileges non-registered and registered users. For instance, users without register will not be able to add new products or leave a comment in another user's ad. The main functionality of this project are the functions login, register, logout, update_proudct and edit_product and delete_product. Each of them has many other function to display, delete, retrieve, update or insert a new product into the data base.
 
-##### User Experience:
-- Register and have its own page.
-- Add new product from their page based on its login.
-- See product list on their own page.
-- Be able to vizualise, edit and delete its own product.
-- Navegate 
+User Experience:
+
+The template of this project was developed to bring simplicity to the user avoiding unexpected experiences, adding intuitive navigation. 
+
+##### Home page:
+For instance, the home page has everything the user need. A simple and well designed carousel with its three categories and an image representing each category. Links with the name of each category to facilitate users to navigate the app.
+
+##### Categories
+
+Under the categories, a pagination scheme is settled to only show six products per page to not overwhelm the user and of course give a good experience. 
+
+##### The product view 
+ 
+Users after clicking on a product card, rather it is on the home page or in categories will be sent to a view page in which will be able to see the product in a larger image and its description as well as post a comment for the seller of the product such as bid or asking the price. 
+
+##### The user account page
+
+The user account page is basically two pages in one where users will be able to add a new product using a form (right page) and see them after submitted on a table with privilege of delete, view and edit (left page).
+
+#### Font 
+
+#### Mobile display
+
+#### Tablet display
+
+#### Data structure 
+
+# Technologies 
+
+HTML
+CSS
+Bootstrap 
+Python
+Flask
+Jinja 2
+Google fonts 
+Font awesome
+
+# Coding challenges during development 
+
+There are some challenges that was faced during the development of this project such as add user comments on a third user product. The difficult was that it was required to develop a function in which would embed comments as arrays into the database. 
+
+In addition another function that was very hard to develop was the pagination system. The algorithms of the function was ...
+
+Authorization and function issues on the url….
+
+# Features
+
+Register and have its own page.
+Login.
+Add new product from user page based on its login.
+See product list on user page.
+Be able to visualize, edit and delete its own product.
+Navegate product pages. 
+View product on its own page.
+Be able to add comments on product as well as delete it.
+
+# Features left to implement
+
+Since Users are not able to edit comments after post it on the product view page, only delete. there’s room to add edit comment.
+The media query for iPad Pro should be improved on the categories page.
+In the user account page, the select form should be fixed to have the method “required”.
