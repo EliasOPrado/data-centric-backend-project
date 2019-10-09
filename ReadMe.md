@@ -62,7 +62,11 @@ The user account page is basically two pages in one where users will be able to 
 
 #### Font 
 
+The font used in this application is the Roboto sans-serify. A geometric font that allows a natural reading.
+
 #### Mobile display
+
+<img src="/static/images/mobile.png" width="200"> 
 
 #### Tablet display
 
