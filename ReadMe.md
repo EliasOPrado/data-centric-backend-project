@@ -69,7 +69,7 @@ The font used in this application is the Roboto sans-serify. A geometric font th
 <img src="/static/images/mobile.png" width="200"> 
 
 #### Tablet display
-
+<img src="/static/images/ipad.png" width="200"> 
 #### Database structure 
 
 # Technologies 
