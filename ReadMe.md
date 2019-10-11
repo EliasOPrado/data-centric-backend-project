@@ -69,8 +69,47 @@ The font used in this application is the Roboto sans-serify. A geometric font th
 <img src="/static/images/mobile.png" width="200"> 
 
 #### Tablet display
+
 <img src="/static/images/ipad.png" width="200"> 
+
 #### Database structure 
+
+```
+category{
+
+   _id:5d52e05e1c9d4400009e0e5d
+   category_name:"Electronics"
+   
+   _id:5d52e05e1c9d4400009e0e5d
+   category_name:"Homr & Garden"
+   
+   _id:5d52e05e1c9d4400009e0e5d
+   category_name:"Motors"
+
+}
+
+products{
+
+   _id:5d7d5b7a12690257b223985c
+   category_name:"Electronics"
+   product_name:""
+   price:"500"
+   url:"https://www.londondrugs.com/on/demandware.static/-/Sites-londondrugs-m..."
+   seller:" "
+   product_description:" "
+   views:15
+
+}
+
+user{
+
+   _id:5d6551f33b1cef87c2ca30b2
+   name:"oliveira"
+   email:"pradoelias133@gmail.com"
+   password:"kb01210012"
+
+}
+```
 
 # Technologies 
 
@@ -86,7 +125,6 @@ The font used in this application is the Roboto sans-serify. A geometric font th
 ## Coding challenges during development 
 
 There are some challenges that was faced during the development of this project such as add user comments on a third user product. The difficult was that it was required to develop a function in which would embed comments as arrays into the database. 
-
 In addition another function that was very hard to develop was the pagination system. The algorithms of the function was ...
 
 Authorization and function issues on the url….
