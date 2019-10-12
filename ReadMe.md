@@ -39,7 +39,10 @@ a web template engine allowing to create functions, loops and conditionals based
 
 ## Functionality
 
-The functionality of this project is made aiming users to shares its data with other users with distinct privileges non-registered and registered users. For instance, users without register will not be able to add new products or leave a comment in another user's ad. The main functionality of this project are the functions login, register, logout, update_proudct and edit_product and delete_product. Each of them has many other function to display, delete, retrieve, update or insert a new product into the data base.
+The functionality of this project is made aiming users to shares its data with other users with distinct privileges non-registered and registered users.
+For instance, users without register will not be able to add new products or leave a comment in another user's ad. 
+The main functionality of this project are the functions login, register, logout, update_proudct and edit_product and delete_product.
+Each of them has many other function to display, delete, retrieve, update or insert a new product into the data base.
 
 ## User Experience:
 
@@ -145,3 +148,52 @@ Be able to add comments on product as well as delete it.
 Since Users are not able to edit comments after post it on the product view page, only delete. there’s room to add edit comment.
 The media query for iPad Pro should be improved on the categories page.
 In the user account page, the select form should be fixed to have the method “required”.
+
+## Testing 
+
+The devices that the application was tested were:
+
+### Mobile:
+- Galaxy S5
+- Pixel 2
+- Pixel 2 XL
+- iPhone 5 SE
+- iPhone 6, 7 and 8
+- iPhone 6, 7 and 8 Plus
+- iPhone X
+
+### Tablets:
+- iPad
+- iPad Pro
+
+### Laptops:
+- ThinkPad X1 Carbon
+- ThinkPad T430
+
+## Function testing
+
+There had some issues with function authentication and users without being logged had access to sensitive functions
+such as ```edit_product```. I had to learn it and add session based access only loged users to have access based on their own 
+posts. Therefore, to make sure it was working well I follow the function on the url and added a product id without being logged 
+to check whether I had access and finally the majority of them are fixed. There still a small issue with the ```edit_product``` function 
+in which users without being loged can be redirected to the edit_product form page but with no access to the function not damagin any user data.
+
+Example of function authentication:
+
+``` diff
+@app.route('/edit_product/<product_id>')
+def edit_product(product_id):
+ +  seller = session['name']
+  + if not seller:
+        return redirect(url_for('register'))
+    try:
+        the_product = mongo.db.products.find_one({"_id": ObjectId(product_id), 'seller':seller})
+        all_categories = mongo.db.category.find()
+    except:
+        return redirect(url_for('index'))
+    return render_template('editproduct.html', product=the_product, categories=all_categories)
+```
+
+## Deployment
+
+## Credits 
