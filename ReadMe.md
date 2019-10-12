@@ -77,8 +77,8 @@ The font used in this application is the Roboto sans-serify. A geometric font th
 
 #### Database structure 
 
-```
-category{
+``` 
+ category{
 
    _id:5d52e05e1c9d4400009e0e5d
    category_name:"Electronics"
