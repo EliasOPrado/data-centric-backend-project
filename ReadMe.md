@@ -134,14 +134,14 @@ Authorization and function issues on the url….
 
 ## Features
 
-Register and have its own page.
-Login.
-Add new product from user page based on its login.
-See product list on user page.
-Be able to visualize, edit and delete its own product.
-Navegate product pages. 
-View product on its own page.
-Be able to add comments on product as well as delete it.
+- Register and have its own page.
+- Login.
+- Add new product from user page based on its login.
+- See product list on user page.
+- Be able to visualize, edit and delete its own product.
+- Navegate product pages. 
+- View product on its own page.
+- Be able to add comments on product as well as delete it.
 
 ## Features left to implement
 
@@ -170,21 +170,24 @@ The devices that the application was tested were:
 - ThinkPad X1 Carbon
 - ThinkPad T430
 
-## Function testing
+
+## Function testing and unsolved bugs
 
 There had some issues with function authentication and users without being logged had access to sensitive functions
 such as ```edit_product```. I had to learn it and add session based access only loged users to have access based on their own 
 posts. Therefore, to make sure it was working well I follow the function on the url and added a product id without being logged 
-to check whether I had access and finally the majority of them are fixed. There still a small issue with the ```edit_product``` function 
-in which users without being loged can be redirected to the edit_product form page but with no access to the function not damagin any user data.
+to check whether I had access and finally the majority of them are fixed. 
+
+There still a small issue with the ```edit_product``` function 
+in which only loged users if tryng to edit other user's prouduct can be redirected to the edit_product form page but with no access to details, not damagin any user data.
 
 Example of function authentication:
 
 ``` diff
 @app.route('/edit_product/<product_id>')
 def edit_product(product_id):
- +  seller = session['name']
-  + if not seller:
++   seller = session['name']
++   if not seller:
         return redirect(url_for('register'))
     try:
         the_product = mongo.db.products.find_one({"_id": ObjectId(product_id), 'seller':seller})
@@ -196,4 +199,16 @@ def edit_product(product_id):
 
 ## Deployment
 
+To deploy to Heroku there are some steps to e followed:
+
+1. Using the terminal install the ```requirements.txt``` with the command $ ```pip freeze > requirements.txt ```.
+2. Add a Procfile with the follow content ```web: python app.py```.
+3. Commit the new files such as requirements.txt and Procfile.
+4. In the Heroku website make a new app tappin on the ```new``` button.
+5. Choose the application that was already created.
+6. 
+
+
 ## Credits 
+
+- 
