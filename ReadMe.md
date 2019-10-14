@@ -206,8 +206,19 @@ To deploy to Heroku there are some steps to e followed:
 3. Commit the new files such as requirements.txt and Procfile.
 4. In the Heroku website make a new app tappin on the ```new``` button.
 5. Choose the application that was already created.
-6. 
-
+6. Check if the heroku application is proper linked to the right repository in github.
+7. Chosed the application you want to deploy and click on ```config vars```.
+   - Set the ```IP```: 0.0.0.0
+   - Set the ```PORT```: 5000
+8. On the ```app.py``` set the config as follow to match the deployment vars:
+  ```
+  if __name__ == '__main__':
+    app.run(host=os.environ.get('IP'),
+            port=int(os.environ.get('PORT')),
+            debug=False)
+  ```
+9. Also the connection of the application with the data base should be displayed:
+  - 
 
 ## Credits 
 
