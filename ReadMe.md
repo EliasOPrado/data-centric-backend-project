@@ -44,7 +44,7 @@ For instance, users without register will not be able to add new products or lea
 The main functionality of this project are the functions login, register, logout, update_proudct and edit_product and delete_product.
 Each of them has many other function to display, delete, retrieve, update or insert a new product into the data base.
 
-## User Experience:
+## UX:
 
 The template of this project was developed to bring simplicity to the user avoiding unexpected experiences, adding intuitive navigation. 
 
@@ -75,25 +75,25 @@ The font used in this application is the Roboto sans-serify. A geometric font th
 
 <img src="/static/images/ipad.png" width="200"> 
 
-#### Database structure 
+## Database structure 
 
 ``` 
  category{
 
-   _id:5d52e05e1c9d4400009e0e5d
+   _id:<id>
    category_name:"Electronics"
    
-   _id:5d52e05e1c9d4400009e0e5d
-   category_name:"Homr & Garden"
+   _id:<id>
+   category_name:"Home & Garden"
    
-   _id:5d52e05e1c9d4400009e0e5d
+   _id:<id>
    category_name:"Motors"
 
 }
 
 products{
 
-   _id:5d7d5b7a12690257b223985c
+   _id:<id>
    category_name:"Electronics"
    product_name:""
    price:"500"
@@ -101,20 +101,29 @@ products{
    seller:" "
    product_description:" "
    views:15
+   review:Array
+      0:Object
+        name:"Lucas"
+        post:"add a comment here...."
+        date:"17/09/2019"
+      1:Object
+        name:"eliasprado"
+        post:"roses are red and the sky is blue I am just commenting here to appear in the readme file :D"
+        date:"14/10/2019"
 
 }
 
 user{
 
-   _id:5d6551f33b1cef87c2ca30b2
-   name:"oliveira"
-   email:"pradoelias133@gmail.com"
-   password:"kb01210012"
+   _id:<id>
+   name:"<user name>"
+   email:"<user email>"
+   password:"<user password>"
 
 }
 ```
 
-# Technologies 
+## Technologies 
 
 - HTML
 - CSS
@@ -127,8 +136,28 @@ user{
 
 ## Coding challenges during development 
 
-There are some challenges that was faced during the development of this project such as add user comments on a third user product. The difficult was that it was required to develop a function in which would embed comments as arrays into the database. 
-In addition another function that was very hard to develop was the pagination system. The algorithms of the function was ...
+There are some challenges that were faced during the development of this project such as add user comments on a third user product. 
+The difficult was that it was required to develop a function in which would embed comments as arrays into the database. 
+
+Embedded DB comment: 
+```
+if request.method == 'POST':
+        mongo.db.products.find_one_and_update({"_id": ObjectId(id)},{
+                    '$push':{'review':{
+                    'name': session['name'],
+                    'post': print_post,
+                    'date': now.strftime("%d/%m/%Y")
+                    }
+                }
+            }
+        )
+        return redirect(url_for('review', id=id))
+```
+In addition another function that was very hard to develop was the pagination system. 
+The algorithms of the function was an set of arithmetics in both ```python``` and ```jinja``` with a 
+mix of url management. Innitially it worked but the pagination wasn't showing the real value of pages
+based on the number required per page. Having one or two empty pages in advance. This issue was only solved 
+with my mentor help.
 
 Authorization and function issues on the url….
 
@@ -149,11 +178,12 @@ Since Users are not able to edit comments after post it on the product view page
 The media query for iPad Pro should be improved on the categories page.
 In the user account page, the select form should be fixed to have the method “required”.
 
-## Testing 
+## Testing
 
 The devices that the application was tested were:
 
 ### Mobile:
+
 - Galaxy S5
 - Pixel 2
 - Pixel 2 XL
@@ -163,20 +193,24 @@ The devices that the application was tested were:
 - iPhone X
 
 ### Tablets:
+
 - iPad
 - iPad Pro
 
 ### Laptops:
+
 - ThinkPad X1 Carbon
 - ThinkPad T430
 
 
 ## Function testing and unsolved bugs
 
-There had some issues with function authentication and users without being logged had access to sensitive functions
+There had some issues with function authentication and users without being logged having access to sensitive functions
 such as ```edit_product```. I had to learn it and add session based access only loged users to have access based on their own 
-posts. Therefore, to make sure it was working well I follow the function on the url and added a product id without being logged 
-to check whether I had access and finally the majority of them are fixed. 
+posts. Therefore, to make sure it was working well I added the function on the url and added a product id without being logged 
+to check whether I had access and finally they were fixed. 
+
+### Unsolved bugs
 
 There still a small issue with the ```edit_product``` function 
 in which only loged users if tryng to edit other user's prouduct can be redirected to the edit_product form page but with no access to details, not damagin any user data.
@@ -218,8 +252,21 @@ To deploy to Heroku there are some steps to e followed:
             debug=False)
   ```
 9. Also the connection of the application with the data base should be displayed:
-  - 
-
+  ```
+  app.secret_key = 'any random string'
+  app.config['MONG_DBNAME'] = '<db name>'
+  app.config['MONGO_URI'] = 'mongodb+srv://<username>:<password>@cluster0-0oagu.gcp.mongodb.net/recipebook?retryWrites=true'
+  ```
+10. Install the heroku CLI.
+11. Bash commands to deploy:
+  ```
+  $ heroku login
+  $ git add .
+  $ git commit -am "make it better"
+  $ git push heroku master
+  ```
 ## Credits 
 
-- 
+- [Start Bootstrap](https://startbootstrap.com/templates/ecommerce/) for the project template.
+- [Sipo](https://github.com/sipostudent) for the help in some hard parts of the code.
+- My mentor ```Antonio``` who gave me great help through the project development.
