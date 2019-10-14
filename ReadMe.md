@@ -8,7 +8,7 @@
     1. [Home Page](#Home-Page)
     2. [Categories](#Categories)
     3. [The Product View](#The-product-view)
-    4. [The User Account](#The-User-Account)
+    4. [The User Account Page](#The-User-Account-Page)
     5. [Font](#Font)
     6. [Mobile Display](#Mobile-Display) 
     7. [Tablet Display](#Tablet-Display) 
