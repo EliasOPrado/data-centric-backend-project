@@ -2,25 +2,25 @@
 <!--ts-->
 
 1. [About](#about)
-   1. [Goal](#Goal)
-   2. [Functionality](#Functionality)
+   - [Goal](#Goal)
+   - [Functionality](#Functionality)
 2. [UX](#UX)
-   1. [Home Page](#Home Page)
-   2. [Categories](#Categories)
-   3. [The Product View](#The product view)
-   4. [The User Account](#The User Account)
-   5. [Font](#Font)
-   6. [Mobile Display](#Mobile Display) 
-   7. [Tablet Display](#Tablet Display) 
+   - [Home Page](#Home Page)
+   - [Categories](#Categories)
+   - [The Product View](#The product view)
+   - [The User Account](#The User Account)
+   - [Font](#Font)
+   - [Mobile Display](#Mobile Display) 
+   - [Tablet Display](#Tablet Display) 
 3. [Database Structure](#Database Structure)
 4. [Technologies](#Technologies)
-5. [Coding challenges during development](#Coding challenges during development)   
+5. [Coding challenges during development](#Coding Challenges During Development)   
 6. [Features](#Features) 
 7. [Features Left To Implement](#Features Left To Implement) 
 8. [Testing](#Testing) 
-    1. [Mobile](#Mobile)
-    2. [Tablets](#Tablets) 
-    3. [Laptops](#Laptops) 
+    - [Mobile](#Mobile)
+    - [Tablets](#Tablets) 
+    - [Laptops](#Laptops) 
 9. [Function Testing And Unsolved bugs](#Function Testing And Unsolved Bugs) 
 10. [Deployment](#Deployment)
 11. [Credits](#Credits)
@@ -137,7 +137,7 @@ user{
 - Google fonts 
 - Font awesome
 
-## Coding challenges during development 
+## Coding Challenges During Development 
 
 There are some challenges that were faced during the development of this project such as add user comments on a third user product. 
 The difficult was that it was required to develop a function in which would embed comments as arrays into the database. 
