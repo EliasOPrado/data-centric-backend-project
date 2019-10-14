@@ -2,25 +2,25 @@
 <!--ts-->
 
 1. [About](#about)
-   - [Goal](#Goal)
-   - [Functionality](#Functionality)
+    1. [Goal](#Goal)
+    2. [Functionality](#Functionality)
 2. [UX](#UX)
-   - [Home Page](###Home Page)
-   - [Categories](###Categories)
-   - [The Product View](###The product view)
-   - [The User Account](###The User Account)
-   - [Font](###Font)
-   - [Mobile Display](###Mobile Display) 
-   - [Tablet Display](###Tablet Display) 
+    1. [Home Page](#Home Page)
+    2. [Categories](#Categories)
+    3. [The Product View](#The product view)
+    4. [The User Account](#The User Account)
+    5. [Font](#Font)
+    6. [Mobile Display](#Mobile Display) 
+    7. [Tablet Display](#Tablet Display) 
 3. [Database Structure](#Database Structure)
 4. [Technologies](#Technologies)
-5. [Coding challenges during development](#Coding Challenges During Development)   
+5. [Coding challenges during development](#Coding challenges during development)   
 6. [Features](#Features) 
 7. [Features Left To Implement](#Features Left To Implement) 
 8. [Testing](#Testing) 
-    - [Mobile](#Mobile)
-    - [Tablets](#Tablets) 
-    - [Laptops](#Laptops) 
+    1. [Mobile](#Mobile)
+    2. [Tablets](#Tablets) 
+    3. [Laptops](#Laptops) 
 9. [Function Testing And Unsolved bugs](#Function Testing And Unsolved Bugs) 
 10. [Deployment](#Deployment)
 11. [Credits](#Credits)
@@ -51,18 +51,18 @@ Each of them has many other function to display, delete, retrieve, update or ins
 
 The template of this project was developed to bring simplicity to the user avoiding unexpected experiences, adding intuitive navigation. 
 
-#### Home Page
+##### Home Page
 For instance, the home page has everything the user need. A simple and well designed carousel with its three categories and an image representing each category. Links with the name of each category to facilitate users to navigate the app.
 
-#### Categories
+##### Categories
 
 Under the categories, a pagination scheme is settled to only show six products per page to not overwhelm the user and of course give a good experience. 
 
-#### The product view 
+##### The product view 
  
 Users after clicking on a product card, rather it is on the home page or in categories will be sent to a view page in which will be able to see the product in a larger image and its description as well as post a comment for the seller of the product such as bid or asking the price. 
 
-#### The User Account Page
+##### The User Account Page
 
 The user account page is basically two pages in one where users will be able to add a new product using a form (right page) and see them after submitted on a table with privilege of delete, view and edit (left page).
 
@@ -137,7 +137,7 @@ user{
 - Google fonts 
 - Font awesome
 
-## Coding Challenges During Development 
+## Coding challenges during development 
 
 There are some challenges that were faced during the development of this project such as add user comments on a third user product. 
 The difficult was that it was required to develop a function in which would embed comments as arrays into the database. 
