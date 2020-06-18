@@ -4,7 +4,7 @@ import os
 import math
 from flask import Flask, render_template, redirect, request, url_for, session, jsonify
 from flask_pymongo import PyMongo, pymongo
-from bson.objectid import ObjectId 
+from bson.objectid import ObjectId
 import datetime
 
 
@@ -13,9 +13,9 @@ app = Flask(__name__, static_url_path='/static')
 
 #App configuration -- table name and the link
 app.secret_key = 'any random string'
-app.config['MONG_DBNAME'] = ''
-app.config['MONGO_URI'] = ''
-                            
+app.config['MONGO_DBNAME'] = 'DB_ecommerce_project'
+app.config['MONGO_URI'] = 'mongodb+srv://elias:kb01210012@myfirstcluster-uyvei.mongodb.net/DB_ecommerce_project?retryWrites=true&w=majority'
+
 
 mongo = PyMongo(app)
 
@@ -30,26 +30,26 @@ def index():
     electronics=mongo.db.products.find({'category_name':"Electronics"}),
     homeGarden=mongo.db.products.find({'category_name':"Home & Garden"}),
     motors=mongo.db.products.find({'category_name':"Motors"}))
-    
-#LOGIN FUNCTION    
+
+#LOGIN FUNCTION
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    if request.method == 'GET': 
+    if request.method == 'GET':
         return render_template('login.html')
     else:
         user = mongo.db.user
         login_user = user.find_one({
-        'email': request.form.get('email'), 
+        'email': request.form.get('email'),
         'password':request.form.get('password'
         )})
-        
+
         if login_user:
             session['email'] = login_user['email']
             session['name'] = login_user['name']
             return redirect(url_for('user'))
-       
+
         return 'Invalid username or password combination'
-        
+
 #LOGOUT FUNCTION
 @app.route('/logout')
 def logout():
@@ -63,7 +63,7 @@ def register():
     email = session.get('email')
     if email:
       return redirect(url_for('index'))
-    
+
     user = None
     if request.method == 'POST':
         name = request.form['username']
@@ -78,7 +78,7 @@ def register():
             return render_template('login.html')
 
     return render_template('register.html')
-    
+
 #category 1 Eletronics
 @app.route('/electronics/')
 @app.route('/electronics/<page>/<limit>')
@@ -87,16 +87,17 @@ def electronics(page=1, limit=6):
     limit=int(limit)
     start_index = page * limit - limit
     end_index = start_index + 6
+    # used for page_number
     all_products = mongo.db.products.find({'category_name':"Electronics"}).sort("$natural", pymongo.DESCENDING)
+    # used for the loop in template
     page_number =math.ceil(all_products.count()/6)
-    maximum = math.floor( (mongo.db.products.count_documents({})) / limit - 1)
     electronics =  all_products[start_index:end_index]
     return render_template(
-        'electronics.html', 
+        'electronics.html',
         electronics= electronics,
         page=page,
+        page_number=page_number,
         pages=range(1, int(page_number)+1),
-        maximum=maximum, 
         limit=limit
     )
 
@@ -109,16 +110,20 @@ def home_garden(page=1, limit=6):
     page = int(page)
     start_index = page * limit - limit
     end_index = start_index + 6
+    # used for page_number
     all_products = mongo.db.products.find({'category_name':"Home & Garden"}).sort("$natural", pymongo.DESCENDING)
+    # used for the loop in template
     page_number =math.ceil(all_products.count()/6)
-    maximum = math.floor( (mongo.db.products.count_documents({})) / limit - 1)
     homeGarden = all_products[start_index:end_index]
+    print(end_index)
     return render_template(
         'home_garden.html',
         homeGarden=homeGarden,
         page=page,
+        page_number=page_number,
         pages=range(1, int(page_number)+1),
-        maximum=maximum, limit=limit)
+        limit=limit
+    )
 
 #category 3 Motors
 @app.route('/motors/')
@@ -128,19 +133,22 @@ def motors(page=1, limit=6):
     page = int(page)
     start_index = page * limit - limit
     end_index = start_index + 6
+    # used for page_number
     all_products = mongo.db.products.find({'category_name':"Motors"}).sort("$natural", pymongo.DESCENDING)
+    # used for the loop in template
     page_number =math.ceil(all_products.count()/6)
-    maximum = math.floor( (mongo.db.products.count_documents({})) / limit -1)
+
     motors = all_products[start_index:end_index]
     return render_template(
         'motors.html',
         motors=motors,
         page=page,
+        page_number=page_number,
         pages=range(1, int(page_number) + 1),
-        maximum=maximum, limit=limit
+        limit=limit
     )
-    
-    
+
+
 #REVIEW FUNCTION
 @app.route('/review/product_id?=<id>', methods=['POST', 'GET'])
 def review(id):
@@ -162,7 +170,7 @@ def review(id):
     #Increments +1 view into the visited product by its id.
     mongo.db.products.find_one_and_update({"_id": ObjectId(id)}, {"$inc": {"views": 1}})
     return render_template('product.html', reviews=reviews)
-    
+
 @app.route('/delete_comment/product_id?=<id>/post_content?=<post_content>')
 def delete_comment(id, post_content):
     print('post_content',post_content)
@@ -174,8 +182,8 @@ def delete_comment(id, post_content):
     })
     return redirect(url_for('review', id=id))
 
-#USER PAGE                                                 
-@app.route('/user')                                                             
+#USER PAGE
+@app.route('/user')
 def user():
     items=mongo.db.products.find({'seller':session.get('name')})
     category=mongo.db.category.find()
@@ -194,8 +202,8 @@ def insert_product():
         form_dict.update({'seller': session['name']})
         products.insert_one(form_dict)
     return redirect(url_for('user'))
-    
-    
+
+
 #UPDATE FUNCTION
 @app.route('/update_product/<product_id>', methods=['POST'])
 def update_product(product_id):
@@ -211,7 +219,7 @@ def update_product(product_id):
         })
     return redirect(url_for('user'))
 
-#EDIT FUNCTION - RETRIVES ONLY THE USER'S PRODUCT TO THE TEMPLATE   
+#EDIT FUNCTION - RETRIVES ONLY THE USER'S PRODUCT TO THE TEMPLATE
 @app.route('/edit_product/<product_id>')
 def edit_product(product_id):
     seller = session['name']
@@ -224,8 +232,8 @@ def edit_product(product_id):
         return redirect(url_for('index'))
     return render_template('editproduct.html', product=the_product, categories=all_categories)
 
-    
-#DELETE FUNCTION  
+
+#DELETE FUNCTION
 @app.route('/delete_product/<product_id>')
 def delete_product(product_id):
     seller = session['name']
@@ -237,9 +245,15 @@ def delete_product(product_id):
         return redirect(url_for('index'))
     return redirect(url_for('user'))
 
-    
 
 if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
-            debug=True)
+    port = int(os.environ.get('PORT', 5000))
+
+    if port == 5000:
+        app.debug = True
+
+    app.run(host='0.0.0.0', port=port)
+# if __name__ == '__main__':
+#     app.run(host=os.environ.get('IP'),
+#             port=int(os.environ.get('PORT')),
+#             debug=True)

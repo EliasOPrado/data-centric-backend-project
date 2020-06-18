@@ -64,7 +64,7 @@
 
 
         <!--Next button-->
-        <li {% if page==maximum %} class="page-item disabled" {% endif %}>
+        <li {% if page == page_number %} class="page-item disabled" {% endif %}>
           <a class="page-link" {% if page!=maximum %}href="{{ url_for('electronics', page=page, limit=limit) }}" {% endif %}>
                             Next
                         </a>

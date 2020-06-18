@@ -53,10 +53,12 @@
           <a class="page-link" href="{{ url_for('motors', page=p, limit=limit) }}">{{ p }}</a>
         </li>
         {% endfor %}
-        <li {% if page==maximum %} class="page-item disabled" {% endif %}>
-          <a class="page-link" {% if page!=maximum %}href="{{ url_for('motors', page=page + 1, limit=limit) }}" {% endif %}>
+        <li {% if page == page_number%} class="page-item disabled" {% endif %}>
+          <a class="page-link" {% if page!=maximum %}href="{{ url_for('motors', page=page, limit=limit) }}" {% endif %}>
                             Next
                         </a>
+
+
         </li>
       </ul>
     </nav>
