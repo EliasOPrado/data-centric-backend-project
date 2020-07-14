@@ -60,7 +60,7 @@
         </figure>
       </div>
       <!--ELETRONICS-->
-      {% for electronic in electronics[:3] %}
+      {% for electronic in electronics[:6] %}
       <div class="col-lg-4 col-md-6 mb-4 card-position ">
         <div class="card h-100 shadow-sm img-fluid">
           <a href="{{ url_for('review', id=electronic._id)}}"><img class="card-img-top" src="{{ electronic.url }}" width="200" height="200" alt="" class="responsive-img"></a>
@@ -88,7 +88,7 @@
         </figure>
       </div>
       <!--HOUSE & GARDEN-->
-      {% for hg in homeGarden[:3] %}
+      {% for hg in homeGarden[:6] %}
       <div class="col-lg-4 col-md-6 mb-4 card-position">
         <div class="card h-100 shadow-sm">
           <a href="{{ url_for('review', id=hg._id)}}"><img class="card-img-top" src="{{ hg.url }}" width="200" height="200" alt="" class="responsive-img"></a>
@@ -117,7 +117,7 @@
         </figure>
       </div>
       <!--MOTORS-->
-      {% for motor in motors[:3] %}
+      {% for motor in motors[:6] %}
       <div class="col-lg-4 col-md-6 mb-4 card-position">
         <div class="card h-100 shadow-sm">
           <a href="{{ url_for('review', id=motor._id) }}"><img class="card-img-top" src="{{ motor.url }}" width="200" height="200" alt="" class="responsive-img"></a>
