@@ -138,7 +138,9 @@ and (orientation : portrait) {
     padding-top: 28%;
     padding-bottom: 29%;
 }
-
+.card.card-cascade.wider.my-3.propaganda{
+  display: none;
+}
 }
 /* landscape */
 @media only screen
@@ -183,6 +185,9 @@ and (orientation : landscape) {
   .row.justify-content-center.card-deck {
     padding-top: 2%;
     padding-bottom: 2%;
+  }
+  .card.card-cascade.wider.my-3.propaganda{
+    display: inline;
   }
 }
 
