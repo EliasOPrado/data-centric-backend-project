@@ -179,12 +179,8 @@ and (orientation : landscape) {
   }
 
   .row.justify-content-center.card-deck {
-    padding-top: 29%;
-    padding-bottom: 29%;
-  }
-  .row.justify-content-center.card-deck {
-    padding-top: 2%;
-    padding-bottom: 2%;
+    padding-top: 28.5%;
+    padding-bottom: 28.5%;
   }
   .card.card-cascade.wider.my-3.propaganda{
     display: inline;
