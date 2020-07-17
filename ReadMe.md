@@ -62,8 +62,10 @@ User goals:
    - White smole: ![#f2f2f2](https://via.placeholder.com/15/f2f2f2/000000?text=+) `#f2f2f2`
    - Tropical rain forest: ![#097460](https://via.placeholder.com/15/097460/000000?text=+) `#097460`
    - Dark lime green: ![#28a745](https://via.placeholder.com/15/28a745/000000?text=+) `#28a745`
-   - Dodger blue: ![#007bff](https://via.placeholder.com/15/007bff/000000?text=+) `#007bff`
    - Pelorous: ![#17a2b8](https://via.placeholder.com/15/17a2b8/000000?text=+) `#17a2b8`
+   - Dodger blue: ![#007bff](https://via.placeholder.com/15/007bff/000000?text=+) `#007bff`
+   - Amber: ![#fec008](https://via.placeholder.com/15/fec008/000000?text=+) `#fec008`
+
 
 ### Styling
    - Bootstrap cards to group the products.
@@ -84,7 +86,7 @@ The wireframes for this project were only take three devices in accountability a
 AdPro is made with different features and pages, `Home page`, `Categories`, `Product view`, `User account`, `Register page` and `Login page`. Therefore, the template of this project was developed to bring simplicity to the user avoiding unexpected experiences, adding intuitive navigation.
 
 ## Home Page
-For instance, the home page has everything the user need. A simple and well designed carousel with its three categories and an image representing each category. Links with the name of each category to facilitate users to navigate the app.
+The home page has everything the user need. A simple and well designed carousel with its three categories and an image representing each category as headers. Links with the name of each category to facilitate users to navigate the app.
 
 ## Categories
 
@@ -97,6 +99,8 @@ Users after clicking on a product card, rather it is on the home page or in cate
 ## The User Account Page
 
 The user account page is basically two pages in one where users will be able to add a new product using a form (right page) and see them after submitted on a table with privilege of delete, view and edit (left page).
+
+ ##
 
 ## Login
 

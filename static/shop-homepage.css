@@ -18,6 +18,9 @@ body {
 .main.container{
   min-height: 100%;
 }
+.col-lg-9.fotter-padding{
+  margin-top: -16px;
+}
 
 /*cards*/
 .card{
