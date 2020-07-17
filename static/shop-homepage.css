@@ -4,13 +4,20 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
  */
 
-
+html{
+  position: relative;
+  min-height: 100%;
+}
 body {
+  height:100%;
   padding-top: 56px;
   font-family: 'Roboto', sans-serif;
+  margin-bottom: 150px;
 }
 
-
+.main.container{
+  min-height: 100%;
+}
 
 /*cards*/
 .card{
@@ -83,7 +90,11 @@ font-size: 7px;
     background:0 0;
 }
 
-
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 
 .heading-line{
 position:relative;
@@ -124,23 +135,27 @@ table{
     margin-bottom: 0rem;
 }
 
+.pagination {
+    padding-top: 15px;
+}
+
 /* iPad media queries */
 /* potrait */
 @media only screen
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait) {
-  .row.justify-content-center.card-deck {
+.row.justify-content-center.card-deck {
     padding-top: 16%;
     padding-bottom: 16%;
-}
+  }
 .loggin-padding {
     padding-top: 28%;
     padding-bottom: 29%;
-}
+  }
 .card.card-cascade.wider.my-3.propaganda{
   display: none;
-}
+  }
 }
 /* landscape */
 @media only screen
@@ -154,18 +169,18 @@ and (orientation : landscape) {
   .loggin-padding {
     padding-top: 8%;
     padding-bottom: 9%;
-}
+  }
 }
 
 /* iPad pro media queries*/
-/* iPad Portrait */
+/* iPad pro Portrait */
 @media only screen
   and (pointer:coarse)
   and (min-width: 1024px)
   and (max-height: 1366px)
   and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1.5) {
-  .fotter-padding {
+  .footer-padding {
     padding-bottom: 0px;
   }
 
@@ -185,17 +200,17 @@ and (orientation : landscape) {
   .card.card-cascade.wider.my-3.propaganda{
     display: inline;
   }
+  body {
+    margin-bottom: 200px;
+  }
 }
 
-/* iPad Landscape */
+/* iPad pro Landscape */
 @media only screen
   and (min-width: 1024px)
   and (max-height: 1366px)
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1.5) {
-      .fotter-padding {
-      padding-bottom: 70px;
-    }
 
     .loggin-padding {
       padding-top: 18%;
@@ -206,4 +221,156 @@ and (orientation : landscape) {
       padding-top: 11%;
       padding-bottom: 11%;
     }
+    body {
+    margin-bottom: 140px;
   }
+}
+
+/* ----------- iPhone 4 and 4S ----------- */
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    body {
+      margin-bottom: 350px;
+  }
+  .loggin-padding {
+    padding-top: 5%;
+    padding-bottom: 11%;
+  }
+.p-5 {
+    padding: 1rem!important;
+  }
+}
+
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+/* Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+    body {
+      margin-bottom: 330px;
+  }
+  .p-5 {
+    padding: 1rem!important;
+  }
+  .main.container {
+    margin-bottom: 280px;
+}
+}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .loggin-padding {
+      padding-top: 5%;
+      padding-bottom: 1%;
+  }
+}
+
+/* Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+ .loggin-padding {
+    padding-top: 5%;
+    padding-bottom: 5%;
+ }
+
+body {
+    margin-bottom: 200px;
+ }
+
+.p-5 {
+  padding: 1rem !important;
+ }
+}
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+/* Landscape */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) {
+    .loggin-padding {
+    padding-top: 5%;
+    padding-bottom: 3%;
+  }
+
+  body {
+    margin-bottom: 200px;
+  }
+
+  .p-5 {
+    padding: 1rem !important;
+  }
+  .main.container {
+    margin-bottom: 200px;
+}
+}
+
+
+/*  ------- Google pixel 2 ------------- */
+@media only screen
+  and (min-width: 731px)
+  and (max-height: 411px)
+  and (orientation: landscape){
+    body {
+  margin-bottom: 200px;
+  }
+  .p-5 {
+    padding: 1rem!important;
+ }
+}
+
+/* ----------- iPhone X ----------- */
+/* Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) {
+    body {
+        margin-bottom: 150px;
+    }
+    .p-5 {
+    padding: 1rem!important;
+ }
+}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+/* Portrait */
+@media screen
+  and (device-width: 320px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+    body {
+      margin-bottom: 210px;
+  }
+}
+
+/* Landscape */
+@media screen
+  and (device-width: 640px)
+  and (device-height: 360px)
+  and (orientation: landscape) {
+    body {
+  margin-bottom: 200px;
+  }
+
+.p-5 {
+  padding: 1rem !important;
+   }
+}

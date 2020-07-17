@@ -26,34 +26,83 @@
 11. [Credits](#Credits)
  <!--te-->
 
-## About
 
 Project Milestone Three - Code Institute
 
-AdPro is a website that emulates the functionality of a C2C (Consumer to Consumer) ecommerce platform.
+AdPro is a website that emulates the functionality of a C2C (Consumer to Consumer) e-commerce platform.
 
-## UX:
+# UX:
 
-The template of this project was developed to bring simplicity to the user avoiding unexpected experiences, adding intuitive navigation.
+## User goals
+The target audience of AdPro are:
+    - People who want to add products for sale.
+    - People who want to check different prices based on views.
+    - Users who want to check what other users are talking about different products.
 
-##### Home Page
+User goals:
+    - Check what are the products available for sale in different categories.
+    - Search a specific category and search a product within this category.
+    - Create an account.
+    - Login in their account.
+    - Add, edit and delete products.
+    - See their products in a page with comment box.
+    - See their products in a table.
+    - Add comments in different ads.
+    - Delete their own comments already added.
+    - See how many views a products has.
+
+## Design choices
+
+### Fonts
+  - The font used in this project is [Roboto](https://fonts.google.com/specimen/Roboto#about) which is an user friendly mainly used by its creator Google to give a proper reading in different screen sizes.
+
+### Colors
+   - Baltic Sea: ![#343a40](https://via.placeholder.com/15/343a40/000000?text=+) `#343a40`
+   - Matterhorn: ![#545454](https://via.placeholder.com/15/545454/000000?text=+) `545454`
+   - White smole: ![#f2f2f2](https://via.placeholder.com/15/f2f2f2/000000?text=+) `#f2f2f2`
+   - Tropical rain forest: ![#097460](https://via.placeholder.com/15/097460/000000?text=+) `#097460`
+   - Dark lime green: ![#28a745](https://via.placeholder.com/15/28a745/000000?text=+) `#28a745`
+   - Dodger blue: ![#007bff](https://via.placeholder.com/15/007bff/000000?text=+) `#007bff`
+   - Pelorous: ![#17a2b8](https://via.placeholder.com/15/17a2b8/000000?text=+) `#17a2b8`
+
+### Styling
+   - Bootstrap cards to group the products.
+   - Box shadow to give a depth idea in contrast with the background.
+   - The usage of different colours for each category to contrast each other and give direction to users.
+
+## Wireframes
+
+The wireframes for this project were only take three devices in accountability as Mobile phones, iPad and normal screen. In addition, the tool used to develop them was [Balsamiq](https://balsamiq.com/) for a rapid design.
+
+   - [Mobile devices](/static/mockups/mobile-mockups.png)
+   - [iPad devices](/static/mockups/ipad-mockups.png)
+   - [Desktop devices](/static/mockups/desktop-mockups.png)
+
+
+# Features
+
+AdPro is made with different features and pages, `Home page`, `Categories`, `Product view`, `User account`, `Register page` and `Login page`. Therefore, the template of this project was developed to bring simplicity to the user avoiding unexpected experiences, adding intuitive navigation.
+
+## Home Page
 For instance, the home page has everything the user need. A simple and well designed carousel with its three categories and an image representing each category. Links with the name of each category to facilitate users to navigate the app.
 
-##### Categories
+## Categories
 
 Under the categories, a pagination scheme is settled to only show six products per page to not overwhelm the user and of course give a good experience.
 
-##### The product view
+## The product view
 
 Users after clicking on a product card, rather it is on the home page or in categories will be sent to a view page in which will be able to see the product in a larger image and its description as well as post a comment for the seller of the product such as bid or asking the price.
 
-##### The User Account Page
+## The User Account Page
 
 The user account page is basically two pages in one where users will be able to add a new product using a form (right page) and see them after submitted on a table with privilege of delete, view and edit (left page).
 
-#### Font
+## Login
 
-The font used in this application is the Roboto sans-serify. A geometric font that allows a natural reading.
+## Register
+
+
 
 #### Mobile Display
 
@@ -61,7 +110,7 @@ The font used in this application is the Roboto sans-serify. A geometric font th
 
 #### Tablet Display
 
-<img src="/static/images/ipad.png" width="200"> 
+<img src="/static/images/ipad.png" width="200">
 
 ## Goal
 

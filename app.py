@@ -117,7 +117,6 @@ def home_garden(page=1, limit=6):
     # used for the loop in template
     page_number =math.ceil(all_products.count()/6)
     homeGarden = all_products[start_index:end_index]
-    print(end_index)
     return render_template(
         'home_garden.html',
         homeGarden=homeGarden,
@@ -175,7 +174,6 @@ def review(id):
 
 @app.route('/delete_comment/product_id?=<id>/post_content?=<post_content>')
 def delete_comment(id, post_content):
-    print('post_content',post_content)
     mongo.db.products.update({"_id": ObjectId(id)},{
         '$pull':{'review':{
             'post':post_content
