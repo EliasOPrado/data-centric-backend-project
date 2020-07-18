@@ -250,15 +250,6 @@ def delete_product(product_id):
 def page_not_found(e):
     return render_template('404.html'), 404
 
-
-# if __name__ == '__main__':
-#     port = int(os.environ.get('PORT', 5000))
-#
-#     if port == 5000:
-#         app.debug = False
-#
-#     app.run(host='0.0.0.0', port=port)
-
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

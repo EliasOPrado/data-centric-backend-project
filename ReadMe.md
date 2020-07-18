@@ -1,41 +1,45 @@
 
+# AdPro
+
+<img src="/static/images/mockup.png">
+
 Project Milestone Three - Code Institute
 
-AdPro is a website that emulates the functionality of a C2C (Consumer to Consumer) e-commerce platform.
+AdPro is a website that emulates the functionality of a C2C (Consumer to Consumer) e-commerce platform. With educational purpose only as part of Code Institute Software Development diploma. The main goal of this project is to show the ```CRUD``` functionalities using ```MongoDB``` as a Non relational database. Bringing to the user the ability to create new posts such as product lists, view, read, update from its profile and delete their own postages.
 
-The main goal of this project is to show the ```CRUD``` functionalities using ```MongoDB``` as a Non relational database. Bringing to the user the ability to create new posts such as product lists, view, read, update from its profile and delete their own postages.
-
-The project is basically designed with Python and the Flask framework in which is used to integrate different templates and its main functionalities.
-Therefore, the application is separated by eight different sections ```Index, Electronics, Home & Garden, Motors, review, Register, Login and Edit```.
-
-In which are used ```jinja2``` a web template engine allowing to create functions, loops and conditionals based on the goal of the project.
 
 ## Table of contents
 <!--ts-->
 
-1. [About](#about)
-    1. [Goal](#Goal)
-    2. [Functionality](#Functionality)
-2. [UX](#UX)
+1. [UX](#UX)
+    1. [User goals](#User-goals)
+    2. [Design choices](#Design-choices)
+       1. [Fonts](#Fonts)
+       2. [Colors](#Colors)
+       3. [Styling](#Styling)
+       4. [Wireframes](#Wireframes)
+2. [Features](#Features)
+    1. [Register](#Register)
+    2. [Login](#Login)
     1. [Home Page](#Home-Page)
     2. [Categories](#Categories)
     3. [The Product View](#The-product-view)
     4. [The User Account Page](#The-User-Account-Page)
-    5. [Font](#Font)
-    6. [Mobile Display](#Mobile-Display)
-    7. [Tablet Display](#Tablet-Display)
+    5. [404 page](#404-page)
+    6. [Features left to implement](#Features-left-to-implement)
 3. [Database Structure](#Database-Structure)
 4. [Technologies](#Technologies)
-5. [Coding challenges during development](#Coding-Challenges-During-Development)   
-6. [Features](#Features)
-7. [Features Left To Implement](#Features-Left-To-Implement)
-8. [Testing](#Testing)
-    1. [Mobile](#Mobile)
-    2. [Tablets](#Tablets)
-    3. [Laptops](#Laptops)
-9. [Function Testing And Unsolved bugs](#Function-Testing-And-Unsolved-Bugs)
-10. [Deployment](#Deployment)
-11. [Credits](#Credits)
+    1. [Tolls](#Tolls)
+    2. [Libraries](#Libraries)
+    3. [Programming languages](#Programming-languages)
+    4. [Coding challenges during development](#Coding-Challenges-During-Development)
+5. [Testing](#Testing)
+   - You can see the [TESTING.md](TESTING.md) file here.
+6. [How to run this application locally](#How-to-run-this-application-locally)  
+7. [Deployment](#Deployment)
+8. [Credits](#Credits)
+   1. [Content](#Content)
+   2. [Acknowledgments](#Acknowledgments)
  <!--te-->
 
 # UX:
@@ -154,14 +158,14 @@ Users after clicking on a product card, rather it is on the home page or in cate
    - A 404 page is set to be displayed for when an error occur when a page is not found. Making the user be able to return to the main page with its button.
 
 
-## Features Left To Implement
+## Features left to implement
 
    1. Since Users are not able to edit comments after post it on the product view page, only delete. there’s room to add edit comment.
    2. In the user account page, the select form should be fixed to have the method “required”.
 
 
 
-## Database Structure
+# Database Structure
 
 ```
  category{
@@ -235,7 +239,7 @@ user{
 
 The programming languages used in this project was, Python, Javascript, CSS and HTML.
 
-## Coding Challenges During Development
+## Coding challenges during development
 
 There are some challenges that were faced during the development of this project such as add user comments on a third user product and pagination.
 
@@ -258,73 +262,47 @@ if request.method == 'POST':
    2. In addition another function that was very hard to develop was the pagination system.
   The algorithms of the function was an set of arithmetics in both ```python``` and ```jinja``` with a mix of url management. Initially it worked but the pagination wasn't showing the real value of pages, based on the number required per page. Having one or two empty pages in advance.
 
+# How to run this application locally
 
-# Testing
+Before you run this application locally you will need to create an account in [MongoDB](https://www.mongodb.com/) and create a database. PS: You don't need to design the tables again, since they already designed in this project.
 
-The devices that the application was tested were:
+1. From the following link https://github.com/EliasOPrado/data-centric-backend-project direct download this project or git clone into your directory.
+2. With the project already open in your IDE create a `virtual environment` with the following commands:
+   1. Create the virtual environment: `$ python3 -m venv venv` in root.
+   2. Activate the virtual environment: `$ source venv/bin/activate`
+   3. After activated your directory will be displayed like this: `(venv) <your/directory/path> $`
+3. Create a file to hold the project configuration locally: `$ touch venv.py`
+4. Into the `venv.py` folder add the following configs:
+   ```
+   import os
 
-### Mobile
+   os.environ.setdefault('SECRET_KEY', '<your secret key>')
+   os.environ.setdefault('ENV_MONGO_DBNAME', '<your db name>')
+   os.environ.setdefault('ENV_MONGO_URI', 'mongodb+srv://<username>:<password>@cluster0-0oagu.gcp.mongodb.net/<your mongodb name>?retryWrites=true')
+   os.environ.setdefault('IP', '0.0.0.0')
+   os.environ.setdefault('PORT', '5000')
+   ```
+5. Create a `.gitignore` file and add `venv.py` and `venv/` directory in it.
+6. After the setup to run the local server do the following command: `$ python app.py run`
 
-- Galaxy S5
-- Pixel 2
-- Pixel 2 XL
-- iPhone 5 SE
-- iPhone 6, 7 and 8
-- iPhone 6, 7 and 8 Plus
-- iPhone X
-
-### Tablets
-
-- iPad
-- iPad Pro
-
-### Laptops
-
-- ThinkPad X1 Carbon
-- ThinkPad T430
-
-
-## Function Testing And Unsolved Bugs
-
-There had some issues with function authentication and users without being logged having access to sensitive functions
-such as ```edit_product```. I had to learn it and add session based access only loged users to have access based on their own
-posts. Therefore, to make sure it was working well I added the function on the url and added a product id without being logged
-to check whether I had access and finally they were fixed.
-
-### Unsolved bugs
-
-There still a small issue with the ```edit_product``` function
-in which only loged users if tryng to edit other user's prouduct can be redirected to the edit_product form page but with no access to details, not damagin any user data.
-
-Example of function authentication:
-
-``` diff
-@app.route('/edit_product/<product_id>')
-def edit_product(product_id):
-+   seller = session['name']
-+   if not seller:
-        return redirect(url_for('register'))
-    try:
-        the_product = mongo.db.products.find_one({"_id": ObjectId(product_id), 'seller':seller})
-        all_categories = mongo.db.category.find()
-    except:
-        return redirect(url_for('index'))
-    return render_template('editproduct.html', product=the_product, categories=all_categories)
-```
 
 ## Deployment
 
 To deploy to Heroku there are some steps to e followed:
 
-1. Using the terminal install the ```requirements.txt``` with the command $ ```pip freeze > requirements.txt ```.
-2. Add a Procfile with the follow content ```web: python app.py```.
+1. Using the terminal install the ```requirements.txt``` packages with the command ```$ pip install -r requirements.txt```.
+2. Add a Procfile with the following content ```web: python app.py```.
 3. Commit the new files such as requirements.txt and Procfile.
-4. In the Heroku website make a new app tappin on the ```new``` button.
+4. In the Heroku website make a new app tapping on the ```new``` button.
 5. Choose the application that was already created.
-6. Check if the heroku application is proper linked to the right repository in github.
-7. Chosed the application you want to deploy and click on ```config vars```.
-   - Set the ```IP```: 0.0.0.0
-   - Set the ```PORT```: 5000
+6. Check if the Heroku application is proper linked to the right repository in Github.
+7. Chose the application you want to deploy and click on ```config vars```.
+   - Set the `IP: 0.0.0.0`
+   - Set the `PORT: 5000`
+   - Set your `SECRET_KEY: <secret key>`
+   - Set the `MONGO_DBNAME: <your mongodb name>`
+   - Set the `MONGO_URI: mongodb+srv://<username>:<password>@cluster0-0oagu.gcp.mongodb.net/<your mongodb name>?retryWrites=true`
+
 8. On the ```app.py``` set the config as follow to match the deployment vars:
   ```
   if __name__ == '__main__':
@@ -334,11 +312,11 @@ To deploy to Heroku there are some steps to e followed:
   ```
 9. Also the connection of the application with the data base should be displayed:
   ```
-  app.secret_key = 'any random string'
-  app.config['MONG_DBNAME'] = '<db name>'
-  app.config['MONGO_URI'] = 'mongodb+srv://<username>:<password>@cluster0-0oagu.gcp.mongodb.net/recipebook?retryWrites=true'
+  app.secret_key = os.getenv("SECRET_KEY")
+  app.config['MONGO_DBNAME'] = os.getenv("ENV_MONGO_DBNAME")
+  app.config['MONGO_URI'] = os.getenv("ENV_MONGO_URI")
   ```
-10. Install the heroku CLI.
+10. Install the [Heroku-CLI](https://devcenter.heroku.com/articles/heroku-cli).
 11. Bash commands to deploy:
   ```
   $ heroku login
@@ -346,8 +324,12 @@ To deploy to Heroku there are some steps to e followed:
   $ git commit -am "make it better"
   $ git push heroku master
   ```
-## Credits
+# Credits
 
-- [Start Bootstrap](https://startbootstrap.com/templates/ecommerce/) for the project template.
+## Content
+  - The content for this project such as images are directly from the internet with the usage of urls.
+
+## Acknowledgments
+- [Start Bootstrap](https://startbootstrap.com/templates/ecommerce/) and its creator `David Miller` for the project template.
 - [Sipo](https://github.com/sipostudent) for the help in some hard parts of the code.
 - My mentor ```Antonio``` who gave me great help through the project development.
