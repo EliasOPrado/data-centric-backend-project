@@ -198,20 +198,10 @@ def user():
 def insert_product():
     products=mongo.db.products
     if request.method == 'POST':
-        category_name= request.form['category_name']
-        product_name = request.form['product_name']
-        price = request.form['price']
-        url = request.form['url']
-        product_description = request.form['product_description']
-        form = {
-            'category_name': category_name,
-            'product_name ': product_name ,
-            'price': price,
-            'url': url,
-            'product_description': product_description
-            }
-        form.update({'seller': session['name']})
-        products.insert_one(form)
+        form_dict = request.form.to_dict()
+        print(form_dict)
+        form_dict.update({'seller': session['name']})
+        products.insert_one(form_dict)
     return redirect(url_for('user'))
 
 

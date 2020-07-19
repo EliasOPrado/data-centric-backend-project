@@ -47,7 +47,7 @@
                             <td>${{item.price}}</td>
                             <td><a href="{{ url_for('review', id=item._id) }}"><button type="button" class="btn btn-primary" ><i class="fas fa-eye"></i></button</a></td>
                             <td><a href="{{  url_for('edit_product', product_id=item._id) }}"><button type="button" class="btn btn-success" ><i class="fas fa-edit"></i></button></a></td>
-                            <td><a href="{{  url_for('delete_product', product_id=item._id) }}"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a></td>
+                            <td class="this_message"><a href="{{  url_for('delete_product', product_id=item._id) }}"><button  type="button" class=" delete_message btn btn-danger"><i class="far fa-trash-alt"></i></button></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -65,8 +65,8 @@
 
             <div class="form-row mb-4" required>
                 <!-- Category -->
-                <select id="select-category" class="form-control " name="category_name">
-                    <option value="disabled" disabled selected>Select Category</option>
+                <select id="category_name" class="form-control " name="category_name" required>
+                    <option value="" disabled selected>Select Category</option>
                  {%  for cat in category %}
                  <option  value='{{cat.category_name}}'>{{cat.category_name}}</option>
                  {% endfor %}
@@ -91,5 +91,7 @@
         </form>
     </div>
 </div>
+
+<!-- Default form register -->
 
 {% endblock %}

@@ -15,9 +15,12 @@ body {
   margin-bottom: 150px;
 }
 
+/* config to keep the footer at the bottom of the page */
 .main.container{
   min-height: 100%;
 }
+
+/* Add negative margin-top for category pages */
 .col-lg-9.fotter-padding{
   margin-top: -16px;
 }
