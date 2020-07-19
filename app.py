@@ -197,14 +197,19 @@ def user():
 @app.route('/insert_product', methods=['POST'])
 def insert_product():
     products=mongo.db.products
-
     if request.method == 'POST':
         category_name= request.form['category_name']
         product_name = request.form['product_name']
         price = request.form['price']
         url = request.form['url']
         product_description = request.form['product_description']
-        form = {'category_name': category_name, 'product_name ': product_name , 'price': price, 'url': url, 'product_description': product_description}
+        form = {
+            'category_name': category_name,
+            'product_name ': product_name ,
+            'price': price,
+            'url': url,
+            'product_description': product_description
+            }
         form.update({'seller': session['name']})
         products.insert_one(form)
     return redirect(url_for('user'))
@@ -259,4 +264,4 @@ def page_not_found(e):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
+            debug=False)
