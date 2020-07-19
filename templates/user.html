@@ -26,7 +26,7 @@
                 {% endif %}
                <div style="overflow-x:auto;">
                 <table class="table table-sm table-striped" >
-                    
+
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -53,33 +53,6 @@
                     </tbody>
                 </table>
             </div>
-            
-            <!--<ul class="nav flex-column bg-white mb-0">
-                <li class="nav-item">
-                    <a href="#" class="nav-link text-dark font-italic">
-                <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
-                Area charts
-            </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link text-dark font-italic">
-                <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
-                Bar charts
-            </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link text-dark font-italic">
-                <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
-                Pie charts
-            </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link text-dark font-italic">
-                <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
-                Line charts
-            </a>
-                </li>
-            </ul>-->
         </div>
     </div>
 
@@ -98,40 +71,25 @@
                  <option  value='{{cat.category_name}}'>{{cat.category_name}}</option>
                  {% endfor %}
                 </select>
-                
+
             </div>
             <!-- Product Name -->
             <input type="text" id="product_name" name="product_name" class="form-control mb-4" placeholder="Product Name" required>
             <!-- Price -->
-            <input type="number" min="1" step="any" id="#" name="price" class="form-control mb-4" placeholder="Price €" required>
+            <input type="number" min="1" step="any" id="price" name="price" class="form-control mb-4" placeholder="Price €" required>
             <!--image url-->
-            <input type="text" id="url" name="url" class="form-control mb-4" placeholder="Add Image URL" value="" required> 
-            
+            <input type="text" id="url" name="url" class="form-control mb-4" placeholder="Add Image URL" value="" required>
+
             <div class="form-group green-border-focus label">
                 <textarea class="form-control" id="product_description" name='product_description' placeholder="Add product description" rows="3" required></textarea>
             </div>
             <!-- Sign up button -->
-            
+
             <button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
             <hr>
             <!-- Terms of service -->
         </form>
     </div>
 </div>
-<script>
-   $(document).ready(function () {
-    $("#product-form").submit(function (e) {
-        if ($('#select-category').val() == 'disabled') {
-            alert('You Must Select The Category');
-        }
-        e.preventDefault(e);
-    });
-    $("#select-category").change(function () {
-        $("#product-form").submit();
-    });
-}); 
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- Default form register -->
 
 {% endblock %}
