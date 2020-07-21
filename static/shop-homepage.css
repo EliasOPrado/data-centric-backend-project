@@ -145,6 +145,9 @@ table{
     padding-top: 15px;
 }
 
+
+
+
 /* iPad media queries */
 /* potrait */
 @media only screen
@@ -253,10 +256,9 @@ and (orientation : landscape) {
 /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
 /* Landscape */
 @media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) {
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : portrait)  {
     body {
       margin-bottom: 330px;
   }
@@ -265,6 +267,11 @@ and (orientation : landscape) {
   }
   .main.container {
     margin-bottom: 280px;
+}
+.this.error-template {
+    padding: 40px 15px;
+    padding-top: 45%;
+    text-align: center;
 }
 }
 

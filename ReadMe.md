@@ -96,7 +96,31 @@ The wireframes for this project were only take three devices in accountability a
 
 AdPro is made with different features and pages, `Home page`, `Categories`, `Product view`, `User account`, `Register page` and `Login page`. Therefore, the template of this project was developed to bring simplicity to the user avoiding unexpected experiences, adding intuitive navigation.
 
+## Navbar
+
+<p align="center">
+<img src="/static/images/not-logged-navbar.png" width="40%">
+</p>
+
+<p align="center">
+<img src="/static/images/logged-navbar.png" width="40%">
+</p>
+
+## Footer
+
+<p align="center">
+<img src="/static/images/not-logged-footer.png" width="40%">
+</p>
+
+<p align="center">
+<img src="/static/images/logged-footer.png" width="40%">
+</p>
+
 ## Register
+
+<p align="center">
+<img src="/static/images/register.png" width="40%">
+</p>
 
 <p align="center">
 <img src="/static/images/register.png" width="40%">
