@@ -104,13 +104,13 @@ AdPro is made with different features and pages, `Home page`, `Categories`, `Pro
 <img src="/static/images/not-logged-navbar.png" width="40%">
 </p>
 
-- When a user is not logged the navbar will display the login and register links for the user to choose what he needs.
+   - When a user is not logged the navbar will display the login and register links for the user to choose what he needs.
 
 <p align="center">
 <img src="/static/images/logged-navbar.png" width="40%">
 </p>
 
-- Once the user is logged in the login and register button will desappear giving the space for account and logout instead.
+   - Once the user is logged in the login and register button will desappear giving the space for account and logout instead.
 
 ## Footer
 
@@ -118,13 +118,13 @@ AdPro is made with different features and pages, `Home page`, `Categories`, `Pro
 <img src="/static/images/not-logged-footer.png" width="40%">
 </p>
 
-- The only difference on the footer is when user is logged in or logged out.
+   - The only difference on the footer is when user is logged in or logged out.
 
 <p align="center">
 <img src="/static/images/logged-footer.png" width="40%">
 </p>
 
-- If the user is not logged a button will be displayed for he or she to register a new account.
+   - If the user is not logged a button will be displayed for he or she to register a new account.
 
 ## Register
 
@@ -133,7 +133,7 @@ AdPro is made with different features and pages, `Home page`, `Categories`, `Pro
 </p>
 
 
-- The register page is set to add new users with their name, email address and password. Once the user is registered it will be redirected to the login page.
+   - The register page is set to add new users with their name, email address and password. Once the user is registered it will be redirected to the login page.
 
 ## Login
 
@@ -292,6 +292,10 @@ if request.method == 'POST':
 ```
    2. In addition another function that was very hard to develop was the pagination system.
   The algorithms of the function was an set of arithmetics in both ```python``` and ```jinja``` with a mix of url management. Initially it worked but the pagination wasn't showing the real value of pages, based on the number required per page. Having one or two empty pages in advance.
+
+# Testing
+
+   - You can see the [TESTING.md](TESTING.md) file here.
 
 # How to run this application locally
 
