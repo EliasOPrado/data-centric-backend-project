@@ -19,6 +19,8 @@ AdPro is a website that emulates the functionality of a C2C (Consumer to Consume
        3. [Styling](#Styling)
        4. [Wireframes](#Wireframes)
 2. [Features](#Features)
+    1. [Navbar](#Navbar)
+    1. [Footer](#Footer)
     1. [Register](#Register)
     2. [Login](#Login)
     1. [Home Page](#Home-Page)
@@ -102,9 +104,13 @@ AdPro is made with different features and pages, `Home page`, `Categories`, `Pro
 <img src="/static/images/not-logged-navbar.png" width="40%">
 </p>
 
+- When a user is not logged the navbar will display the login and register links for the user to choose what he needs.
+
 <p align="center">
 <img src="/static/images/logged-navbar.png" width="40%">
 </p>
+
+- Once the user is logged in the login and register button will desappear giving the space for account and logout instead.
 
 ## Footer
 
@@ -112,9 +118,13 @@ AdPro is made with different features and pages, `Home page`, `Categories`, `Pro
 <img src="/static/images/not-logged-footer.png" width="40%">
 </p>
 
+- The only difference on the footer is when user is logged in or logged out.
+
 <p align="center">
 <img src="/static/images/logged-footer.png" width="40%">
 </p>
+
+- If the user is not logged a button will be displayed for he or she to register a new account.
 
 ## Register
 
@@ -122,11 +132,8 @@ AdPro is made with different features and pages, `Home page`, `Categories`, `Pro
 <img src="/static/images/register.png" width="40%">
 </p>
 
-<p align="center">
-<img src="/static/images/register.png" width="40%">
-</p>
 
-   - The register page is set to add new users with their name, email address and password. Once the user is registered it will be redirected to the login page.
+- The register page is set to add new users with their name, email address and password. Once the user is registered it will be redirected to the login page.
 
 ## Login
 

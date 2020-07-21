@@ -256,9 +256,10 @@ and (orientation : landscape) {
 /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
 /* Landscape */
 @media only screen
-and (min-device-width : 320px)
-and (max-device-width : 568px)
-and (orientation : portrait)  {
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
     body {
       margin-bottom: 330px;
   }
