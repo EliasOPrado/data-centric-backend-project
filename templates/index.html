@@ -1,29 +1,22 @@
 {% extends 'layout.html' %} {% block content %}
 <div class="row ">
-
   <div class="col-lg-3">
-
     <div class="card  my-2">
       <h5 class="card-header btn btn-light"><strong>Categories</strong></h5>
       <a href="{{ url_for('electronics') }}" class="animate list-group-item">Electronics</a>
       <a href="{{ url_for('home_garden') }}" class="animate list-group-item">Home & Garden</a>
       <a href="{{ url_for('motors') }}" class="animate list-group-item">Motors</a>
     </div>
-
-
-
     <div class="card card-cascade wider my-3 propaganda">
       <!-- Card image -->
       <div class="view view-cascade overlay">
         <a href="https://youtu.be/yshNZlWezDk" target="_blank">
-    <img  class="card-img-top" src="/static/images/shoes.png" alt="Card image cap">
-    </a>
+          <img class="card-img-top" src="/static/images/shoes.png" alt="Card image cap">
+        </a>
       </div>
     </div>
 
   </div>
-
-
   <!-- /.col-lg-3 -->
   <div class="col-lg-9">
     <!--CAROUSEL-->
@@ -33,7 +26,7 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
       </ol>
-      <div class="carousel-inner" role="listbox">
+      <div class=" carousel-inner" role="listbox">
         <div class="carousel-item active">
           <a href="{{ url_for('electronics')}}"><img class="d-block img-fluid" src="/static/images/1.png" alt="First slide"></a>
         </div>
@@ -45,15 +38,14 @@
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="sr-only">Previous</span>
-          </a>
+        <span class="sr-only">Previous</span>
+      </a>
       <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="sr-only">Next</span>
-          </a>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
     <!--//CAROUSEL-->
     <div class="row">
-
       <div class="container">
         <figure class="mt-2 banner p-2 bg-warning">
           <div class="text-lg text-center text-white">Electronics</div>
@@ -109,7 +101,6 @@
       </div>
       {% endfor %}
       <!--  </div>-->
-
       <!--<div class="row">-->
       <div class="container">
         <figure class="mt-1 banner p-2 bg-success">

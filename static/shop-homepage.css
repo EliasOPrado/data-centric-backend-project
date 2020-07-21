@@ -388,3 +388,18 @@ body {
   padding: 1rem !important;
    }
 }
+
+
+/* trevor https://stackoverflow.com/a/20078582/9661008 */
+.transition {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.content{
+	-webkit-transition: all .4s ease-in-out;
+	-moz-transition: all .4s ease-in-out;
+	-o-transition: all .4s ease-in-out;
+	-ms-transition: all .4s ease-in-out;
+}

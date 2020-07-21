@@ -1,6 +1,8 @@
-$(document).ready(function () {
-  $(".animate").hover(function() {
-      $( ".animate" ).animate({'font-size': '25px'});
+$(document).ready(function(){
+    $('.content').hover(function() {
+        $(".content").addClass('transition');
+
+    }, function() {
+        $(".content").removeClass('transition');
     });
-  }
-);
+});
