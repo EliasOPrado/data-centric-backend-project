@@ -62,7 +62,7 @@
             </h4>
             <div class="row">
               <div class="col">
-                <h5>€{{ electronic.price }}</h5>
+                <h5>€{{ electronic.price | currencyFormat }}</h5>
               </div>
               <div class="col">
                 <i class="fas fa-eye text-muted"> {{electronic.views}}</i>
@@ -90,7 +90,7 @@
             </h4>
             <div class="row">
               <div class="col">
-                <h5>€{{ hg.price }}</h5>
+                <h5>€{{ hg.price | currencyFormat }}</h5>
               </div>
               <div class="col">
                 <i class="fas fa-eye text-muted"> <small>{{hg.views}}</small></i>
@@ -118,7 +118,7 @@
             </h4>
             <div class="row">
               <div class="col">
-                <h5>€{{ motor.price }}</h5>
+                <h5>€{{ motor.price | currencyFormat }}</h5>
               </div>
               <div class="col">
                 <i class="fas fa-eye text-muted"> <small>{{motor.views}}</small></i>

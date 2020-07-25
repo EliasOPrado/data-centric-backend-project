@@ -21,6 +21,10 @@ app.config['MONGO_URI'] = os.getenv("ENV_MONGO_URI")
 
 mongo = PyMongo(app)
 
+@app.template_filter()
+def currencyFormat(value):
+    value = float(value)
+    return "{:,.2f}".format(value)
 
 #Main page
 @app.route('/')

@@ -188,12 +188,15 @@ Users after clicking on a product card, rather it is on the home page or in cate
 
    - A 404 page is set to be displayed for when an error occur when a page is not found. Making the user be able to return to the main page with its button.
 
+## Currency formatting
+
+- I have added currency formatting using flask [template_filter()](https://flask.palletsprojects.com/en/1.0.x/api/#flask.Flask.template_filter). Where the user can add the full value of the product and it will be formatted in the Irish monetary format. 
+
 
 ## Features left to implement
 
    1. Since Users are not able to edit comments after post it on the product view page, only delete. there’s room to add edit comment.
-   2. In the user account page, the select form should be fixed to have the method “required”.
-
+   2. Under the login user needs to be added password reset functionality.
 
 
 # Database Structure
