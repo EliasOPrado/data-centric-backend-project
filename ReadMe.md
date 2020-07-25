@@ -28,6 +28,7 @@ AdPro is a website that emulates the functionality of a C2C (Consumer to Consume
     3. [The Product View](#The-product-view)
     4. [The User Account Page](#The-User-Account-Page)
     5. [404 page](#404-page)
+    6. [Currency formatting](#Currency-formatting)
     6. [Features left to implement](#Features-left-to-implement)
 3. [Database Structure](#Database-Structure)
 4. [Technologies](#Technologies)
@@ -190,7 +191,7 @@ Users after clicking on a product card, rather it is on the home page or in cate
 
 ## Currency formatting
 
-- I have added currency formatting using flask [template_filter()](https://flask.palletsprojects.com/en/1.0.x/api/#flask.Flask.template_filter). Where the user can add the full value of the product and it will be formatted in the Irish monetary format. 
+- I have added currency formatting using flask [template_filter()](https://flask.palletsprojects.com/en/1.0.x/api/#flask.Flask.template_filter). Where the user can add the full value of the product and it will be formatted in the Irish monetary format.
 
 
 ## Features left to implement
