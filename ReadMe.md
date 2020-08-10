@@ -369,6 +369,6 @@ To deploy to Heroku there are some steps to e followed:
   - The content for this project such as images are directly from the internet with the usage of urls.
 
 ## Acknowledgments
-- [Start Bootstrap](https://startbootstrap.com/templates/ecommerce/) and its creator `David Miller` for the project template.
+- [Start Bootstrap](https://startbootstrap.com/templates/ecommerce/) and its creator `David Miller` for the project template. PS:I have forked the project template direct from the `David Miller` repository when I began the project and I realized late in development he was added as contributor but with no contribution for this project. 
 - [Sipo](https://github.com/sipostudent) for the help in some hard parts of the code.
 - My mentor ```Antonio``` who gave me great help through the project development.
