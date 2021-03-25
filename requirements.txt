@@ -79,7 +79,7 @@ python-dateutil==1.5
 python-debian==0.1.32
 pytz==2019.1
 pyxdg==0.25
-PyYAML==5.1
+PyYAML==5.4
 requests==2.22.0
 requests-unixsocket==0.1.5
 roman==2.0.0
