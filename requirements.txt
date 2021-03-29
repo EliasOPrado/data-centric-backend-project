@@ -65,7 +65,7 @@ pyasn1==0.4.5
 pyasn1-modules==0.2.1
 pycparser==2.19
 pycrypto==2.6.1
-Pygments==2.2.0
+Pygments==2.7.4
 PyJWT==1.5.3
 pylint==1.8.1
 pylint-django==0.8.0
